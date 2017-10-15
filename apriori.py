@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
-#import time
-#from datetime import datetime
-import operator
+import os
+import itertools
+
+
 from itertools import izip
 from collections import OrderedDict
 
+from funciones import initPass, generarF1, generarCandidato
+
 #Variables
-c1 = {}
-transacciones = 0
+items_frecuentes = [] #Conjunto de todos los Fi
 
 #----------------------
 #Parametros de Entrada.
@@ -18,33 +20,16 @@ confianza = 0.8
 archivo = raw_input("Archivo: ")
 file = open(archivo, 'r')
 
-#----------------------
-# PASO 1:
-# LEE EL ARCHIVO Y GENERA DOS LISTAS: 
-# UNO C1 con Todos los productos distintos y 
-# otra lista soportes con el valor de soporte de cada elemento de C1
-#----------------------
-for linea in file:
-	transacciones+= 1
-	linea = linea.split()
-	for li in linea:
-		if not li in c1:
-			c1.update({li:1})
-		else:
-			c1[li] = c1[li] + 1 
+C1, cant_transacciones = initPass(file)
+F1 = generarF1(soporte, cant_transacciones, C1)
+print(F1)
+items_frecuentes.append(F1) #Cargo en items_frecuentes a F1
+					
+indice = 1
 
-#----------------------
-#PASO 3: Ordeno lexicograficamente
-#Genero una tupla de dos elementos donde el primero tiene el producto y el segundo el soporte
-#----------------------
-dicc = sorted(c1.items(), key=operator.itemgetter(0))
-
-#----------------------
-#PASO 3: Elimino los elementos de ambas listas que no superan soporte y confianza
-#----------------------
-
-
-
-
-
+#while (len(items_frecuentes[indice - 1])):
+	
+candidato_i = generarCandidato(items_frecuentes[indice - 1], indice + 1)
+print(candidato_i)
+	#indice=+ 1
 
