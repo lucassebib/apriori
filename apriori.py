@@ -2,7 +2,7 @@
 import os
 import itertools
 
-
+from time import time
 from itertools import izip
 from collections import OrderedDict
 
@@ -17,6 +17,9 @@ items_frecuentes = [] #Conjunto de todos los Fi
 soporte = 0.3
 confianza = 0.8
 
+start_time = time()
+
+
 archivo = raw_input("Archivo: ")
 file = open(archivo, 'r')
 
@@ -29,7 +32,10 @@ indice = 1
 #while (len(items_frecuentes[indice - 1])):
 	
 candidato_i = generarCandidato(items_frecuentes[indice - 1])
-print(candidato_i)
+
+elapsed_time = time() - start_time
+
+#print(candidato_i)
 
 #a = [('cerveza', 4), ('jamon', 5), ('pan', 3), ('queso', 4)]
 #print(a.__class__)
@@ -37,3 +43,5 @@ print(candidato_i)
 #print(F1.__class__)
 	#indice=+ 1
 
+print("Tiempo transcurrido: %.2f seg." % elapsed_time)
+print("Tiempo transcurrido: %.2f min." % (elapsed_time/60))
