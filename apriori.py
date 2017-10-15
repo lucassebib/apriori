@@ -22,14 +22,18 @@ file = open(archivo, 'r')
 
 C1, cant_transacciones = initPass(file)
 F1 = generarF1(soporte, cant_transacciones, C1)
-print(F1)
 items_frecuentes.append(F1) #Cargo en items_frecuentes a F1
 					
 indice = 1
 
 #while (len(items_frecuentes[indice - 1])):
 	
-candidato_i = generarCandidato(items_frecuentes[indice - 1], indice + 1)
+candidato_i = generarCandidato(items_frecuentes[indice - 1])
 print(candidato_i)
+
+#a = [('cerveza', 4), ('jamon', 5), ('pan', 3), ('queso', 4)]
+#print(a.__class__)
+#print(F1)
+#print(F1.__class__)
 	#indice=+ 1
 
