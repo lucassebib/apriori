@@ -49,11 +49,11 @@ def generarF1(soporte, cant_transacciones, C1):
 def generarCandidato(item_frecuente):
 	#---------------------------------------------------------------------------
 	#PASO 4: Genera Candidato i
-	# Cada posicion reprensenta una tupla de dos elementos:
-	# El primer elemento de la tupla es un string con los productos
+	# Cada posicion reprensenta una lista de dos elementos:
+	# El primer elemento de la lista es un string con los productos
 	# El segudo es un entero con la cantidad de coincidencias en las transacciones
 	#RETORNA: Lista
-	#[('cerveza jamon pan', 0), ('cerveza jamon queso', 0), ('cerveza pan queso', 0), ('jamon pan queso', 0)]
+	#[['cerveza jamon pan', 0], ['cerveza jamon queso', 0], ['cerveza pan queso', 0], ['jamon pan queso', 0]]
 	#---------------------------------------------------------------------------
 	
 	#item_frecuente = ['beef cheese', 'beef chicken', 'chicken clothes', 'chicken milk', 'clothes milk']
@@ -73,21 +73,22 @@ def generarCandidato(item_frecuente):
 			ultimo_elemento_item_sig = obtener_ultimo_elemento(item_sig)
 
 			if (comprar_listas(primeros_elementos_item, primeros_elementos_item_sig)) and not(ultimo_elemento_item==ultimo_elemento_item_sig):
-				t = tuple()
-				t = (item + ' ' + ultimo_elemento_item_sig, 0)				
-				c.append(t)
+				l = list()
+				l.append(item + ' ' + ultimo_elemento_item_sig)
+				l.append(0)				
+				c.append(l)
 
 	for li in c[:]: #li tendra un string con todos los productos. Ej: 'cerveza jamon pan'
 		linea = li[0].split() #Retorna una lista donde cada elemento sera un string con los valores de li. Ej: ['cerveza', 'jamon', 'pan']
 		
 		for indice in range(0,len(linea)): #Armo las distintas combinacion de elementos y los guardo en cadena. Ej: 'cerveza jamon' 'cerveza pan' 'jamon pan'
 			cadena = str()							   # Para armar las combinaciones solamente basta eliminar la diagonal principal
-			for i, x in enumerate(linea):              # *cerveza* jamon pan
-				if not i == indice:					   # cerveza *jamon* pan
-					cadena = cadena + ' '+ str(x)      # cerveza jamon *pan*
+			for i, x in enumerate(linea):              # ***cerveza***     jamon            pan         ---> jamon pan
+				if not i == indice:					   #    cerveza        ***jamon***      pan         ---> cerveza pan
+					cadena = cadena + ' '+ str(x)      #    cerveza           jamon       ***pan***     ---> cerveza jamon
 			cadena = cadena.strip()
 			
-			if not cadena in itemset:
+			if not cadena in itemset:   
 				c.remove(li)
 	
 	return c
