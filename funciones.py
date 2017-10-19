@@ -43,8 +43,17 @@ def generarF1(soporte, cant_transacciones, C1):
 	for product in C1[:]:
 		#Si no cumple con el minimo de Soporte lo elimino de la lista
 		if not product[1] < min_soporte:
-			F1.append(product[0])	
+			f_aux= list()
+			f_aux.append(product[0])
+			f_aux.append(product[1])
+			F1.append(f_aux)	
 	return F1
+
+
+
+
+
+	#return sorted(F1.items(), key=operator.itemgetter(0)) #devuelve [('cerveza', 4), ('jamon', 5), ('pan', 3), ('queso', 4)]
 
 def generarCandidato(item_frecuente):
 	#---------------------------------------------------------------------------
@@ -58,23 +67,27 @@ def generarCandidato(item_frecuente):
 	
 	#item_frecuente = ['beef cheese', 'beef chicken', 'chicken clothes', 'chicken milk', 'clothes milk']
 	#item_frecuente = ['cerveza jamon', 'cerveza pan', 'cerveza queso', 'jamon pan', 'jamon queso', 'pan queso']
-	itemset = list(item_frecuente)
-	
+
+	#itemset = list(item_frecuente)
+	itemset= list()
+	for item in item_frecuente:
+		itemset.append(item[0])
+
 	c = list()
-	linea_siguiente = item_frecuente
+	linea_siguiente = list(item_frecuente)
 	
 	for item in item_frecuente[:]:
 		linea_siguiente.remove(item)
 		for item_sig in linea_siguiente[:]:
-			primeros_elementos_item = obtener_primeros_elementos(item)
-			primeros_elementos_item_sig = obtener_primeros_elementos(item_sig)
+			primeros_elementos_item = obtener_primeros_elementos(item[0])
+			primeros_elementos_item_sig = obtener_primeros_elementos(item_sig[0])
 			
-			ultimo_elemento_item = obtener_ultimo_elemento(item)
-			ultimo_elemento_item_sig = obtener_ultimo_elemento(item_sig)
+			ultimo_elemento_item = obtener_ultimo_elemento(item[0])
+			ultimo_elemento_item_sig = obtener_ultimo_elemento(item_sig[0])
 
 			if (comprar_listas(primeros_elementos_item, primeros_elementos_item_sig)) and not(ultimo_elemento_item==ultimo_elemento_item_sig):
 				l = list()
-				l.append(item + ' ' + ultimo_elemento_item_sig)
+				l.append(item[0] + ' ' + ultimo_elemento_item_sig)
 				l.append(0)				
 				c.append(l)
 
@@ -90,5 +103,80 @@ def generarCandidato(item_frecuente):
 			
 			if not cadena in itemset:   
 				c.remove(li)
-	
 	return c
+
+def genRules(frecuentes, minConfianza): #frecuentes tiene [['cerveza jamon pan', 2], ['cerveza jamon queso', 2], ['cerveza pan queso', 2], ['jamon pan queso', 2]]
+	#for itemSet in frecuentes[1:]:
+	for idx, itemSet in enumerate(frecuentes[1:]):
+		print("\nReglas sacadas de F"+ str(idx+2)+":")
+		for li in itemSet: #li tendra un string con todos los productos. Ej: ['cerveza jamon', 4]
+			H1= list()
+			linea = li[0].split() #Retorna una lista donde cada elemento sera un string con los valores de li. Ej: ['cerveza', 'jamon']
+			soporteRegla= li[1]
+			soporteAntecedente= 0 #Inicializo la variable 
+			for indice in range(0,len(linea)): #Armo las distintas combinacion de elementos y los guardo en cadena. Ej: 'cerveza jamon' 'cerveza pan' 'jamon pan'
+				antecedente = str()							   # Para armar las combinaciones solamente basta eliminar la diagonal principal
+				consecuente= str()
+				for i, x in enumerate(linea):              # ***cerveza***     jamon            pan         ---> jamon pan
+					if not i == indice:					   #    cerveza        ***jamon***      pan         ---> cerveza pan
+						antecedente = antecedente + ' '+ str(x)      #    cerveza           jamon       ***pan***     ---> cerveza jamon
+					else:
+						consecuente= str(x)
+				antecedente = antecedente.strip()
+				for item in frecuentes[idx]:
+					if item[0] == antecedente:
+						soporteAntecedente= item[1]
+				conf= float(soporteRegla)/float(soporteAntecedente)
+				if conf >= minConfianza:
+					print("Regla 1: "+ antecedente + "-->" + consecuente + " sup= "+ str(soporteRegla) + " conf= "+ str(conf))
+					h_aux= list()
+					h_aux.append(consecuente)
+					h_aux.append(0)
+					H1.append(h_aux) #Guarda todos los consecuentes que tiene un elemento
+			apGenRules(li, H1, frecuentes, minConfianza)
+
+def apGenRules(fk, Hm, F, minConfianza): #fk tiene la forma ['cerveza jamon pan', 2]....Hm tiene la forma [['cerveza', 0], ['jamon', 0], ['pan', 0]]
+	#print(Hm)
+	k= len(fk[0].split()) #obtiene el valor de k calculando la longitud que tiene el primer elemento del itemset fk
+	#print(Hm)
+	if len(Hm)>0:
+		m= len(Hm[0][0].split()) # obtiene el valor de m calculando la longitud que tiene el primer elemento de Hm. Hm tiene 
+	#print("los valores de fk son: "+str(fk))
+	#print(k)
+	#print(m)
+	if (len(Hm) != 0) and (k > m+1):
+		Hm_mas_1= generarCandidato(Hm) #Hm_mas_1 tiene [['cerveza jamon', 0], ['cerveza pan', 0], ['jamon pan', 0]]
+		#print(Hm_mas_1)
+		for hm_mas_1 in Hm_mas_1: #hm_mas_1 tien la forma ['cerveza jamon', 0]
+			#print(hm_mas_1)
+			list_fk = fk[0].split() #Se tiene ['cerveza', 'jamon', 'pan']
+			list_hm_mas_1= hm_mas_1[0].split() #Se tiene ['cerveza', 'jamon']
+			#print("Los valores de list_fk son: "+ str(list_fk))
+			#print("Los valores de list_hm_mas_1 son: "+ str(list_hm_mas_1))
+			antecedente=list()
+			for elem in list_fk:
+				if elem not in list_hm_mas_1:
+					antecedente.append(elem)
+			consecuente= hm_mas_1[0]
+			#print('La regla de salida es: '+str(antecedente) +"-->"+ str(consecuente))
+			soporteConsecuente=0
+			#for item in F[len(antecedente[0].split())-1]: #Recorremos el F anterior para buscar el soporte del antecedente
+			#print("Los valores del F anterior son: "+ str(F[len(antecedente)-1]))
+			for item in F[len(antecedente)-1]: #Recorremos el F anterior para buscar el soporte del antecedente
+				#print(item[0])
+				el1=item[0].split()
+				el2= antecedente
+				#print(el1)
+				#print(el2)
+				#if (item[0]==antecedente[0]):
+				if el1==el2:
+					soporteConsecuente=item[1]
+			conf= float(fk[1])/float(soporteConsecuente)
+			if conf> minConfianza:
+				#print('La regla de salida es: '+ str(antecedente) +"-->"+ str(consecuente)+ " soporte="+str(fk[1])+" confianza="+str(conf))
+				print('Reglas 2: '+str(antecedente).replace('[','').replace(']','').replace('\'','') +"-->"+ str(consecuente)+ " soporte="+str(fk[1])+" confianza="+str(conf))
+			else:
+				Hm_mas_1.remove(hm_mas_1)
+		#print(Hm_mas_1)
+		apGenRules(fk, Hm_mas_1, F, minConfianza)
+		print("\n")
