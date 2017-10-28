@@ -19,7 +19,7 @@ def obtener_ultimo_elemento(lista):
 	salida = lista.split()
 	return salida[len(salida)-1]
 
-def comprar_listas(lista_a, lista_b):
+def comparar_listas(lista_a, lista_b):
 	#---------------------------------------------------------------------------
 	#Funcion: Compara dos listas, si son iguales retorna True, sino False
 	#RETORNA: Booleano

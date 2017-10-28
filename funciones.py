@@ -1,8 +1,14 @@
+import os
+import sys
 import operator
 import math
 import itertools
 
-from subfunciones import obtener_primeros_elementos, obtener_ultimo_elemento, comprar_listas
+from subfunciones import obtener_primeros_elementos, obtener_ultimo_elemento, comparar_listas
+
+
+
+archivo_salida = open('reglas.dat', 'w')
 
 def initPass(archivo_transacciones):
 	#---------------------------------------------------------------------------
@@ -23,6 +29,7 @@ def initPass(archivo_transacciones):
 			else: #Ya estaba en lista por lo que solo tengo que incrementar el soporte
 				candidatos_ini[li] = candidatos_ini[li] + 1 
 
+
 	#---------------------------------------------------------------------------
 	#PASO 2: Ordeno lexicograficamente obteniendo c1
 	#Genero una lista (C1) de dos elementos cada uno, donde el primero tiene el producto y el segundo el soporte
@@ -36,7 +43,7 @@ def generarF1(soporte, cant_transacciones, C1):
 	#PASO 3: Elimino los elementos de ambas listas que no superan soporte y confianza
 	#En este paso obtendria F1
 	#Retorna: Lista
-	#Ejemplo: ['cerveza', 'jamon', 'pan', 'queso']
+	#Ejemplo: [['cerveza', 3], ['jamon', 2], ['pan', 5], ['queso', 6]]
 	#----------------------
 	F1 = []
 	min_soporte = int(math.ceil(cant_transacciones*soporte)) #Si hay decimales rendondeo siempre hacia arriba
@@ -85,7 +92,7 @@ def generarCandidato(item_frecuente):
 			ultimo_elemento_item = obtener_ultimo_elemento(item[0])
 			ultimo_elemento_item_sig = obtener_ultimo_elemento(item_sig[0])
 
-			if (comprar_listas(primeros_elementos_item, primeros_elementos_item_sig)) and not(ultimo_elemento_item==ultimo_elemento_item_sig):
+			if (comparar_listas(primeros_elementos_item, primeros_elementos_item_sig)) and not(ultimo_elemento_item==ultimo_elemento_item_sig):
 				l = list()
 				l.append(item[0] + ' ' + ultimo_elemento_item_sig)
 				l.append(0)				
@@ -101,39 +108,66 @@ def generarCandidato(item_frecuente):
 					cadena = cadena + ' '+ str(x)      #    cerveza           jamon       ***pan***     ---> cerveza jamon
 			cadena = cadena.strip()
 			
-			if not cadena in itemset:   
-				c.remove(li)
+			li_bk = li 
+			if not cadena in itemset: 
+				print('entro')  
+				try:
+					c.remove(li_bk)
+					print(li_bk)
+				except Exception as e:
+					print('error')
+				
 	return c
 
-def genRules(frecuentes, minConfianza): #frecuentes tiene [['cerveza jamon pan', 2], ['cerveza jamon queso', 2], ['cerveza pan queso', 2], ['jamon pan queso', 2]]
-	#for itemSet in frecuentes[1:]:
-	for idx, itemSet in enumerate(frecuentes[1:]):
-		print("\nReglas sacadas de F"+ str(idx+2)+":")
-		for li in itemSet: #li tendra un string con todos los productos. Ej: ['cerveza jamon', 4]
+def genRules(frecuentes, minConfianza): 
+	#---------------------------------------------------------------------------
+	# 
+	# 
+	# 
+	#
+	#
+	#---------------------------------------------------------------------------
+	
+	
+
+	for idx, F_i in enumerate(frecuentes[1:]): #frecuentes[1:] indica que arranca desde la posicion 1 de F (tener en cuenta que los indeces arrancan 0)
+		#print("\nReglas sacadas de F"+ str(idx+2)+":")
+		
+
+		for li in F_i: #li tendra un string con todos los productos. Ej: ['cerveza jamon', 4] de F_i
 			H1= list()
 			linea = li[0].split() #Retorna una lista donde cada elemento sera un string con los valores de li. Ej: ['cerveza', 'jamon']
 			soporteRegla= li[1]
 			soporteAntecedente= 0 #Inicializo la variable 
-			for indice in range(0,len(linea)): #Armo las distintas combinacion de elementos y los guardo en cadena. Ej: 'cerveza jamon' 'cerveza pan' 'jamon pan'
-				antecedente = str()							   # Para armar las combinaciones solamente basta eliminar la diagonal principal
+			for indice in range(0,len(linea)):                 #Armo las distintas combinacion de elementos para obtener el antecedente y consecuente
+				antecedente = str()							   # En este caso el consecuente seria el elemento de la diagonal principal
 				consecuente= str()
-				for i, x in enumerate(linea):              # ***cerveza***     jamon            pan         ---> jamon pan
-					if not i == indice:					   #    cerveza        ***jamon***      pan         ---> cerveza pan
-						antecedente = antecedente + ' '+ str(x)      #    cerveza           jamon       ***pan***     ---> cerveza jamon
+				for i, x in enumerate(linea):              		  # ***cerveza***     jamon          pan         \\  jamon pan --> cerveza
+					if not i == indice:					  	      #    cerveza     ***jamon***       pan         \\  cerveza pan --> jamon
+						antecedente = antecedente + ' '+ str(x)   #    cerveza        jamon       ***pan***      \\ cerveza jamon ---> pan
 					else:
 						consecuente= str(x)
 				antecedente = antecedente.strip()
-				for item in frecuentes[idx]:
+				consecuente = consecuente.strip()
+				
+				for item in frecuentes[idx]:    #Recorro el F_i para encontrar el antecedente y encontrar su soporte
 					if item[0] == antecedente:
 						soporteAntecedente= item[1]
+
 				conf= float(soporteRegla)/float(soporteAntecedente)
+				
 				if conf >= minConfianza:
-					print("Regla 1: "+ antecedente + "-->" + consecuente + " sup= "+ str(soporteRegla) + " conf= "+ str(conf))
+					archivo_salida.write(antecedente + ' ---> ' + consecuente + os.linesep)
+					#print("Regla 1: "+ antecedente + "-->" + consecuente + " sup= "+ str(soporteRegla) + " conf= "+ str(conf))
 					h_aux= list()
 					h_aux.append(consecuente)
 					h_aux.append(0)
 					H1.append(h_aux) #Guarda todos los consecuentes que tiene un elemento
+			
+
 			apGenRules(li, H1, frecuentes, minConfianza)
+
+
 
 def apGenRules(fk, Hm, F, minConfianza): #fk tiene la forma ['cerveza jamon pan', 2]....Hm tiene la forma [['cerveza', 0], ['jamon', 0], ['pan', 0]]
 	#print(Hm)
@@ -174,9 +208,10 @@ def apGenRules(fk, Hm, F, minConfianza): #fk tiene la forma ['cerveza jamon pan'
 			conf= float(fk[1])/float(soporteConsecuente)
 			if conf> minConfianza:
 				#print('La regla de salida es: '+ str(antecedente) +"-->"+ str(consecuente)+ " soporte="+str(fk[1])+" confianza="+str(conf))
-				print('Reglas 2: '+str(antecedente).replace('[','').replace(']','').replace('\'','') +"-->"+ str(consecuente)+ " soporte="+str(fk[1])+" confianza="+str(conf))
+				#print('Reglas 2: '+str(antecedente).replace('[','').replace(']','').replace('\'','') +"-->"+ str(consecuente)+ " soporte="+str(fk[1])+" confianza="+str(conf))
+				archivo_salida.write(str(antecedente).replace('[','').replace(']','').replace('\'','') +"-->"+ str(consecuente) + os.linesep)
 			else:
 				Hm_mas_1.remove(hm_mas_1)
 		#print(Hm_mas_1)
 		apGenRules(fk, Hm_mas_1, F, minConfianza)
-		print("\n")
+		#print("\n")
