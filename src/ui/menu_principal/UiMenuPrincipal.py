@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'menuPrincipal.ui'
 #
-# Created: Sun Oct 29 20:25:57 2017
+# Created: Sun Oct 29 22:58:07 2017
 #      by: PyQt4 UI code generator 4.10
 #
 # WARNING! All changes made in this file will be lost!
@@ -13,7 +13,7 @@
 from PyQt4.QtCore import QFileInfo
 from PyQt4.QtGui import *
 
-from apriori import EjecutarCorrida
+from apriori import EjecutarCorrida, obtenerDatos
 #----------------------FIN #1-----------------------
 
 from PyQt4 import QtCore, QtGui
@@ -40,6 +40,7 @@ class Ui_MainWindow(object):
     ruta = ''
     nombre_archivo = ''
     #-------------FIN #2-------------
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
         MainWindow.resize(712, 636)
@@ -64,7 +65,7 @@ class Ui_MainWindow(object):
         self.l_soporte.setGeometry(QtCore.QRect(40, 70, 91, 20))
         self.l_soporte.setObjectName(_fromUtf8("l_soporte"))
         self.btn_procesar = QtGui.QPushButton(self.groupBox)
-        self.btn_procesar.setGeometry(QtCore.QRect(470, 120, 101, 41))
+        self.btn_procesar.setGeometry(QtCore.QRect(510, 130, 71, 31))
         self.btn_procesar.setObjectName(_fromUtf8("btn_procesar"))
         self.dsb_soporte = QtGui.QDoubleSpinBox(self.groupBox)
         self.dsb_soporte.setGeometry(QtCore.QRect(130, 70, 61, 21))
@@ -87,11 +88,36 @@ class Ui_MainWindow(object):
         self.line.setObjectName(_fromUtf8("line"))
         self.barra_progreso = QtGui.QProgressBar(self.groupBox)
         self.barra_progreso.setEnabled(True)
-        self.barra_progreso.setGeometry(QtCore.QRect(30, 130, 431, 23))
+        self.barra_progreso.setGeometry(QtCore.QRect(10, 130, 411, 23))
         self.barra_progreso.setMinimum(0)
         self.barra_progreso.setProperty("value", 0)
         self.barra_progreso.setTextVisible(True)
         self.barra_progreso.setObjectName(_fromUtf8("barra_progreso"))
+        self.btn_detener = QtGui.QPushButton(self.groupBox)
+        self.btn_detener.setGeometry(QtCore.QRect(430, 130, 71, 31))
+        self.btn_detener.setObjectName(_fromUtf8("btn_detener"))
+        self.groupBox_2 = QtGui.QGroupBox(self.centralwidget)
+        self.groupBox_2.setGeometry(QtCore.QRect(30, 210, 381, 101))
+        self.groupBox_2.setObjectName(_fromUtf8("groupBox_2"))
+        self.label = QtGui.QLabel(self.groupBox_2)
+        self.label.setGeometry(QtCore.QRect(50, 30, 171, 16))
+        self.label.setObjectName(_fromUtf8("label"))
+        self.label_3 = QtGui.QLabel(self.groupBox_2)
+        self.label_3.setGeometry(QtCore.QRect(50, 60, 151, 16))
+        self.label_3.setObjectName(_fromUtf8("label_3"))
+        self.le_cant_transacciones = QtGui.QLineEdit(self.groupBox_2)
+        self.le_cant_transacciones.setEnabled(False)
+        self.le_cant_transacciones.setGeometry(QtCore.QRect(230, 30, 81, 22))
+        self.le_cant_transacciones.setReadOnly(True)
+        self.le_cant_transacciones.setObjectName(_fromUtf8("le_cant_transacciones"))
+        self.le_cant_productos = QtGui.QLineEdit(self.groupBox_2)
+        self.le_cant_productos.setEnabled(False)
+        self.le_cant_productos.setGeometry(QtCore.QRect(230, 60, 81, 22))
+        self.le_cant_productos.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.le_cant_productos.setEchoMode(QtGui.QLineEdit.Normal)
+        self.le_cant_productos.setReadOnly(True)
+        self.le_cant_productos.setPlaceholderText(_fromUtf8(""))
+        self.le_cant_productos.setObjectName(_fromUtf8("le_cant_productos"))
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 712, 26))
@@ -155,6 +181,12 @@ class Ui_MainWindow(object):
         self.l_soporte.setText(_translate("MainWindow", "Soporte (%):", None))
         self.btn_procesar.setText(_translate("MainWindow", "Procesar", None))
         self.btn_examinar.setText(_translate("MainWindow", "Examinar", None))
+        self.btn_detener.setText(_translate("MainWindow", "Detener", None))
+        self.groupBox_2.setTitle(_translate("MainWindow", "Resultados Parciales", None))
+        self.label.setText(_translate("MainWindow", "Cantidad de Transacciones:", None))
+        self.label_3.setText(_translate("MainWindow", "Cantidad de Productos", None))
+        self.le_cant_transacciones.setText(_translate("MainWindow", "0", None))
+        self.le_cant_productos.setText(_translate("MainWindow", "0", None))
         self.menuInicio.setTitle(_translate("MainWindow", "Inicio", None))
         self.menuAyuda.setTitle(_translate("MainWindow", "Ayuda", None))
         self.actionInstrucciones_de_Uso.setText(_translate("MainWindow", "Instrucciones de Uso", None))
@@ -184,17 +216,15 @@ class Ui_MainWindow(object):
         print('parametros:')
         confianza = float(self.dsb_confianza.value())
         soporte = float(self.dsb_soporte.value())
-        print(self.nombre_archivo)
-        print(self.ruta)
-        print(self.fichero_actual)
-        print('-------------------------------')
         EjecutarCorrida(self.fichero_actual, soporte, confianza )
 
         while value <= 1000000:
             self.barra_progreso.setValue(value/10000)
             value = value + 1
 
-
+        cant_transacc, cant_prod = obtenerDatos()
+        self.le_cant_productos.setText(_translate("MainWindow", str(cant_prod), None))
+        self.le_cant_transacciones.setText(_translate("MainWindow", str(cant_transacc), None))
         self.barra_progreso.hide()
 
 

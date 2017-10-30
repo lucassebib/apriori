@@ -14,7 +14,8 @@ RUTA_REGLAS = os.path.join(RUTA_BASE, 'reglas')
 if os.path.exists(RUTA_REGLAS):
 	print('TODO OK.!')
 
-archivo_salida = open(RUTA_REGLAS + '/reglas'+ str(time.strftime("%H%M%S")) + '.dat', 'w')
+#archivo_salida = open(RUTA_REGLAS + '/reglas'+ str(time.strftime("%H%M%S")) + '.dat', 'w')
+archivo_salida = open(RUTA_REGLAS + '/reglas' + '.dat', 'w')
 
 
 def initPass(archivo_transacciones):
@@ -159,8 +160,9 @@ def genRules(frecuentes, minConfianza):
 				conf= float(soporteRegla)/float(soporteAntecedente)
 				
 				if conf >= minConfianza:
-					archivo_salida.write(antecedente + ' ---> ' + consecuente + os.linesep)
-					print(antecedente + ' ---> ' + consecuente)
+					archivo_salida.write(antecedente + ' ---> ' + consecuente + '\n') #os.linesep)
+					#print(antecedente + ' ---> ' + consecuente)
+					
 					h_aux= list()
 					h_aux.append(consecuente)
 					h_aux.append(0)
@@ -168,6 +170,9 @@ def genRules(frecuentes, minConfianza):
 			
 
 			apGenRules(li, H1, frecuentes, minConfianza)
+
+	print('Cerrando Archivo de Reglas')
+	archivo_salida.close()
 
 
 
@@ -197,8 +202,9 @@ def apGenRules(fk, Hm, F, minConfianza): #fk tiene la forma ['cerveza jamon pan'
 					soporteConsecuente=item[1]
 			conf= float(fk[1])/float(soporteConsecuente)
 			if conf> minConfianza:
-				archivo_salida.write(str(antecedente).replace('[','').replace(']','').replace('\'','') +"-->"+ str(consecuente) + os.linesep)
-				print(str(antecedente).replace('[','').replace(']','').replace('\'','') +"-->"+ str(consecuente))
+				archivo_salida.write(str(antecedente).replace('[','').replace(']','').replace('\'','') +"-->"+ str(consecuente) + '\n')# os.linesep)
+				#print(str(antecedente).replace('[','').replace(']','').replace('\'','') +"-->"+ str(consecuente))
+
 			else:
 				Hm_mas_1.remove(hm_mas_1)
 		apGenRules(fk, Hm_mas_1, F, minConfianza)

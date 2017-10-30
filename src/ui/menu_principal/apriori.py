@@ -8,6 +8,9 @@ from collections import OrderedDict
 
 from funciones import initPass, generarF1, generarCandidato, genRules
 
+cant_transacciones = 0
+cant_productos = 0
+
 def EjecutarCorrida (archivo, suport, conf):
 	#----------------------
 	#     VARIABLES
@@ -31,10 +34,11 @@ def EjecutarCorrida (archivo, suport, conf):
 
 	print('--------------------------------')
 	print('PASO 1: Lectura de Archivo OK')
-	print(str(file))
-
+	global cant_transacciones
 	C1, cant_transacciones = initPass(file)
 	items_candidatos.append(C1) #Cargo a C1 en items_candidatos
+	global cant_productos
+	cant_productos = len(C1)
 
 	print('--------------------------------')
 	print('PASO 2: INITPASS')
@@ -77,13 +81,17 @@ def EjecutarCorrida (archivo, suport, conf):
 		items_frecuentes.append(f_aux)
 		print('--------------------------')
 		print('GENERANDO F' + str(indice) )
-		print(str(f_aux))
 		indice = indice + 1
 
 
 	print('--------------------------')
 	print('GENERANDO REGLAS' )	
 	genRules(items_frecuentes, confianza)
+
+def obtenerDatos():
+	global cant_transacciones
+	global cant_productos
+	return cant_transacciones, cant_productos
 
 
 
