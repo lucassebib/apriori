@@ -213,6 +213,8 @@ class Ui_MainWindow(object):
         QtCore.QObject.connect(self.actionSalir, QtCore.SIGNAL(_fromUtf8("triggered()")), MainWindow.close)
         QtCore.QObject.connect(self.btn_examinar, QtCore.SIGNAL(_fromUtf8("clicked()")), self.abrir)
         QtCore.QObject.connect(self.btn_procesar, QtCore.SIGNAL(_fromUtf8("clicked()")), self.procesar)
+        QtCore.QObject.connect(self.cb_min_consecuentes, QtCore.SIGNAL(_fromUtf8("clicked()")), self.ckeckStatus)
+        QtCore.QObject.connect(self.cb_min_antecedentes, QtCore.SIGNAL(_fromUtf8("clicked()")), self.ckeckStatus)
 
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         #-------------FIN #5-------------
@@ -282,6 +284,18 @@ class Ui_MainWindow(object):
         self.le_cant_productos.setText(_translate("MainWindow", str(cant_prod), None))
         self.le_cant_transacciones.setText(_translate("MainWindow", str(cant_transacc), None))
         self.barra_progreso.hide()
+
+    def ckeckStatus(self):
+        if self.cb_min_consecuentes.isChecked():
+            self.sb_min_consecuentes.setEnabled(True)
+        else:
+            self.sb_min_consecuentes.setEnabled(False)
+
+        if self.cb_min_antecedentes.isChecked():
+            self.sb_min_antecedentes.setEnabled(True)
+        else:
+            self.sb_min_antecedentes.setEnabled(False)
+
 
 
     #--------------------FIN #6---------------------
