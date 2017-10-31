@@ -8,13 +8,14 @@ import time
 from subfunciones import obtener_primeros_elementos, obtener_ultimo_elemento, comparar_listas
 
 
-RUTA_BASE = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+RUTA_BASE = os.path.dirname(os.path.dirname(__file__))
 RUTA_REGLAS = os.path.join(RUTA_BASE, 'reglas')
 
 if os.path.exists(RUTA_REGLAS):
-	print('TODO OK.!')
+	print('CREACION DEL ARCHIVO DE SALIDA.!')
 
-archivo_salida = open(RUTA_REGLAS + '/reglas'+ str(time.strftime("%H%M%S")) + '.dat', 'w')
+#archivo_salida = open(RUTA_REGLAS + '/reglas'+ str(time.strftime("%H%M%S")) + '.dat', 'w')
+archivo_salida = open(RUTA_REGLAS + '/reglas' + '.dat', 'w')
 
 
 def initPass(archivo_transacciones):
@@ -62,12 +63,6 @@ def generarF1(soporte, cant_transacciones, C1):
 			f_aux.append(product[1])
 			F1.append(f_aux)	
 	return F1
-
-
-
-
-
-	#return sorted(F1.items(), key=operator.itemgetter(0)) #devuelve [('cerveza', 4), ('jamon', 5), ('pan', 3), ('queso', 4)]
 
 def generarCandidato(item_frecuente):
 	#---------------------------------------------------------------------------
@@ -159,14 +154,18 @@ def genRules(frecuentes, minConfianza):
 				conf= float(soporteRegla)/float(soporteAntecedente)
 				
 				if conf >= minConfianza:
-					archivo_salida.write(antecedente + ' ---> ' + consecuente + os.linesep)
+					archivo_salida.write(antecedente + ' ---> ' + consecuente + '\n') #os.linesep)
+					#print(antecedente + ' ---> ' + consecuente)
+					
 					h_aux= list()
 					h_aux.append(consecuente)
 					h_aux.append(0)
 					H1.append(h_aux) #Guarda todos los consecuentes que tiene un elemento
 			
-
 			apGenRules(li, H1, frecuentes, minConfianza)
+
+	print('Cerrando Archivo de Reglas')
+	archivo_salida.close()
 
 
 
@@ -196,7 +195,9 @@ def apGenRules(fk, Hm, F, minConfianza): #fk tiene la forma ['cerveza jamon pan'
 					soporteConsecuente=item[1]
 			conf= float(fk[1])/float(soporteConsecuente)
 			if conf> minConfianza:
-				archivo_salida.write(str(antecedente).replace('[','').replace(']','').replace('\'','') +"-->"+ str(consecuente) + os.linesep)
+				archivo_salida.write(str(antecedente).replace('[','').replace(']','').replace('\'','') +"-->"+ str(consecuente) + '\n')# os.linesep)
+				#print(str(antecedente).replace('[','').replace(']','').replace('\'','') +"-->"+ str(consecuente))
+
 			else:
 				Hm_mas_1.remove(hm_mas_1)
 		apGenRules(fk, Hm_mas_1, F, minConfianza)
