@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'menuPrincipal.ui'
 #
-# Created: Mon Oct 30 22:00:35 2017
+# Created: Wed Nov 01 01:06:46 2017
 #      by: PyQt4 UI code generator 4.10
 #
 # WARNING! All changes made in this file will be lost!
@@ -10,10 +10,17 @@
 #---------------------------------------------------
 #-------------AGREGADO #1 IMPORTACIONES-------------
 #---------------------------------------------------
+import os
+
 from PyQt4.QtCore import QFileInfo
 from PyQt4.QtGui import *
 
 from apriori import EjecutarCorrida, obtenerDatos
+
+
+RUTA_BASE = os.path.dirname(os.path.dirname(__file__))
+RUTA_REGLAS = os.path.join(RUTA_BASE, 'reglas')
+archivo_reglas = open(RUTA_REGLAS + '/reglas' + '.dat', 'r')
 #----------------------FIN #1-----------------------
 
 from PyQt4 import QtCore, QtGui
@@ -40,20 +47,16 @@ class Ui_MainWindow(object):
     ruta = ''
     nombre_archivo = ''
     #-------------FIN #2-------------
-
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(712, 636)
+        MainWindow.resize(712, 658)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
-        self.btn_ver_reglas = QtGui.QPushButton(self.centralwidget)
-        self.btn_ver_reglas.setGeometry(QtCore.QRect(450, 540, 111, 41))
-        self.btn_ver_reglas.setObjectName(_fromUtf8("btn_ver_reglas"))
         self.btn_salir = QtGui.QPushButton(self.centralwidget)
-        self.btn_salir.setGeometry(QtCore.QRect(580, 540, 101, 41))
+        self.btn_salir.setGeometry(QtCore.QRect(580, 550, 101, 41))
         self.btn_salir.setObjectName(_fromUtf8("btn_salir"))
         self.tabWidget = QtGui.QTabWidget(self.centralwidget)
-        self.tabWidget.setGeometry(QtCore.QRect(20, 40, 661, 491))
+        self.tabWidget.setGeometry(QtCore.QRect(20, 40, 661, 501))
         self.tabWidget.setObjectName(_fromUtf8("tabWidget"))
         self.tab = QtGui.QWidget()
         self.tab.setObjectName(_fromUtf8("tab"))
@@ -111,9 +114,11 @@ class Ui_MainWindow(object):
         self.btn_procesar.setObjectName(_fromUtf8("btn_procesar"))
         self.dsb_soporte = QtGui.QDoubleSpinBox(self.groupBox)
         self.dsb_soporte.setGeometry(QtCore.QRect(130, 70, 61, 21))
+        self.dsb_soporte.setProperty("value", 30.0)
         self.dsb_soporte.setObjectName(_fromUtf8("dsb_soporte"))
         self.dsb_confianza = QtGui.QDoubleSpinBox(self.groupBox)
-        self.dsb_confianza.setGeometry(QtCore.QRect(340, 70, 61, 21))
+        self.dsb_confianza.setGeometry(QtCore.QRect(310, 70, 61, 21))
+        self.dsb_confianza.setProperty("value", 80.0)
         self.dsb_confianza.setObjectName(_fromUtf8("dsb_confianza"))
         self.btn_examinar = QtGui.QPushButton(self.groupBox)
         self.btn_examinar.setGeometry(QtCore.QRect(470, 30, 93, 28))
@@ -163,6 +168,20 @@ class Ui_MainWindow(object):
         self.le_cant_productos.setReadOnly(True)
         self.le_cant_productos.setPlaceholderText(_fromUtf8(""))
         self.le_cant_productos.setObjectName(_fromUtf8("le_cant_productos"))
+        self.btn_ver_reglas = QtGui.QPushButton(self.tab_3)
+        self.btn_ver_reglas.setGeometry(QtCore.QRect(510, 70, 111, 41))
+        self.btn_ver_reglas.setObjectName(_fromUtf8("btn_ver_reglas"))
+        self.tw_rules = QtGui.QTableWidget(self.tab_3)
+        self.tw_rules.setGeometry(QtCore.QRect(20, 130, 611, 321))
+        self.tw_rules.setColumnCount(3)
+        self.tw_rules.setObjectName(_fromUtf8("tw_rules"))
+        self.tw_rules.setRowCount(0)
+        item = QtGui.QTableWidgetItem()
+        self.tw_rules.setHorizontalHeaderItem(0, item)
+        item = QtGui.QTableWidgetItem()
+        self.tw_rules.setHorizontalHeaderItem(1, item)
+        item = QtGui.QTableWidgetItem()
+        self.tw_rules.setHorizontalHeaderItem(2, item)
         self.tabWidget.addTab(self.tab_3, _fromUtf8(""))
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
@@ -213,13 +232,18 @@ class Ui_MainWindow(object):
         QtCore.QObject.connect(self.actionSalir, QtCore.SIGNAL(_fromUtf8("triggered()")), MainWindow.close)
         QtCore.QObject.connect(self.btn_examinar, QtCore.SIGNAL(_fromUtf8("clicked()")), self.abrir)
         QtCore.QObject.connect(self.btn_procesar, QtCore.SIGNAL(_fromUtf8("clicked()")), self.procesar)
+        QtCore.QObject.connect(self.cb_min_consecuentes, QtCore.SIGNAL(_fromUtf8("clicked()")), self.ckeckStatus)
+        QtCore.QObject.connect(self.cb_min_antecedentes, QtCore.SIGNAL(_fromUtf8("clicked()")), self.ckeckStatus)
+
+        QtCore.QObject.connect(self.btn_ver_reglas, QtCore.SIGNAL(_fromUtf8("clicked()")), self.obtenerReglas)
+
 
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         #-------------FIN #5-------------
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(_translate("MainWindow", "Algoritmo Apriori", None))
-        self.btn_ver_reglas.setText(_translate("MainWindow", "Ver Reglas", None))
+        self.btn_salir.setToolTip(_translate("MainWindow", "<html><head/><body><p>Salir de la Aplicacion</p></body></html>", None))
         self.btn_salir.setText(_translate("MainWindow", "Salir", None))
         self.groupBox_3.setTitle(_translate("MainWindow", "Parametros de Poda", None))
         self.cb_soporte.setText(_translate("MainWindow", "Soporte", None))
@@ -242,6 +266,14 @@ class Ui_MainWindow(object):
         self.label_3.setText(_translate("MainWindow", "Cantidad de Productos", None))
         self.le_cant_transacciones.setText(_translate("MainWindow", "0", None))
         self.le_cant_productos.setText(_translate("MainWindow", "0", None))
+        self.btn_ver_reglas.setToolTip(_translate("MainWindow", "<html><head/><body><p>Ver Reglas Generadas</p></body></html>", None))
+        self.btn_ver_reglas.setText(_translate("MainWindow", "Ver Reglas", None))
+        item = self.tw_rules.horizontalHeaderItem(0)
+        item.setText(_translate("MainWindow", "Regla", None))
+        item = self.tw_rules.horizontalHeaderItem(1)
+        item.setText(_translate("MainWindow", "Soporte", None))
+        item = self.tw_rules.horizontalHeaderItem(2)
+        item.setText(_translate("MainWindow", "Confianza", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Resultados", None))
         self.menuInicio.setTitle(_translate("MainWindow", "Inicio", None))
         self.menuAyuda.setTitle(_translate("MainWindow", "Ayuda", None))
@@ -283,6 +315,23 @@ class Ui_MainWindow(object):
         self.le_cant_transacciones.setText(_translate("MainWindow", str(cant_transacc), None))
         self.barra_progreso.hide()
 
+    def ckeckStatus(self):
+        if self.cb_min_consecuentes.isChecked():
+            self.sb_min_consecuentes.setEnabled(True)
+        else:
+            self.sb_min_consecuentes.setEnabled(False)
+
+        if self.cb_min_antecedentes.isChecked():
+            self.sb_min_antecedentes.setEnabled(True)
+        else:
+            self.sb_min_antecedentes.setEnabled(False)
+
+    def obtenerReglas(self):
+        for i, linea in enumerate(archivo_reglas):
+            self.tw_reglas.insertRow(i)
+            self.tw_reglas.setItem(i, 0, QtGui.QTableWidgetItem(str(linea)))
+
+
+
 
     #--------------------FIN #6---------------------
-

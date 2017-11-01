@@ -60,6 +60,8 @@
   ('select', 'c:\\python27\\DLLs\\select.pyd', 'EXTENSION'),
   ('unicodedata', 'c:\\python27\\DLLs\\unicodedata.pyd', 'EXTENSION'),
   ('bz2', 'c:\\python27\\DLLs\\bz2.pyd', 'EXTENSION'),
+  ('_ssl', 'c:\\python27\\DLLs\\_ssl.pyd', 'EXTENSION'),
+  ('_socket', 'c:\\python27\\DLLs\\_socket.pyd', 'EXTENSION'),
   ('PyQt4.QtCore',
    'c:\\python27\\lib\\site-packages\\PyQt4\\QtCore.pyd',
    'EXTENSION'),

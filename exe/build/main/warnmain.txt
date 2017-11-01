@@ -9,6 +9,6 @@ missing module named riscos - imported by os
 missing module named ce - imported by os
 missing module named _emx_link - imported by os
 missing module named os2 - imported by os
-missing module named pwd - imported by posixpath
+missing module named pwd - imported by posixpath, webbrowser
 missing module named posix - imported by os
 missing module named resource - imported by posix
