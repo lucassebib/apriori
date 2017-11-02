@@ -20,11 +20,8 @@ def EjecutarCorrida (archivo, suport, conf):
 	soporte = float(suport/100)
 	confianza= float(conf/100)
 
-	print(soporte)
-	print(confianza)
-
 	indice = 1
-
+	#TOTAL_LINEAS = sum(1 for line in open(file))
 	#----------------------
 	#  INICIO ALGORTIMO.
 	#----------------------
@@ -48,7 +45,6 @@ def EjecutarCorrida (archivo, suport, conf):
 
 	items_frecuentes.append(F1) #Cargo en items_frecuentes a F1
 
-	#archivo = raw_input("Archivo: ")
 	file = open(archivo, 'r')					
 
 	f_i  = F1
@@ -88,6 +84,7 @@ def EjecutarCorrida (archivo, suport, conf):
 	print('GENERANDO REGLAS' )	
 	genRules(items_frecuentes, confianza)
 
+	file.close()
 def obtenerDatos():
 	global cant_transacciones
 	global cant_productos

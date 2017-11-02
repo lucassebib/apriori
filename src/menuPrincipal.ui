@@ -11,14 +11,18 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Algoritmo Apriori</string>
+   <string>AppRules</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="recursos/imagenes.qrc">
+    <normaloff>:/images/regla.png</normaloff>:/images/regla.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="btn_salir">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>550</y>
+      <x>590</x>
+      <y>560</y>
       <width>101</width>
       <height>41</height>
      </rect>
@@ -34,9 +38,9 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>40</y>
-      <width>661</width>
-      <height>501</height>
+      <y>20</y>
+      <width>681</width>
+      <height>521</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -361,7 +365,7 @@
        <rect>
         <x>30</x>
         <y>20</y>
-        <width>381</width>
+        <width>631</width>
         <height>101</height>
        </rect>
       </property>
@@ -441,30 +445,30 @@
         <string/>
        </property>
       </widget>
-     </widget>
-     <widget class="QPushButton" name="btn_ver_reglas">
-      <property name="geometry">
-       <rect>
-        <x>510</x>
-        <y>70</y>
-        <width>111</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ver Reglas Generadas&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-      <property name="text">
-       <string>Ver Reglas</string>
-      </property>
+      <widget class="QPushButton" name="btn_ver_reglas">
+       <property name="geometry">
+        <rect>
+         <x>510</x>
+         <y>50</y>
+         <width>111</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ver Reglas Generadas&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="text">
+        <string>Ver Reglas</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QTableWidget" name="tw_rules">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>10</x>
         <y>130</y>
-        <width>611</width>
-        <height>321</height>
+        <width>651</width>
+        <height>361</height>
        </rect>
       </property>
       <property name="columnCount">
@@ -555,7 +559,9 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="recursos/imagenes.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>btn_salir</sender>

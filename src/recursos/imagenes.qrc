@@ -1,0 +1,15 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+<qresource prefix="/images">
+    <file alias="logo.png">img/logo.png</file>
+</qresource>
+
+<qresource prefix="/images">
+    <file alias="regla.png">img/association-rule.png</file>
+</qresource>
+
+<qresource prefix="/images">
+    <file alias="autores.png">img/autores.png</file>
+</qresource>
+
+</RCC>

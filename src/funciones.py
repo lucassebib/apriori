@@ -15,7 +15,8 @@ if os.path.exists(RUTA_REGLAS):
 	print('CREACION DEL ARCHIVO DE SALIDA.!')
 
 #archivo_salida = open(RUTA_REGLAS + '/reglas'+ str(time.strftime("%H%M%S")) + '.dat', 'w')
-archivo_salida = open(RUTA_REGLAS + '/reglas' + '.dat', 'w')
+global archivo_salida 
+archivo_salida= open(RUTA_REGLAS + '/reglas' + '.dat', 'w')
 
 
 def initPass(archivo_transacciones):
@@ -114,6 +115,7 @@ def generarCandidato(item_frecuente):
 			if not cadena in itemset: 
 				try:
 					c.remove(li_bk)
+					break
 				except Exception as e:
 					pass
 				
@@ -129,7 +131,7 @@ def genRules(frecuentes, minConfianza):
 	#---------------------------------------------------------------------------
 	
 	
-
+	archivo_salida = open(RUTA_REGLAS + '/reglas' + '.dat', 'w')
 	for idx, F_i in enumerate(frecuentes[1:]): #frecuentes[1:] indica que arranca desde la posicion 1 de F (tener en cuenta que los indeces arrancan 0)	
 		for li in F_i: #li tendra un string con todos los productos. Ej: ['cerveza jamon', 4] de F_i
 			H1= list()
@@ -164,6 +166,7 @@ def genRules(frecuentes, minConfianza):
 			
 			apGenRules(li, H1, frecuentes, minConfianza)
 
+	
 	print('Cerrando Archivo de Reglas')
 	archivo_salida.close()
 

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'menuPrincipal.ui'
 #
-# Created: Wed Nov 01 01:06:46 2017
+# Created: Thu Nov 02 00:27:22 2017
 #      by: PyQt4 UI code generator 4.10
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,6 +12,8 @@
 #---------------------------------------------------
 import os
 import webbrowser
+import time
+import images_rc
 
 from PyQt4.QtCore import QFileInfo
 from PyQt4.QtGui import *
@@ -23,8 +25,9 @@ from clasesUI import WAcercaDe
 RUTA_BASE = os.path.dirname(os.path.dirname(__file__))
 RUTA_REGLAS = os.path.join(RUTA_BASE, 'reglas')
 RUTA_AYUDA = os.path.join(RUTA_BASE, 'help')
-archivo_reglas = open(RUTA_REGLAS + '/reglas' + '.dat', 'r')
 archivo_ayuda = RUTA_AYUDA + '/index.html'
+
+
 #----------------------FIN #1-----------------------
 
 from PyQt4 import QtCore, QtGui
@@ -54,13 +57,16 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
         MainWindow.resize(712, 658)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/regla.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        MainWindow.setWindowIcon(icon)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.btn_salir = QtGui.QPushButton(self.centralwidget)
-        self.btn_salir.setGeometry(QtCore.QRect(580, 550, 101, 41))
+        self.btn_salir.setGeometry(QtCore.QRect(590, 560, 101, 41))
         self.btn_salir.setObjectName(_fromUtf8("btn_salir"))
         self.tabWidget = QtGui.QTabWidget(self.centralwidget)
-        self.tabWidget.setGeometry(QtCore.QRect(20, 40, 661, 501))
+        self.tabWidget.setGeometry(QtCore.QRect(20, 20, 681, 521))
         self.tabWidget.setObjectName(_fromUtf8("tabWidget"))
         self.tab = QtGui.QWidget()
         self.tab.setObjectName(_fromUtf8("tab"))
@@ -151,7 +157,7 @@ class Ui_MainWindow(object):
         self.tab_3 = QtGui.QWidget()
         self.tab_3.setObjectName(_fromUtf8("tab_3"))
         self.groupBox_2 = QtGui.QGroupBox(self.tab_3)
-        self.groupBox_2.setGeometry(QtCore.QRect(30, 20, 381, 101))
+        self.groupBox_2.setGeometry(QtCore.QRect(30, 20, 631, 101))
         self.groupBox_2.setObjectName(_fromUtf8("groupBox_2"))
         self.label = QtGui.QLabel(self.groupBox_2)
         self.label.setGeometry(QtCore.QRect(50, 30, 171, 16))
@@ -172,11 +178,11 @@ class Ui_MainWindow(object):
         self.le_cant_productos.setReadOnly(True)
         self.le_cant_productos.setPlaceholderText(_fromUtf8(""))
         self.le_cant_productos.setObjectName(_fromUtf8("le_cant_productos"))
-        self.btn_ver_reglas = QtGui.QPushButton(self.tab_3)
-        self.btn_ver_reglas.setGeometry(QtCore.QRect(510, 70, 111, 41))
+        self.btn_ver_reglas = QtGui.QPushButton(self.groupBox_2)
+        self.btn_ver_reglas.setGeometry(QtCore.QRect(510, 50, 111, 41))
         self.btn_ver_reglas.setObjectName(_fromUtf8("btn_ver_reglas"))
         self.tw_rules = QtGui.QTableWidget(self.tab_3)
-        self.tw_rules.setGeometry(QtCore.QRect(20, 130, 611, 321))
+        self.tw_rules.setGeometry(QtCore.QRect(10, 130, 651, 361))
         self.tw_rules.setColumnCount(3)
         self.tw_rules.setObjectName(_fromUtf8("tw_rules"))
         self.tw_rules.setRowCount(0)
@@ -249,7 +255,7 @@ class Ui_MainWindow(object):
         #-------------FIN #5-------------
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(_translate("MainWindow", "Algoritmo Apriori", None))
+        MainWindow.setWindowTitle(_translate("MainWindow", "AppRules", None))
         self.btn_salir.setToolTip(_translate("MainWindow", "<html><head/><body><p>Salir de la Aplicacion</p></body></html>", None))
         self.btn_salir.setText(_translate("MainWindow", "Salir", None))
         self.groupBox_3.setTitle(_translate("MainWindow", "Parametros de Poda", None))
@@ -291,6 +297,8 @@ class Ui_MainWindow(object):
         self.actionIngreso_Manual.setText(_translate("MainWindow", "Ingreso Manual", None))
         self.actionReset.setText(_translate("MainWindow", "Reset", None))
 
+
+
     #-----------------------------------------------
     #-------------AGREGADO #6 FUNCIONES-------------
     #-----------------------------------------------
@@ -306,17 +314,25 @@ class Ui_MainWindow(object):
             self.nombre_archivo = self.nombre_archivo[len(self.nombre_archivo) - 1]
 
     def procesar(self):
+        try:
+            self.fichero_actual.close()
+        except Exception as e:
+            pass
+        
         self.barra_progreso.show()
-        value = self.barra_progreso.value()
-        print('parametros:')
+        self.barra_progreso.setValue(20)
+        time.sleep(0.3)
+     
         confianza = float(self.dsb_confianza.value())
         soporte = float(self.dsb_soporte.value())
-        EjecutarCorrida(self.fichero_actual, soporte, confianza )
-
-        while value <= 1000000:
-            self.barra_progreso.setValue(value/10000)
-            value = value + 1
-
+        self.statusbar.showMessage("Leyendo archivo...")
+        self.barra_progreso.setValue(35)
+        time.sleep(0.2)
+        self.barra_progreso.setValue(48)
+        EjecutarCorrida(self.fichero_actual, soporte, confianza) 
+        self.barra_progreso.setValue(100)
+        time.sleep(0.2)
+        self.statusbar.showMessage("Proceso Finalizado con Exito (100%)")
         cant_transacc, cant_prod = obtenerDatos()
         self.le_cant_productos.setText(_translate("MainWindow", str(cant_prod), None))
         self.le_cant_transacciones.setText(_translate("MainWindow", str(cant_transacc), None))
@@ -334,9 +350,15 @@ class Ui_MainWindow(object):
             self.sb_min_antecedentes.setEnabled(False)
 
     def obtenerReglas(self):
+        self.limpiarTabla()
+        
+        archivo_reglas = open(RUTA_REGLAS + '/reglas' + '.dat', 'r')
+
         for i, linea in enumerate(archivo_reglas):
             self.tw_rules.insertRow(i)
             self.tw_rules.setItem(i, 0, QtGui.QTableWidgetItem(str(linea)))
+
+        archivo_reglas.close()
 
     def showAcercaDe(self):
         modal = WAcercaDe()
@@ -344,6 +366,14 @@ class Ui_MainWindow(object):
 
     def abrirAyuda(self):
         webbrowser.open_new_tab(archivo_ayuda)
+
+    def limpiarTabla(self):
+        for i in reversed(range(self.tw_rules.rowCount())):
+            self.tw_rules.removeRow(i)
+        #self.tw_rules.clearContents()
+        #self.tw_rules.setRowCount(0)
+        #self.tw_rules.setColumnCount(0)
+        #print('se limpio')
 
 
 
