@@ -1,0 +1,16 @@
+cheese ---> beef 3 75.0
+beef ---> cheese 3 75.0
+chicken ---> beef 3 60.0
+beef ---> chicken 3 75.0
+clothes ---> chicken 3 100.0
+chicken ---> clothes 3 60.0
+milk ---> chicken 4 100.0
+chicken ---> milk 4 80.0
+milk ---> clothes 3 75.0
+clothes ---> milk 3 100.0
+clothes milk ---> chicken 3 100.0
+chicken milk ---> clothes 3 75.0
+chicken clothes ---> milk 3 100.0
+milk-->chicken clothes 3 75.0
+clothes-->chicken milk 3 100.0
+chicken-->clothes milk 3 60.0

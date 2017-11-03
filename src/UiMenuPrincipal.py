@@ -28,7 +28,9 @@ RUTA_REGLAS = os.path.join(RUTA_BASE, 'reglas')
 RUTA_AYUDA = os.path.join(RUTA_BASE, 'help')
 archivo_ayuda = RUTA_AYUDA + '/index.html'
 
-
+global cant_transacc, cant_reglas
+cant_transacc = 0
+cant_reglas = 0
 #----------------------FIN #1-----------------------
 
 from PyQt4 import QtCore, QtGui
@@ -458,6 +460,8 @@ class Ui_MainWindow(object):
             self.nombre_archivo = self.nombre_archivo[len(self.nombre_archivo) - 1]
 
     def procesar(self):
+        global cant_transacc, cant_reglas
+        
         try:
             self.fichero_actual.close()
         except Exception as e:
@@ -475,15 +479,18 @@ class Ui_MainWindow(object):
         self.barra_progreso.setValue(48)
         EjecutarCorrida(self.fichero_actual, soporte, confianza) 
         
-        cant_transacc, cant_prod = obtenerDatos()
+        cant_transacc, cant_prod, cant_reglas = obtenerDatos()
         self.le_cant_productos.setText(_translate("MainWindow", str(cant_prod), None))
         self.le_cant_transacciones.setText(_translate("MainWindow", str(cant_transacc), None))
+        self.le_cant_reglas.setText(_translate("MainWindow", str(cant_reglas), None))
         self.barra_progreso.hide()
 
+        self.statusbar.showMessage("Gerando Reglas...")
         self.barra_progreso.setValue(62)
         time.sleep(0.1)
         self.obtenerReglas()
 
+        self.statusbar.showMessage("Leyendo Restricciones...")
         self.barra_progreso.setValue(75)
         time.sleep(0.1)
         #Obtengo Parametros de Restricciones
@@ -516,6 +523,7 @@ class Ui_MainWindow(object):
         if self.cb_max_consecuentes.isChecked():
             max_conse = True
         
+        self.statusbar.showMessage("Genreando Restricciones...")
         generar_restricciones(conviccion, lift ,min_anteced, min_conse, max_anteced, max_conse, valor_min_ant, valor_max_ant, valor_min_cons, valor_max_cons)
         
         self.barra_progreso.setValue(82)
@@ -539,13 +547,26 @@ class Ui_MainWindow(object):
             self.sb_min_antecedentes.setEnabled(False)
 
     def obtenerReglas(self):
+        global cant_transacc
         self.limpiarTabla()
         
         archivo_reglas = open(RUTA_REGLAS + '/reglas' + '.dat', 'r')
 
         for i, linea in enumerate(archivo_reglas):
+            l = linea.split()
             self.tw_rules.insertRow(i)
-            self.tw_rules.setItem(i, 0, QtGui.QTableWidgetItem(str(linea)))
+        
+            self.tw_rules.setItem(i, 1, QtGui.QTableWidgetItem(str(format(100*float(l[len(l) - 2])/float(cant_transacc),'.2f'))+"%"))
+            self.tw_rules.setItem(i, 2, QtGui.QTableWidgetItem(str(l[len(l) - 1])+"%"))
+
+            item = str()
+            for k, j in enumerate(l):
+                print(j)
+                if k < len(l) - 2:
+                    item = item + " " + j
+                else: 
+                    break;
+            self.tw_rules.setItem(i, 0, QtGui.QTableWidgetItem(str(item)))
 
         archivo_reglas.close()
 

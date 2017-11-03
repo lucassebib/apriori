@@ -6,7 +6,7 @@ from time import time
 from itertools import izip
 from collections import OrderedDict
 
-from funciones import initPass, generarF1, generarCandidato, genRules
+from funciones import initPass, generarF1, generarCandidato, genRules, obtener_cantReglas
 
 cant_transacciones = 0
 cant_productos = 0
@@ -88,7 +88,8 @@ def EjecutarCorrida (archivo, suport, conf):
 def obtenerDatos():
 	global cant_transacciones
 	global cant_productos
-	return cant_transacciones, cant_productos
+	cant_relgas = obtener_cantReglas()
+	return cant_transacciones, cant_productos, cant_relgas
 
 
 

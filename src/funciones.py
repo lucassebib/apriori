@@ -16,6 +16,8 @@ if os.path.exists(RUTA_REGLAS):
 
 #archivo_salida = open(RUTA_REGLAS + '/reglas'+ str(time.strftime("%H%M%S")) + '.dat', 'w')
 global archivo_salida, archivo_con_restricciones
+global cant_reglas 
+cant_reglas = 0
 
 NOMBRE_ARCHIVO_SALIDA = 'reglas'
 NOMBRE_ARCHIVO_REGLAS_RESTRICCIONES = 'reglas_con_restricciones'
@@ -125,7 +127,9 @@ def generarCandidato(item_frecuente):
 				
 	return c
 
-def genRules(frecuentes, minConfianza): 
+def genRules(frecuentes, minConfianza):
+	global cant_reglas 
+	cant_reglas = 0
 	#---------------------------------------------------------------------------
 	# 
 	# 
@@ -134,6 +138,7 @@ def genRules(frecuentes, minConfianza):
 	#
 	#---------------------------------------------------------------------------
 	
+	global archivo_salida 
 	archivo_salida = open(RUTA_REGLAS + '/' + NOMBRE_ARCHIVO_SALIDA + '.dat', 'w')
 
 	for idx, F_i in enumerate(frecuentes[1:]): #frecuentes[1:] indica que arranca desde la posicion 1 de F (tener en cuenta que los indeces arrancan 0)	
@@ -160,8 +165,9 @@ def genRules(frecuentes, minConfianza):
 				conf= float(soporteRegla)/float(soporteAntecedente)
 				
 				if conf >= minConfianza:
-					archivo_salida.write(antecedente + ' ---> ' + consecuente + '\n') #os.linesep)
-					#print(antecedente + ' ---> ' + consecuente)
+					archivo_salida.write(antecedente + ' ---> ' + consecuente + " "  + str(soporteRegla) + " " + str(conf*100) + '\n') #os.linesep)
+					cant_reglas = cant_reglas + 1
+					#print(antecedente + ' ---> ' + consecuente) + 
 					
 					h_aux= list()
 					h_aux.append(consecuente)
@@ -172,10 +178,12 @@ def genRules(frecuentes, minConfianza):
 
 	
 	print('Cerrando Archivo de Reglas')
+	
 	archivo_salida.close()
 
 
 def apGenRules(fk, Hm, F, minConfianza): #fk tiene la forma ['cerveza jamon pan', 2]....Hm tiene la forma [['cerveza', 0], ['jamon', 0], ['pan', 0]]
+	global cant_reglas
 	k= len(fk[0].split()) #obtiene el valor de k calculando la longitud que tiene el primer elemento del itemset fk
 
 	if len(Hm)>0:
@@ -201,7 +209,8 @@ def apGenRules(fk, Hm, F, minConfianza): #fk tiene la forma ['cerveza jamon pan'
 					soporteConsecuente=item[1]
 			conf= float(fk[1])/float(soporteConsecuente)
 			if conf> minConfianza:
-				archivo_salida.write(str(antecedente).replace('[','').replace(']','').replace('\'','') +"-->"+ str(consecuente) + '\n')# os.linesep)
+				archivo_salida.write(str(antecedente).replace('[','').replace(']','').replace('\'','') +"-->"+ str(consecuente) + " " + str(fk[1]) + " " + str(conf*100)  + '\n')# os.linesep)
+				cant_reglas = cant_reglas + 1
 				#print(str(antecedente).replace('[','').replace(']','').replace('\'','') +"-->"+ str(consecuente))
 
 			else:
@@ -210,4 +219,9 @@ def apGenRules(fk, Hm, F, minConfianza): #fk tiene la forma ['cerveza jamon pan'
 
 def generar_restricciones(conviccion, lift ,min_anteced, min_conse, max_anteced, max_conse, valor_min_ant, valor_max_ant, valor_min_cons, valor_max_cons):
 	archivo_con_restricciones = open(RUTA_REGLAS + '/' + NOMBRE_ARCHIVO_REGLAS_RESTRICCIONES + '.dat', 'w')
+
+def obtener_cantReglas(): 
+	global cant_reglas
+	return cant_reglas
+
 	
