@@ -15,9 +15,13 @@ if os.path.exists(RUTA_REGLAS):
 	print('CREACION DEL ARCHIVO DE SALIDA.!')
 
 #archivo_salida = open(RUTA_REGLAS + '/reglas'+ str(time.strftime("%H%M%S")) + '.dat', 'w')
-global archivo_salida 
-archivo_salida= open(RUTA_REGLAS + '/reglas' + '.dat', 'w')
+global archivo_salida, archivo_con_restricciones
 
+NOMBRE_ARCHIVO_SALIDA = 'reglas'
+NOMBRE_ARCHIVO_REGLAS_RESTRICCIONES = 'reglas_con_restricciones'
+
+archivo_salida= open(RUTA_REGLAS + '/' + NOMBRE_ARCHIVO_SALIDA + '.dat', 'w')
+archivo_con_restricciones= open(RUTA_REGLAS + '/' + NOMBRE_ARCHIVO_REGLAS_RESTRICCIONES + '.dat', 'w')
 
 def initPass(archivo_transacciones):
 	#---------------------------------------------------------------------------
@@ -130,8 +134,8 @@ def genRules(frecuentes, minConfianza):
 	#
 	#---------------------------------------------------------------------------
 	
-	
-	archivo_salida = open(RUTA_REGLAS + '/reglas' + '.dat', 'w')
+	archivo_salida = open(RUTA_REGLAS + '/' + NOMBRE_ARCHIVO_SALIDA + '.dat', 'w')
+
 	for idx, F_i in enumerate(frecuentes[1:]): #frecuentes[1:] indica que arranca desde la posicion 1 de F (tener en cuenta que los indeces arrancan 0)	
 		for li in F_i: #li tendra un string con todos los productos. Ej: ['cerveza jamon', 4] de F_i
 			H1= list()
@@ -171,7 +175,6 @@ def genRules(frecuentes, minConfianza):
 	archivo_salida.close()
 
 
-
 def apGenRules(fk, Hm, F, minConfianza): #fk tiene la forma ['cerveza jamon pan', 2]....Hm tiene la forma [['cerveza', 0], ['jamon', 0], ['pan', 0]]
 	k= len(fk[0].split()) #obtiene el valor de k calculando la longitud que tiene el primer elemento del itemset fk
 
@@ -204,4 +207,7 @@ def apGenRules(fk, Hm, F, minConfianza): #fk tiene la forma ['cerveza jamon pan'
 			else:
 				Hm_mas_1.remove(hm_mas_1)
 		apGenRules(fk, Hm_mas_1, F, minConfianza)
+
+def generar_restricciones(conviccion, lift ,min_anteced, min_conse, max_anteced, max_conse, valor_min_ant, valor_max_ant, valor_min_cons, valor_max_cons):
+	archivo_con_restricciones = open(RUTA_REGLAS + '/' + NOMBRE_ARCHIVO_REGLAS_RESTRICCIONES + '.dat', 'w')
 	

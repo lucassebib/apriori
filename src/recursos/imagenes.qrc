@@ -12,4 +12,7 @@
     <file alias="autores.png">img/autores.png</file>
 </qresource>
 
+<qresource prefix="/images">
+    <file alias="load.gif">img/load.gif</file>
+</qresource>
 </RCC>

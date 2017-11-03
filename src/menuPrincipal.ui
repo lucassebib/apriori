@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>712</width>
-    <height>658</height>
+    <width>1117</width>
+    <height>736</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1117</width>
+    <height>736</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>AppRules</string>
@@ -21,11 +33,16 @@
    <widget class="QPushButton" name="btn_salir">
     <property name="geometry">
      <rect>
-      <x>590</x>
-      <y>560</y>
+      <x>980</x>
+      <y>640</y>
       <width>101</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
     </property>
     <property name="toolTip">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Salir de la Aplicacion&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -39,12 +56,17 @@
      <rect>
       <x>20</x>
       <y>20</y>
-      <width>681</width>
-      <height>521</height>
+      <width>1081</width>
+      <height>611</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -54,8 +76,8 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>20</y>
-        <width>611</width>
+        <y>30</y>
+        <width>401</width>
         <height>121</height>
        </rect>
       </property>
@@ -70,7 +92,7 @@
         <rect>
          <x>40</x>
          <y>30</y>
-         <width>81</width>
+         <width>101</width>
          <height>20</height>
         </rect>
        </property>
@@ -92,7 +114,7 @@
         <rect>
          <x>40</x>
          <y>60</y>
-         <width>81</width>
+         <width>111</width>
          <height>20</height>
         </rect>
        </property>
@@ -103,27 +125,40 @@
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QCheckBox" name="cb_lift">
+      <widget class="QCheckBox" name="cb_sustentacion">
        <property name="geometry">
         <rect>
-         <x>40</x>
-         <y>90</y>
-         <width>81</width>
+         <x>210</x>
+         <y>30</y>
+         <width>161</width>
          <height>20</height>
         </rect>
        </property>
        <property name="text">
-        <string>Lift</string>
+        <string>Conviccion </string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="cb_lift">
+       <property name="geometry">
+        <rect>
+         <x>210</x>
+         <y>60</y>
+         <width>191</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Sustentacion (Lift)</string>
        </property>
       </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_4">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>150</y>
-        <width>611</width>
-        <height>111</height>
+        <x>430</x>
+        <y>30</y>
+        <width>631</width>
+        <height>121</height>
        </rect>
       </property>
       <property name="title">
@@ -134,7 +169,7 @@
         <rect>
          <x>30</x>
          <y>70</y>
-         <width>181</width>
+         <width>221</width>
          <height>20</height>
         </rect>
        </property>
@@ -148,11 +183,17 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>220</x>
+         <x>250</x>
          <y>70</y>
-         <width>46</width>
+         <width>61</width>
          <height>22</height>
         </rect>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="value">
+        <number>1</number>
        </property>
       </widget>
       <widget class="QCheckBox" name="cb_min_antecedentes">
@@ -160,12 +201,12 @@
         <rect>
          <x>30</x>
          <y>30</y>
-         <width>171</width>
+         <width>231</width>
          <height>20</height>
         </rect>
        </property>
        <property name="text">
-        <string>Minimo de Antecedentes</string>
+        <string>Minimo de Antecedentes:</string>
        </property>
       </widget>
       <widget class="QSpinBox" name="sb_min_antecedentes">
@@ -174,26 +215,91 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>220</x>
+         <x>250</x>
          <y>30</y>
-         <width>46</width>
+         <width>61</width>
          <height>22</height>
         </rect>
        </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="value">
+        <number>1</number>
+       </property>
       </widget>
      </widget>
-    </widget>
-    <widget class="QWidget" name="tab_2">
-     <attribute name="title">
-      <string>Seleccionar Archivo</string>
-     </attribute>
+     <widget class="QSpinBox" name="sb_max_consecuentes">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>980</x>
+        <y>100</y>
+        <width>61</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="minimum">
+       <number>1</number>
+      </property>
+      <property name="value">
+       <number>5</number>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="cb_max_antecedentes">
+      <property name="geometry">
+       <rect>
+        <x>760</x>
+        <y>60</y>
+        <width>231</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Minimo de Antecedentes:</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="cb_max_consecuentes">
+      <property name="geometry">
+       <rect>
+        <x>760</x>
+        <y>100</y>
+        <width>221</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Minimo de Consecuentes:</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="sb_max_antecedentes">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>980</x>
+        <y>60</y>
+        <width>61</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="minimum">
+       <number>1</number>
+      </property>
+      <property name="value">
+       <number>5</number>
+      </property>
+     </widget>
      <widget class="QGroupBox" name="groupBox">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>20</y>
-        <width>601</width>
-        <height>171</height>
+        <y>170</y>
+        <width>1041</width>
+        <height>191</height>
        </rect>
       </property>
       <property name="title">
@@ -204,7 +310,7 @@
         <rect>
          <x>70</x>
          <y>40</y>
-         <width>53</width>
+         <width>71</width>
          <height>16</height>
         </rect>
        </property>
@@ -215,9 +321,9 @@
       <widget class="QLabel" name="label_2">
        <property name="geometry">
         <rect>
-         <x>210</x>
-         <y>70</y>
-         <width>91</width>
+         <x>280</x>
+         <y>80</y>
+         <width>121</width>
          <height>16</height>
         </rect>
        </property>
@@ -228,9 +334,9 @@
       <widget class="QLabel" name="l_soporte">
        <property name="geometry">
         <rect>
-         <x>40</x>
-         <y>70</y>
-         <width>91</width>
+         <x>70</x>
+         <y>80</y>
+         <width>101</width>
          <height>20</height>
         </rect>
        </property>
@@ -241,8 +347,8 @@
       <widget class="QPushButton" name="btn_procesar">
        <property name="geometry">
         <rect>
-         <x>510</x>
-         <y>130</y>
+         <x>960</x>
+         <y>150</y>
          <width>71</width>
          <height>31</height>
         </rect>
@@ -254,11 +360,14 @@
       <widget class="QDoubleSpinBox" name="dsb_soporte">
        <property name="geometry">
         <rect>
-         <x>130</x>
+         <x>190</x>
          <y>70</y>
-         <width>61</width>
-         <height>21</height>
+         <width>81</width>
+         <height>31</height>
         </rect>
+       </property>
+       <property name="maximum">
+        <double>100.000000000000000</double>
        </property>
        <property name="value">
         <double>30.000000000000000</double>
@@ -267,11 +376,14 @@
       <widget class="QDoubleSpinBox" name="dsb_confianza">
        <property name="geometry">
         <rect>
-         <x>310</x>
+         <x>410</x>
          <y>70</y>
-         <width>61</width>
-         <height>21</height>
+         <width>81</width>
+         <height>31</height>
         </rect>
+       </property>
+       <property name="maximum">
+        <double>100.000000000000000</double>
        </property>
        <property name="value">
         <double>80.000000000000000</double>
@@ -280,7 +392,7 @@
       <widget class="QPushButton" name="btn_examinar">
        <property name="geometry">
         <rect>
-         <x>470</x>
+         <x>720</x>
          <y>30</y>
          <width>93</width>
          <height>28</height>
@@ -293,9 +405,9 @@
       <widget class="QLineEdit" name="le_examinar">
        <property name="geometry">
         <rect>
-         <x>130</x>
+         <x>150</x>
          <y>31</y>
-         <width>281</width>
+         <width>561</width>
          <height>31</height>
         </rect>
        </property>
@@ -309,10 +421,10 @@
       <widget class="Line" name="line">
        <property name="geometry">
         <rect>
-         <x>20</x>
+         <x>0</x>
          <y>100</y>
-         <width>561</width>
-         <height>16</height>
+         <width>1041</width>
+         <height>20</height>
         </rect>
        </property>
        <property name="orientation">
@@ -326,8 +438,8 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>130</y>
-         <width>411</width>
+         <y>140</y>
+         <width>851</width>
          <height>23</height>
         </rect>
        </property>
@@ -344,8 +456,8 @@
       <widget class="QPushButton" name="btn_detener">
        <property name="geometry">
         <rect>
-         <x>430</x>
-         <y>130</y>
+         <x>880</x>
+         <y>150</y>
          <width>71</width>
          <height>31</height>
         </rect>
@@ -363,11 +475,16 @@
      <widget class="QGroupBox" name="groupBox_2">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>20</y>
-        <width>631</width>
+        <x>20</x>
+        <y>10</y>
+        <width>1041</width>
         <height>101</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
       </property>
       <property name="title">
        <string>Resultados Parciales</string>
@@ -377,9 +494,14 @@
         <rect>
          <x>50</x>
          <y>30</y>
-         <width>171</width>
+         <width>201</width>
          <height>16</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
        </property>
        <property name="text">
         <string>Cantidad de Transacciones:</string>
@@ -390,25 +512,38 @@
         <rect>
          <x>50</x>
          <y>60</y>
-         <width>151</width>
+         <width>201</width>
          <height>16</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
        <property name="text">
-        <string>Cantidad de Productos</string>
+        <string>Cantidad de Items:</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="le_cant_transacciones">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
-         <x>230</x>
+         <x>270</x>
          <y>30</y>
          <width>81</width>
          <height>22</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
        </property>
        <property name="text">
         <string>0</string>
@@ -419,15 +554,20 @@
       </widget>
       <widget class="QLineEdit" name="le_cant_productos">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="geometry">
         <rect>
-         <x>230</x>
+         <x>270</x>
          <y>60</y>
          <width>81</width>
          <height>22</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
        </property>
        <property name="layoutDirection">
         <enum>Qt::LeftToRight</enum>
@@ -446,19 +586,90 @@
        </property>
       </widget>
       <widget class="QPushButton" name="btn_ver_reglas">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <property name="geometry">
         <rect>
-         <x>510</x>
+         <x>850</x>
          <y>50</y>
          <width>111</width>
          <height>41</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
        <property name="toolTip">
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ver Reglas Generadas&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="inputMethodHints">
+        <set>Qt::ImhNone</set>
+       </property>
        <property name="text">
         <string>Ver Reglas</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+       <property name="default">
+        <bool>false</bool>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_5">
+       <property name="geometry">
+        <rect>
+         <x>390</x>
+         <y>30</y>
+         <width>241</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Cantidad de Reglas Generadas:</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="le_cant_reglas">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>650</x>
+         <y>30</y>
+         <width>81</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
        </property>
       </widget>
      </widget>
@@ -466,29 +677,114 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>130</y>
-        <width>651</width>
-        <height>361</height>
+        <y>120</y>
+        <width>1061</width>
+        <height>291</height>
        </rect>
       </property>
       <property name="columnCount">
-       <number>3</number>
+       <number>4</number>
       </property>
       <column>
        <property name="text">
         <string>Regla</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="foreground">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
+         </color>
+        </brush>
        </property>
       </column>
       <column>
        <property name="text">
         <string>Soporte</string>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
       </column>
       <column>
        <property name="text">
         <string>Confianza</string>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
       </column>
+      <column>
+       <property name="text">
+        <string>Interpretacion</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+      </column>
+     </widget>
+     <widget class="QTextEdit" name="te_observaciones">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>450</y>
+        <width>1061</width>
+        <height>121</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>420</y>
+        <width>201</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>OBSERVACIONES:</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="cb_aplicar_restricc">
+      <property name="geometry">
+       <rect>
+        <x>890</x>
+        <y>420</y>
+        <width>181</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Aplicar Restricciones</string>
+      </property>
      </widget>
     </widget>
    </widget>
@@ -498,9 +794,14 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>712</width>
-     <height>26</height>
+     <width>1117</width>
+     <height>29</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
    <widget class="QMenu" name="menuInicio">
     <property name="title">
@@ -536,6 +837,11 @@
    <property name="text">
     <string>Salir</string>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
   </action>
   <action name="actionDesde_Archivo">
    <property name="text">
@@ -556,6 +862,11 @@
    </property>
    <property name="text">
     <string>Reset</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </action>
  </widget>
