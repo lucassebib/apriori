@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'menuPrincipal.ui'
 #
-# Created: Thu Nov 02 10:21:59 2017
+# Created: Fri Nov 03 21:27:48 2017
 #      by: PyQt4 UI code generator 4.10
 #
 # WARNING! All changes made in this file will be lost!
@@ -86,66 +86,66 @@ class Ui_MainWindow(object):
         self.tab = QtGui.QWidget()
         self.tab.setObjectName(_fromUtf8("tab"))
         self.groupBox_3 = QtGui.QGroupBox(self.tab)
-        self.groupBox_3.setGeometry(QtCore.QRect(20, 30, 401, 121))
+        self.groupBox_3.setGeometry(QtCore.QRect(10, 380, 1031, 91))
         self.groupBox_3.setObjectName(_fromUtf8("groupBox_3"))
         self.cb_soporte = QtGui.QCheckBox(self.groupBox_3)
         self.cb_soporte.setEnabled(False)
-        self.cb_soporte.setGeometry(QtCore.QRect(40, 30, 101, 20))
+        self.cb_soporte.setGeometry(QtCore.QRect(40, 40, 101, 20))
         self.cb_soporte.setCheckable(True)
         self.cb_soporte.setChecked(True)
         self.cb_soporte.setObjectName(_fromUtf8("cb_soporte"))
         self.cb_confianza = QtGui.QCheckBox(self.groupBox_3)
         self.cb_confianza.setEnabled(False)
-        self.cb_confianza.setGeometry(QtCore.QRect(40, 60, 111, 20))
+        self.cb_confianza.setGeometry(QtCore.QRect(210, 40, 111, 20))
         self.cb_confianza.setChecked(True)
         self.cb_confianza.setObjectName(_fromUtf8("cb_confianza"))
         self.cb_sustentacion = QtGui.QCheckBox(self.groupBox_3)
-        self.cb_sustentacion.setGeometry(QtCore.QRect(210, 30, 161, 20))
+        self.cb_sustentacion.setGeometry(QtCore.QRect(390, 40, 161, 20))
         self.cb_sustentacion.setObjectName(_fromUtf8("cb_sustentacion"))
         self.cb_lift = QtGui.QCheckBox(self.groupBox_3)
-        self.cb_lift.setGeometry(QtCore.QRect(210, 60, 191, 20))
+        self.cb_lift.setGeometry(QtCore.QRect(560, 40, 191, 20))
         self.cb_lift.setObjectName(_fromUtf8("cb_lift"))
         self.groupBox_4 = QtGui.QGroupBox(self.tab)
-        self.groupBox_4.setGeometry(QtCore.QRect(430, 30, 631, 121))
+        self.groupBox_4.setGeometry(QtCore.QRect(10, 230, 1041, 121))
         self.groupBox_4.setObjectName(_fromUtf8("groupBox_4"))
         self.cb_min_consecuentes = QtGui.QCheckBox(self.groupBox_4)
-        self.cb_min_consecuentes.setGeometry(QtCore.QRect(30, 70, 221, 20))
+        self.cb_min_consecuentes.setGeometry(QtCore.QRect(80, 70, 221, 20))
         self.cb_min_consecuentes.setObjectName(_fromUtf8("cb_min_consecuentes"))
         self.sb_min_consecuentes = QtGui.QSpinBox(self.groupBox_4)
         self.sb_min_consecuentes.setEnabled(False)
-        self.sb_min_consecuentes.setGeometry(QtCore.QRect(250, 70, 61, 22))
+        self.sb_min_consecuentes.setGeometry(QtCore.QRect(300, 70, 61, 22))
         self.sb_min_consecuentes.setMinimum(1)
         self.sb_min_consecuentes.setProperty("value", 1)
         self.sb_min_consecuentes.setObjectName(_fromUtf8("sb_min_consecuentes"))
         self.cb_min_antecedentes = QtGui.QCheckBox(self.groupBox_4)
-        self.cb_min_antecedentes.setGeometry(QtCore.QRect(30, 30, 231, 20))
+        self.cb_min_antecedentes.setGeometry(QtCore.QRect(80, 30, 231, 20))
         self.cb_min_antecedentes.setObjectName(_fromUtf8("cb_min_antecedentes"))
         self.sb_min_antecedentes = QtGui.QSpinBox(self.groupBox_4)
         self.sb_min_antecedentes.setEnabled(False)
-        self.sb_min_antecedentes.setGeometry(QtCore.QRect(250, 30, 61, 22))
+        self.sb_min_antecedentes.setGeometry(QtCore.QRect(300, 30, 61, 22))
         self.sb_min_antecedentes.setMinimum(1)
         self.sb_min_antecedentes.setProperty("value", 1)
         self.sb_min_antecedentes.setObjectName(_fromUtf8("sb_min_antecedentes"))
         self.sb_max_consecuentes = QtGui.QSpinBox(self.tab)
         self.sb_max_consecuentes.setEnabled(False)
-        self.sb_max_consecuentes.setGeometry(QtCore.QRect(980, 100, 61, 22))
+        self.sb_max_consecuentes.setGeometry(QtCore.QRect(700, 300, 61, 22))
         self.sb_max_consecuentes.setMinimum(1)
         self.sb_max_consecuentes.setProperty("value", 5)
         self.sb_max_consecuentes.setObjectName(_fromUtf8("sb_max_consecuentes"))
         self.cb_max_antecedentes = QtGui.QCheckBox(self.tab)
-        self.cb_max_antecedentes.setGeometry(QtCore.QRect(760, 60, 231, 20))
+        self.cb_max_antecedentes.setGeometry(QtCore.QRect(480, 260, 231, 20))
         self.cb_max_antecedentes.setObjectName(_fromUtf8("cb_max_antecedentes"))
         self.cb_max_consecuentes = QtGui.QCheckBox(self.tab)
-        self.cb_max_consecuentes.setGeometry(QtCore.QRect(760, 100, 221, 20))
+        self.cb_max_consecuentes.setGeometry(QtCore.QRect(480, 300, 221, 20))
         self.cb_max_consecuentes.setObjectName(_fromUtf8("cb_max_consecuentes"))
         self.sb_max_antecedentes = QtGui.QSpinBox(self.tab)
         self.sb_max_antecedentes.setEnabled(False)
-        self.sb_max_antecedentes.setGeometry(QtCore.QRect(980, 60, 61, 22))
+        self.sb_max_antecedentes.setGeometry(QtCore.QRect(700, 260, 61, 22))
         self.sb_max_antecedentes.setMinimum(1)
         self.sb_max_antecedentes.setProperty("value", 5)
         self.sb_max_antecedentes.setObjectName(_fromUtf8("sb_max_antecedentes"))
         self.groupBox = QtGui.QGroupBox(self.tab)
-        self.groupBox.setGeometry(QtCore.QRect(20, 170, 1041, 191))
+        self.groupBox.setGeometry(QtCore.QRect(10, 20, 1041, 191))
         self.groupBox.setObjectName(_fromUtf8("groupBox"))
         self.l_archivo = QtGui.QLabel(self.groupBox)
         self.l_archivo.setGeometry(QtCore.QRect(70, 40, 71, 16))
@@ -157,7 +157,7 @@ class Ui_MainWindow(object):
         self.l_soporte.setGeometry(QtCore.QRect(70, 80, 101, 20))
         self.l_soporte.setObjectName(_fromUtf8("l_soporte"))
         self.btn_procesar = QtGui.QPushButton(self.groupBox)
-        self.btn_procesar.setGeometry(QtCore.QRect(960, 150, 71, 31))
+        self.btn_procesar.setGeometry(QtCore.QRect(950, 130, 81, 41))
         self.btn_procesar.setObjectName(_fromUtf8("btn_procesar"))
         self.dsb_soporte = QtGui.QDoubleSpinBox(self.groupBox)
         self.dsb_soporte.setGeometry(QtCore.QRect(190, 70, 81, 31))
@@ -178,19 +178,19 @@ class Ui_MainWindow(object):
         self.le_examinar.setPlaceholderText(_fromUtf8(""))
         self.le_examinar.setObjectName(_fromUtf8("le_examinar"))
         self.line = QtGui.QFrame(self.groupBox)
-        self.line.setGeometry(QtCore.QRect(0, 100, 1041, 20))
+        self.line.setGeometry(QtCore.QRect(20, 110, 991, 20))
         self.line.setFrameShape(QtGui.QFrame.HLine)
         self.line.setFrameShadow(QtGui.QFrame.Sunken)
         self.line.setObjectName(_fromUtf8("line"))
         self.barra_progreso = QtGui.QProgressBar(self.groupBox)
         self.barra_progreso.setEnabled(True)
-        self.barra_progreso.setGeometry(QtCore.QRect(10, 140, 851, 23))
+        self.barra_progreso.setGeometry(QtCore.QRect(20, 140, 801, 23))
         self.barra_progreso.setMinimum(0)
         self.barra_progreso.setProperty("value", 0)
         self.barra_progreso.setTextVisible(True)
         self.barra_progreso.setObjectName(_fromUtf8("barra_progreso"))
         self.btn_detener = QtGui.QPushButton(self.groupBox)
-        self.btn_detener.setGeometry(QtCore.QRect(880, 150, 71, 31))
+        self.btn_detener.setGeometry(QtCore.QRect(850, 130, 81, 41))
         self.btn_detener.setObjectName(_fromUtf8("btn_detener"))
         self.tabWidget.addTab(self.tab, _fromUtf8(""))
         self.tab_3 = QtGui.QWidget()
@@ -263,12 +263,13 @@ class Ui_MainWindow(object):
         self.le_cant_reglas.setObjectName(_fromUtf8("le_cant_reglas"))
         self.tw_rules = QtGui.QTableWidget(self.tab_3)
         self.tw_rules.setGeometry(QtCore.QRect(10, 120, 1061, 291))
+        self.tw_rules.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
         self.tw_rules.setColumnCount(4)
         self.tw_rules.setObjectName(_fromUtf8("tw_rules"))
         self.tw_rules.setRowCount(0)
         item = QtGui.QTableWidgetItem()
         font = QtGui.QFont()
-        font.setPointSize(11)
+        font.setPointSize(10)
         font.setBold(True)
         font.setWeight(75)
         item.setFont(font)
@@ -278,14 +279,14 @@ class Ui_MainWindow(object):
         self.tw_rules.setHorizontalHeaderItem(0, item)
         item = QtGui.QTableWidgetItem()
         font = QtGui.QFont()
-        font.setPointSize(11)
+        font.setPointSize(10)
         font.setBold(True)
         font.setWeight(75)
         item.setFont(font)
         self.tw_rules.setHorizontalHeaderItem(1, item)
         item = QtGui.QTableWidgetItem()
         font = QtGui.QFont()
-        font.setPointSize(11)
+        font.setPointSize(10)
         font.setBold(True)
         font.setWeight(75)
         item.setFont(font)
@@ -347,8 +348,6 @@ class Ui_MainWindow(object):
         font.setPointSize(10)
         self.actionReset.setFont(font)
         self.actionReset.setObjectName(_fromUtf8("actionReset"))
-        self.menuInicio.addAction(self.actionReset)
-        self.menuInicio.addSeparator()
         self.menuInicio.addAction(self.actionSalir)
         self.menuAyuda.addAction(self.actionInstrucciones_de_Uso)
         self.menuAyuda.addSeparator()
@@ -445,6 +444,7 @@ class Ui_MainWindow(object):
         self.actionIngreso_Manual.setText(_translate("MainWindow", "Ingreso Manual", None))
         self.actionReset.setText(_translate("MainWindow", "Reset", None))
 
+
     #-----------------------------------------------
     #-------------AGREGADO #6 FUNCIONES-------------
     #-----------------------------------------------
@@ -461,7 +461,7 @@ class Ui_MainWindow(object):
 
     def procesar(self):
         global cant_transacc, cant_reglas
-        
+
         try:
             self.fichero_actual.close()
         except Exception as e:
@@ -493,6 +493,7 @@ class Ui_MainWindow(object):
         self.statusbar.showMessage("Leyendo Restricciones...")
         self.barra_progreso.setValue(75)
         time.sleep(0.1)
+        
         #Obtengo Parametros de Restricciones
         conviccion = False
         lift = False
@@ -528,12 +529,14 @@ class Ui_MainWindow(object):
         
         self.barra_progreso.setValue(82)
         time.sleep(0.1)
-        self.tw_rules.horizontalHeader().setResizeMode(QtGui.QHeaderView.ResizeToContents)
-        self.tw_rules.horizontalHeader().setResizeMode(0, QtGui.QHeaderView.Stretch)
+        #self.tw_rules.horizontalHeader().setResizeMode(QtGui.QHeaderView.ResizeToContents)
+        #self.tw_rules.horizontalHeader().setResizeMode(0, QtGui.QHeaderView.Stretch)
 
         self.barra_progreso.setValue(100)
         time.sleep(0.4)
         self.statusbar.showMessage("Gerenacion Exitosa (100%)")
+
+        self.tabWidget.setCurrentIndex(1)
 
     def ckeckStatus(self):
         if self.cb_min_consecuentes.isChecked():
@@ -558,6 +561,7 @@ class Ui_MainWindow(object):
         
             self.tw_rules.setItem(i, 1, QtGui.QTableWidgetItem(str(format(100*float(l[len(l) - 2])/float(cant_transacc),'.2f'))+"%"))
             self.tw_rules.setItem(i, 2, QtGui.QTableWidgetItem(str(l[len(l) - 1])+"%"))
+            self.tw_rules.setItem(i, 3, QtGui.QTableWidgetItem("asdadasdasdasdasdssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"))
 
             item = str()
             for k, j in enumerate(l):
