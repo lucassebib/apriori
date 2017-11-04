@@ -175,9 +175,17 @@ def genRules(frecuentes, minConfianza):
 
 				lift= conf/(float(soporteConsecuente)/cant_transacciones)
 				print("El lift es: "+ str(lift))
+
+				denominador= soporteAntecedente-soporteRegla
+				if (denominador == 0):
+					conviction= 9999 #la conviccion es infinita
+				else:
+					conviction= (soporteAntecedente*(cant_transacciones-soporteConsecuente))/denominador
+				print("La conviccion es: "+ str(conviction))
+
 				
 				if conf >= minConfianza:
-					archivo_salida.write(antecedente + ' ---> ' + consecuente + " "  + str(soporteRegla) + " " + str(conf*100) +" "+str(lift) + " "+ str(1.2) +'\n') #os.linesep)
+					archivo_salida.write(antecedente + ' ---> ' + consecuente + " "  + str(soporteRegla) + " " + str(conf*100) +" "+str(lift) + " "+ str(conviction) +'\n') #os.linesep)
 					cant_reglas = cant_reglas + 1
 					#print(antecedente + ' ---> ' + consecuente) + 
 					
@@ -233,8 +241,14 @@ def apGenRules(fk, Hm, F, minConfianza): #fk tiene la forma ['cerveza jamon pan'
 							print("el lift con mas de un cosecuente de "+ str(consecuente) + "es " + str(lift))
 							break;
 
+				denominador= soporteAntecedente-fk[1]
+				if (denominador == 0):
+					conviction= 9999 #la conviccion es infinita
+				else:
+					conviction= (soporteAntecedente*(cant_transacciones-soporteConsecuente))/denominador
+				print("La conviccion es: "+ str(conviction))
 
-				archivo_salida.write(str(antecedente).replace('[','').replace(']','').replace('\'','') +" ---> "+ str(consecuente) + " " + str(fk[1]) + " " + str(conf*100)+" "+ str(lift) + " "+ str(1.2)+ '\n')# os.linesep)
+				archivo_salida.write(str(antecedente).replace('[','').replace(']','').replace('\'','') +" ---> "+ str(consecuente) + " " + str(fk[1]) + " " + str(conf*100)+" "+ str(lift) + " "+ str(conviction)+ '\n')# os.linesep)
 				cant_reglas = cant_reglas + 1
 				#print(str(antecedente).replace('[','').replace(']','').replace('\'','') +"-->"+ str(consecuente))
 
