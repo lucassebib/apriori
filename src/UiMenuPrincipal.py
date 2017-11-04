@@ -614,14 +614,14 @@ class Ui_MainWindow(object):
         for i, linea in enumerate(archivo_reglas):
             l = linea.split()
             self.tw_rules.insertRow(i)
-        
-            self.tw_rules.setItem(i, 1, QtGui.QTableWidgetItem(str(format(100*float(l[len(l) - 2])/float(cant_transacc),'.2f'))+"%"))
-            self.tw_rules.setItem(i, 2, QtGui.QTableWidgetItem(str(format(float(l[len(l) - 1]), '.2f'))+"%"))
+            print("el valor de L es: "+ str(l))
+            self.tw_rules.setItem(i, 1, QtGui.QTableWidgetItem(str(format(100*(float(l[len(l)-4])/float(cant_transacc)),'.2f'))+"%"))
+            self.tw_rules.setItem(i, 2, QtGui.QTableWidgetItem(str(format(float(l[len(l)-3]), '.2f'))+"%"))
             self.tw_rules.setItem(i, 3, QtGui.QTableWidgetItem("asdadasdasdasdasdssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"))
 
             item = str()
             for k, j in enumerate(l):
-                if k < len(l) - 2:
+                if k < len(l) - 4:
                     item = item + " " + j
                 else: 
                     break;
@@ -650,13 +650,13 @@ class Ui_MainWindow(object):
             l = linea.split()
             self.tw_rules.insertRow(i)
         
-            self.tw_rules.setItem(i, 1, QtGui.QTableWidgetItem(str(format(100*float(l[len(l) - 2])/float(cant_transacc),'.2f'))+"%"))
-            self.tw_rules.setItem(i, 2, QtGui.QTableWidgetItem(str(format(float(l[len(l) - 1]), '.2f'))+"%"))
+            self.tw_rules.setItem(i, 1, QtGui.QTableWidgetItem(str(format(100*float(l[len(l) - 4])/float(cant_transacc),'.2f'))+"%"))
+            self.tw_rules.setItem(i, 2, QtGui.QTableWidgetItem(str(format(float(l[len(l) - 3]), '.2f'))+"%"))
             self.tw_rules.setItem(i, 3, QtGui.QTableWidgetItem("asdadasdasdasdasdssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"))
 
             item = str()
             for k, j in enumerate(l):
-                if k < len(l) - 2:
+                if k < len(l) - 4:
                     item = item + " " + j
                 else: 
                     break;
