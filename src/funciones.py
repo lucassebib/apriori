@@ -16,7 +16,9 @@ if os.path.exists(RUTA_REGLAS):
 #archivo_salida = open(RUTA_REGLAS + '/reglas'+ str(time.strftime("%H%M%S")) + '.dat', 'w')
 global archivo_salida, archivo_con_restricciones
 global cant_reglas 
+global cant_transacciones
 cant_reglas = 0
+cant_transacciones=0
 
 NOMBRE_ARCHIVO_SALIDA = 'reglas'
 NOMBRE_ARCHIVO_REGLAS_RESTRICCIONES = 'reglas_con_restricciones'
@@ -25,6 +27,7 @@ archivo_salida= open(RUTA_REGLAS + '/' + NOMBRE_ARCHIVO_SALIDA + '.dat', 'w')
 archivo_con_restricciones= open(RUTA_REGLAS + '/' + NOMBRE_ARCHIVO_REGLAS_RESTRICCIONES + '.dat', 'w')
 
 def initPass(archivo_transacciones):
+
 	#---------------------------------------------------------------------------
 	# PASO 1:
 	# LEE EL ARCHIVO Y GENERA UN DICCIONARIO candidatos_ini DONDE: 
@@ -32,10 +35,10 @@ def initPass(archivo_transacciones):
 	# el valor es el soportes (X.count()) de cada elemento de candidatos_ini
 	#---------------------------------------------------------------------------
 	candidatos_ini = {}
-	cant_transacciones = 0
-
+	global cant_transacciones
+	cant_transacciones=0
 	for linea in archivo_transacciones:
-		cant_transacciones+= 1
+		cant_transacciones= cant_transacciones + 1
 		linea = linea.split()
 		for li in linea:
 			if not li in candidatos_ini:  #La primera vez que selecciono el producto
@@ -127,7 +130,8 @@ def generarCandidato(item_frecuente):
 	return c
 
 def genRules(frecuentes, minConfianza):
-	global cant_reglas 
+	global cant_reglas
+	global cant_transacciones
 	cant_reglas = 0
 	#---------------------------------------------------------------------------
 	# 
@@ -161,10 +165,19 @@ def genRules(frecuentes, minConfianza):
 					if item[0] == antecedente:
 						soporteAntecedente= item[1]
 
+				for item in frecuentes[0]:
+					if item[0] == consecuente:
+						soporteConsecuente= item[1]
+						print("el consecuente es"+ str(item[0]))
+						print("el soporte del consecuente es"+ str(item[1]))
+
 				conf= float(soporteRegla)/float(soporteAntecedente)
+
+				lift= conf/(float(soporteConsecuente)/cant_transacciones)
+				print("El lift es: "+ str(lift))
 				
 				if conf >= minConfianza:
-					archivo_salida.write(antecedente + ' ---> ' + consecuente + " "  + str(soporteRegla) + " " + str(conf*100) + '\n') #os.linesep)
+					archivo_salida.write(antecedente + ' ---> ' + consecuente + " "  + str(soporteRegla) + " " + str(conf*100) +" "+str(lift) + " "+ str(1.2) +'\n') #os.linesep)
 					cant_reglas = cant_reglas + 1
 					#print(antecedente + ' ---> ' + consecuente) + 
 					
@@ -183,6 +196,7 @@ def genRules(frecuentes, minConfianza):
 
 def apGenRules(fk, Hm, F, minConfianza): #fk tiene la forma ['cerveza jamon pan', 2]....Hm tiene la forma [['cerveza', 0], ['jamon', 0], ['pan', 0]]
 	global cant_reglas
+	global cant_transacciones
 	k= len(fk[0].split()) #obtiene el valor de k calculando la longitud que tiene el primer elemento del itemset fk
 
 	if len(Hm)>0:
@@ -205,10 +219,22 @@ def apGenRules(fk, Hm, F, minConfianza): #fk tiene la forma ['cerveza jamon pan'
 				el1=item[0].split()
 				el2= antecedente
 				if el1==el2:
-					soporteConsecuente=item[1]
-			conf= float(fk[1])/float(soporteConsecuente)
+					soporteAntecedente=item[1]
+			conf= float(fk[1])/float(soporteAntecedente)
+
 			if conf> minConfianza:
-				archivo_salida.write(str(antecedente).replace('[','').replace(']','').replace('\'','') +" ---> "+ str(consecuente) + " " + str(fk[1]) + " " + str(conf*100)  + '\n')# os.linesep)
+				for f in F: #Recorremos el F anterior para buscar el soporte del antecedente
+					for item in f: 
+						el1=item[0]
+						el2= consecuente
+						if el1==el2:
+							soporteConsecuente=item[1]
+							lift= conf/(float(soporteConsecuente)/cant_transacciones)
+							print("el lift con mas de un cosecuente de "+ str(consecuente) + "es " + str(lift))
+							break;
+
+
+				archivo_salida.write(str(antecedente).replace('[','').replace(']','').replace('\'','') +" ---> "+ str(consecuente) + " " + str(fk[1]) + " " + str(conf*100)+" "+ str(lift) + " "+ str(1.2)+ '\n')# os.linesep)
 				cant_reglas = cant_reglas + 1
 				#print(str(antecedente).replace('[','').replace(']','').replace('\'','') +"-->"+ str(consecuente))
 
@@ -229,7 +255,7 @@ def generar_restricciones(conviccion, lift ,min_anteced, min_conse, max_anteced,
 		consecuente = ''
 		linea = li.split()
 		index = len(linea)
-		del linea[index - 2:]
+		del linea[index - 4:]
 
 		for l in linea:
 			if l == '--->':
