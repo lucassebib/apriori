@@ -1,1 +1,7 @@
-11 ---> 6 324013 88.9986678203
+clothes ---> chicken 3 100.0 1.4 1.2
+milk ---> chicken 4 100.0 1.4 1.2
+chicken ---> milk 4 80.0 1.4 1.2
+clothes ---> milk 3 100.0 1.75 1.2
+clothes milk ---> chicken 3 100.0 1.4 1.2
+chicken clothes ---> milk 3 100.0 1.75 1.2
+clothes ---> chicken milk 3 100.0 1.75 1.2

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'menuPrincipal.ui'
 #
-# Created: Sat Nov 04 12:08:27 2017
+# Created: Sat Nov 04 16:48:08 2017
 #      by: PyQt4 UI code generator 4.10
 #
 # WARNING! All changes made in this file will be lost!
@@ -22,6 +22,7 @@ from PyQt4.QtGui import *
 from apriori import EjecutarCorrida, obtenerDatos
 from funciones import generar_restricciones
 from clasesUI import WAcercaDe
+from pdfgenerator import generarPDF
 
 
 RUTA_BASE = os.path.dirname(os.path.dirname(__file__))
@@ -237,7 +238,7 @@ class Ui_MainWindow(object):
         self.le_cant_productos.setObjectName(_fromUtf8("le_cant_productos"))
         self.btn_ver_reglas = QtGui.QPushButton(self.groupBox_2)
         self.btn_ver_reglas.setEnabled(True)
-        self.btn_ver_reglas.setGeometry(QtCore.QRect(850, 30, 111, 41))
+        self.btn_ver_reglas.setGeometry(QtCore.QRect(770, 30, 111, 41))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.btn_ver_reglas.setFont(font)
@@ -263,6 +264,14 @@ class Ui_MainWindow(object):
         self.le_cant_reglas.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.le_cant_reglas.setReadOnly(True)
         self.le_cant_reglas.setObjectName(_fromUtf8("le_cant_reglas"))
+        self.btn_pdf = QtGui.QPushButton(self.groupBox_2)
+        self.btn_pdf.setGeometry(QtCore.QRect(970, 40, 31, 31))
+        self.btn_pdf.setText(_fromUtf8(""))
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/pdf.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.btn_pdf.setIcon(icon1)
+        self.btn_pdf.setIconSize(QtCore.QSize(40, 40))
+        self.btn_pdf.setObjectName(_fromUtf8("btn_pdf"))
         self.tw_rules = QtGui.QTableWidget(self.tab_3)
         self.tw_rules.setGeometry(QtCore.QRect(10, 140, 1061, 291))
         self.tw_rules.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
@@ -319,7 +328,11 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(True)
+        font.setItalic(False)
+        font.setUnderline(True)
         font.setWeight(75)
+        font.setStrikeOut(False)
+        font.setKerning(True)
         self.l_titulo.setFont(font)
         self.l_titulo.setAlignment(QtCore.Qt.AlignCenter)
         self.l_titulo.setObjectName(_fromUtf8("l_titulo"))
@@ -397,6 +410,8 @@ class Ui_MainWindow(object):
         QtCore.QObject.connect(self.cb_max_antecedentes, QtCore.SIGNAL(_fromUtf8("clicked()")), self.ckeckStatus)
         QtCore.QObject.connect(self.cb_max_consecuentes, QtCore.SIGNAL(_fromUtf8("clicked()")), self.ckeckStatus)
 
+        QtCore.QObject.connect(self.btn_pdf, QtCore.SIGNAL(_fromUtf8("clicked()")), generarPDF)
+
         QtCore.QObject.connect(self.cb_aplicar_restricc, QtCore.SIGNAL(_fromUtf8("clicked()")), self.mostrar_restricciones)
 
         QtCore.QObject.connect(self.btn_ver_reglas, QtCore.SIGNAL(_fromUtf8("clicked()")), self.obtenerReglas)
@@ -408,8 +423,6 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
         #-------------FIN #5-------------
-
-
         MainWindow.setTabOrder(self.tabWidget, self.le_examinar)
         MainWindow.setTabOrder(self.le_examinar, self.btn_examinar)
         MainWindow.setTabOrder(self.btn_examinar, self.dsb_soporte)
@@ -678,3 +691,4 @@ class Ui_MainWindow(object):
         
 
     #--------------------FIN #6---------------------
+

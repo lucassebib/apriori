@@ -15,4 +15,8 @@
 <qresource prefix="/images">
     <file alias="load.gif">img/load.gif</file>
 </qresource>
+
+<qresource prefix="/images">
+    <file alias="pdf.png">img/pdf.png</file>
+</qresource>
 </RCC>

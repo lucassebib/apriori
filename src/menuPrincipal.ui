@@ -66,7 +66,7 @@
      </font>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -591,7 +591,7 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>850</x>
+         <x>770</x>
          <y>30</y>
          <width>111</width>
          <height>41</height>
@@ -670,6 +670,29 @@
        </property>
        <property name="readOnly">
         <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_pdf">
+       <property name="geometry">
+        <rect>
+         <x>970</x>
+         <y>40</y>
+         <width>31</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="recursos/imagenes.qrc">
+         <normaloff>:/images/pdf.png</normaloff>:/images/pdf.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>40</width>
+         <height>40</height>
+        </size>
        </property>
       </widget>
      </widget>

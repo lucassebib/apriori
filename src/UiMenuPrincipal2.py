@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'menuPrincipal.ui'
 #
-# Created: Sat Nov 04 12:08:27 2017
+# Created: Sat Nov 04 16:48:08 2017
 #      by: PyQt4 UI code generator 4.10
 #
 # WARNING! All changes made in this file will be lost!
@@ -14,6 +14,7 @@ import os
 import webbrowser
 import time
 import images_rc
+import threading
 
 from PyQt4.QtCore import QFileInfo
 from PyQt4.QtGui import *
@@ -236,7 +237,7 @@ class Ui_MainWindow(object):
         self.le_cant_productos.setObjectName(_fromUtf8("le_cant_productos"))
         self.btn_ver_reglas = QtGui.QPushButton(self.groupBox_2)
         self.btn_ver_reglas.setEnabled(True)
-        self.btn_ver_reglas.setGeometry(QtCore.QRect(850, 30, 111, 41))
+        self.btn_ver_reglas.setGeometry(QtCore.QRect(770, 30, 111, 41))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.btn_ver_reglas.setFont(font)
@@ -262,6 +263,14 @@ class Ui_MainWindow(object):
         self.le_cant_reglas.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.le_cant_reglas.setReadOnly(True)
         self.le_cant_reglas.setObjectName(_fromUtf8("le_cant_reglas"))
+        self.btn_pdf = QtGui.QPushButton(self.groupBox_2)
+        self.btn_pdf.setGeometry(QtCore.QRect(970, 40, 31, 31))
+        self.btn_pdf.setText(_fromUtf8(""))
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/pdf.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.btn_pdf.setIcon(icon1)
+        self.btn_pdf.setIconSize(QtCore.QSize(40, 40))
+        self.btn_pdf.setObjectName(_fromUtf8("btn_pdf"))
         self.tw_rules = QtGui.QTableWidget(self.tab_3)
         self.tw_rules.setGeometry(QtCore.QRect(10, 140, 1061, 291))
         self.tw_rules.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
@@ -318,7 +327,11 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(True)
+        font.setItalic(False)
+        font.setUnderline(True)
         font.setWeight(75)
+        font.setStrikeOut(False)
+        font.setKerning(True)
         self.l_titulo.setFont(font)
         self.l_titulo.setAlignment(QtCore.Qt.AlignCenter)
         self.l_titulo.setObjectName(_fromUtf8("l_titulo"))
@@ -396,6 +409,8 @@ class Ui_MainWindow(object):
         QtCore.QObject.connect(self.cb_max_antecedentes, QtCore.SIGNAL(_fromUtf8("clicked()")), self.ckeckStatus)
         QtCore.QObject.connect(self.cb_max_consecuentes, QtCore.SIGNAL(_fromUtf8("clicked()")), self.ckeckStatus)
 
+        QtCore.QObject.connect(self.btn_procesar, QtCore.SIGNAL(_fromUtf8("clicked()")), self.btn_pdf)
+
         QtCore.QObject.connect(self.cb_aplicar_restricc, QtCore.SIGNAL(_fromUtf8("clicked()")), self.mostrar_restricciones)
 
         QtCore.QObject.connect(self.btn_ver_reglas, QtCore.SIGNAL(_fromUtf8("clicked()")), self.obtenerReglas)
@@ -407,8 +422,6 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
         #-------------FIN #5-------------
-
-
         MainWindow.setTabOrder(self.tabWidget, self.le_examinar)
         MainWindow.setTabOrder(self.le_examinar, self.btn_examinar)
         MainWindow.setTabOrder(self.btn_examinar, self.dsb_soporte)
@@ -510,6 +523,7 @@ class Ui_MainWindow(object):
         except Exception as e:
             pass
         
+        QtGui.QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
         self.barra_progreso.show()
         self.barra_progreso.setValue(20)
         time.sleep(0.3)
@@ -569,7 +583,6 @@ class Ui_MainWindow(object):
         
         self.statusbar.showMessage("Genreando Restricciones...")
         generar_restricciones(conviccion, lift ,min_anteced, min_conse, max_anteced, max_conse, valor_min_ant, valor_max_ant, valor_min_cons, valor_max_cons)
-        
         self.barra_progreso.setValue(82)
         time.sleep(0.1)
         #self.tw_rules.horizontalHeader().setResizeMode(QtGui.QHeaderView.ResizeToContents)
@@ -578,6 +591,8 @@ class Ui_MainWindow(object):
         self.barra_progreso.setValue(100)
         time.sleep(0.4)
         self.statusbar.showMessage("Gerenacion Exitosa (100%)")
+
+        QtGui.QApplication.restoreOverrideCursor()
 
         self.tabWidget.setCurrentIndex(1)
 
@@ -611,14 +626,14 @@ class Ui_MainWindow(object):
         for i, linea in enumerate(archivo_reglas):
             l = linea.split()
             self.tw_rules.insertRow(i)
-        
-            self.tw_rules.setItem(i, 1, QtGui.QTableWidgetItem(str(format(100*float(l[len(l) - 2])/float(cant_transacc),'.2f'))+"%"))
-            self.tw_rules.setItem(i, 2, QtGui.QTableWidgetItem(str(format(float(l[len(l) - 1]), '.2f'))+"%"))
+            print("el valor de L es: "+ str(l))
+            self.tw_rules.setItem(i, 1, QtGui.QTableWidgetItem(str(format(100*(float(l[len(l)-4])/float(cant_transacc)),'.2f'))+"%"))
+            self.tw_rules.setItem(i, 2, QtGui.QTableWidgetItem(str(format(float(l[len(l)-3]), '.2f'))+"%"))
             self.tw_rules.setItem(i, 3, QtGui.QTableWidgetItem("asdadasdasdasdasdssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"))
 
             item = str()
             for k, j in enumerate(l):
-                if k < len(l) - 2:
+                if k < len(l) - 4:
                     item = item + " " + j
                 else: 
                     break;
@@ -647,13 +662,13 @@ class Ui_MainWindow(object):
             l = linea.split()
             self.tw_rules.insertRow(i)
         
-            self.tw_rules.setItem(i, 1, QtGui.QTableWidgetItem(str(format(100*float(l[len(l) - 2])/float(cant_transacc),'.2f'))+"%"))
-            self.tw_rules.setItem(i, 2, QtGui.QTableWidgetItem(str(format(float(l[len(l) - 1]), '.2f'))+"%"))
+            self.tw_rules.setItem(i, 1, QtGui.QTableWidgetItem(str(format(100*float(l[len(l) - 4])/float(cant_transacc),'.2f'))+"%"))
+            self.tw_rules.setItem(i, 2, QtGui.QTableWidgetItem(str(format(float(l[len(l) - 3]), '.2f'))+"%"))
             self.tw_rules.setItem(i, 3, QtGui.QTableWidgetItem("asdadasdasdasdasdssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"))
 
             item = str()
             for k, j in enumerate(l):
-                if k < len(l) - 2:
+                if k < len(l) - 4:
                     item = item + " " + j
                 else: 
                     break;
@@ -675,3 +690,4 @@ class Ui_MainWindow(object):
         
 
     #--------------------FIN #6---------------------
+
