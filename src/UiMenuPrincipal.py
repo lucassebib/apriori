@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'menuPrincipal.ui'
 #
-# Created: Fri Nov 03 21:27:48 2017
+# Created: Sat Nov 04 12:08:27 2017
 #      by: PyQt4 UI code generator 4.10
 #
 # WARNING! All changes made in this file will be lost!
@@ -57,7 +57,7 @@ class Ui_MainWindow(object):
     fichero_actual = ''
     ruta = ''
     nombre_archivo = ''
-    #-------------FIN #2-------------    
+    #-------------FIN #2------------- 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
         MainWindow.resize(1117, 736)
@@ -157,9 +157,6 @@ class Ui_MainWindow(object):
         self.l_soporte = QtGui.QLabel(self.groupBox)
         self.l_soporte.setGeometry(QtCore.QRect(70, 80, 101, 20))
         self.l_soporte.setObjectName(_fromUtf8("l_soporte"))
-        self.btn_procesar = QtGui.QPushButton(self.groupBox)
-        self.btn_procesar.setGeometry(QtCore.QRect(950, 130, 81, 41))
-        self.btn_procesar.setObjectName(_fromUtf8("btn_procesar"))
         self.dsb_soporte = QtGui.QDoubleSpinBox(self.groupBox)
         self.dsb_soporte.setGeometry(QtCore.QRect(190, 70, 81, 31))
         self.dsb_soporte.setMaximum(100.0)
@@ -171,7 +168,7 @@ class Ui_MainWindow(object):
         self.dsb_confianza.setProperty("value", 80.0)
         self.dsb_confianza.setObjectName(_fromUtf8("dsb_confianza"))
         self.btn_examinar = QtGui.QPushButton(self.groupBox)
-        self.btn_examinar.setGeometry(QtCore.QRect(720, 30, 93, 28))
+        self.btn_examinar.setGeometry(QtCore.QRect(720, 30, 101, 31))
         self.btn_examinar.setObjectName(_fromUtf8("btn_examinar"))
         self.le_examinar = QtGui.QLineEdit(self.groupBox)
         self.le_examinar.setGeometry(QtCore.QRect(150, 31, 561, 31))
@@ -179,7 +176,7 @@ class Ui_MainWindow(object):
         self.le_examinar.setPlaceholderText(_fromUtf8(""))
         self.le_examinar.setObjectName(_fromUtf8("le_examinar"))
         self.line = QtGui.QFrame(self.groupBox)
-        self.line.setGeometry(QtCore.QRect(20, 110, 991, 20))
+        self.line.setGeometry(QtCore.QRect(20, 110, 1001, 20))
         self.line.setFrameShape(QtGui.QFrame.HLine)
         self.line.setFrameShadow(QtGui.QFrame.Sunken)
         self.line.setObjectName(_fromUtf8("line"))
@@ -190,14 +187,17 @@ class Ui_MainWindow(object):
         self.barra_progreso.setProperty("value", 0)
         self.barra_progreso.setTextVisible(True)
         self.barra_progreso.setObjectName(_fromUtf8("barra_progreso"))
-        self.btn_detener = QtGui.QPushButton(self.groupBox)
-        self.btn_detener.setGeometry(QtCore.QRect(850, 130, 81, 41))
+        self.btn_procesar = QtGui.QPushButton(self.tab)
+        self.btn_procesar.setGeometry(QtCore.QRect(940, 520, 101, 41))
+        self.btn_procesar.setObjectName(_fromUtf8("btn_procesar"))
+        self.btn_detener = QtGui.QPushButton(self.tab)
+        self.btn_detener.setGeometry(QtCore.QRect(810, 520, 101, 41))
         self.btn_detener.setObjectName(_fromUtf8("btn_detener"))
         self.tabWidget.addTab(self.tab, _fromUtf8(""))
         self.tab_3 = QtGui.QWidget()
         self.tab_3.setObjectName(_fromUtf8("tab_3"))
         self.groupBox_2 = QtGui.QGroupBox(self.tab_3)
-        self.groupBox_2.setGeometry(QtCore.QRect(20, 10, 1041, 101))
+        self.groupBox_2.setGeometry(QtCore.QRect(20, 10, 1041, 91))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.groupBox_2.setFont(font)
@@ -236,7 +236,7 @@ class Ui_MainWindow(object):
         self.le_cant_productos.setObjectName(_fromUtf8("le_cant_productos"))
         self.btn_ver_reglas = QtGui.QPushButton(self.groupBox_2)
         self.btn_ver_reglas.setEnabled(True)
-        self.btn_ver_reglas.setGeometry(QtCore.QRect(850, 50, 111, 41))
+        self.btn_ver_reglas.setGeometry(QtCore.QRect(850, 30, 111, 41))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.btn_ver_reglas.setFont(font)
@@ -263,7 +263,7 @@ class Ui_MainWindow(object):
         self.le_cant_reglas.setReadOnly(True)
         self.le_cant_reglas.setObjectName(_fromUtf8("le_cant_reglas"))
         self.tw_rules = QtGui.QTableWidget(self.tab_3)
-        self.tw_rules.setGeometry(QtCore.QRect(10, 120, 1061, 291))
+        self.tw_rules.setGeometry(QtCore.QRect(10, 140, 1061, 291))
         self.tw_rules.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
         self.tw_rules.setColumnCount(4)
         self.tw_rules.setObjectName(_fromUtf8("tw_rules"))
@@ -300,10 +300,10 @@ class Ui_MainWindow(object):
         item.setFont(font)
         self.tw_rules.setHorizontalHeaderItem(3, item)
         self.te_observaciones = QtGui.QTextEdit(self.tab_3)
-        self.te_observaciones.setGeometry(QtCore.QRect(10, 450, 1061, 121))
+        self.te_observaciones.setGeometry(QtCore.QRect(10, 470, 1061, 101))
         self.te_observaciones.setObjectName(_fromUtf8("te_observaciones"))
         self.label_4 = QtGui.QLabel(self.tab_3)
-        self.label_4.setGeometry(QtCore.QRect(10, 420, 201, 16))
+        self.label_4.setGeometry(QtCore.QRect(10, 450, 201, 16))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(True)
@@ -311,8 +311,17 @@ class Ui_MainWindow(object):
         self.label_4.setFont(font)
         self.label_4.setObjectName(_fromUtf8("label_4"))
         self.cb_aplicar_restricc = QtGui.QCheckBox(self.tab_3)
-        self.cb_aplicar_restricc.setGeometry(QtCore.QRect(890, 420, 181, 20))
+        self.cb_aplicar_restricc.setGeometry(QtCore.QRect(890, 440, 181, 20))
         self.cb_aplicar_restricc.setObjectName(_fromUtf8("cb_aplicar_restricc"))
+        self.l_titulo = QtGui.QLabel(self.tab_3)
+        self.l_titulo.setGeometry(QtCore.QRect(20, 110, 1041, 20))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.l_titulo.setFont(font)
+        self.l_titulo.setAlignment(QtCore.Qt.AlignCenter)
+        self.l_titulo.setObjectName(_fromUtf8("l_titulo"))
         self.tabWidget.addTab(self.tab_3, _fromUtf8(""))
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
@@ -356,6 +365,7 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuInicio.menuAction())
         self.menubar.addAction(self.menuAyuda.menuAction())
 
+
         #---------------------------------------------
         #--------AGREGADO #4 INICIALIZACIONES#--------
         #---------------------------------------------
@@ -398,6 +408,34 @@ class Ui_MainWindow(object):
 
         #-------------FIN #5-------------
 
+
+        MainWindow.setTabOrder(self.tabWidget, self.le_examinar)
+        MainWindow.setTabOrder(self.le_examinar, self.btn_examinar)
+        MainWindow.setTabOrder(self.btn_examinar, self.dsb_soporte)
+        MainWindow.setTabOrder(self.dsb_soporte, self.dsb_confianza)
+        MainWindow.setTabOrder(self.dsb_confianza, self.cb_min_antecedentes)
+        MainWindow.setTabOrder(self.cb_min_antecedentes, self.sb_min_antecedentes)
+        MainWindow.setTabOrder(self.sb_min_antecedentes, self.cb_max_antecedentes)
+        MainWindow.setTabOrder(self.cb_max_antecedentes, self.sb_max_antecedentes)
+        MainWindow.setTabOrder(self.sb_max_antecedentes, self.cb_min_consecuentes)
+        MainWindow.setTabOrder(self.cb_min_consecuentes, self.sb_min_consecuentes)
+        MainWindow.setTabOrder(self.sb_min_consecuentes, self.cb_max_consecuentes)
+        MainWindow.setTabOrder(self.cb_max_consecuentes, self.sb_max_consecuentes)
+        MainWindow.setTabOrder(self.sb_max_consecuentes, self.cb_soporte)
+        MainWindow.setTabOrder(self.cb_soporte, self.cb_confianza)
+        MainWindow.setTabOrder(self.cb_confianza, self.cb_sustentacion)
+        MainWindow.setTabOrder(self.cb_sustentacion, self.cb_lift)
+        MainWindow.setTabOrder(self.cb_lift, self.btn_procesar)
+        MainWindow.setTabOrder(self.btn_procesar, self.btn_ver_reglas)
+        MainWindow.setTabOrder(self.btn_ver_reglas, self.le_cant_transacciones)
+        MainWindow.setTabOrder(self.le_cant_transacciones, self.le_cant_reglas)
+        MainWindow.setTabOrder(self.le_cant_reglas, self.le_cant_productos)
+        MainWindow.setTabOrder(self.le_cant_productos, self.tw_rules)
+        MainWindow.setTabOrder(self.tw_rules, self.cb_aplicar_restricc)
+        MainWindow.setTabOrder(self.cb_aplicar_restricc, self.te_observaciones)
+        MainWindow.setTabOrder(self.te_observaciones, self.btn_salir)
+        MainWindow.setTabOrder(self.btn_salir, self.btn_detener)
+
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(_translate("MainWindow", "AppRules", None))
         self.btn_salir.setToolTip(_translate("MainWindow", "<html><head/><body><p>Salir de la Aplicacion</p></body></html>", None))
@@ -410,14 +448,14 @@ class Ui_MainWindow(object):
         self.groupBox_4.setTitle(_translate("MainWindow", "Restriciones", None))
         self.cb_min_consecuentes.setText(_translate("MainWindow", "Minimo de Consecuentes:", None))
         self.cb_min_antecedentes.setText(_translate("MainWindow", "Minimo de Antecedentes:", None))
-        self.cb_max_antecedentes.setText(_translate("MainWindow", "Minimo de Antecedentes:", None))
-        self.cb_max_consecuentes.setText(_translate("MainWindow", "Minimo de Consecuentes:", None))
+        self.cb_max_antecedentes.setText(_translate("MainWindow", "Maximo de Antecedentes:", None))
+        self.cb_max_consecuentes.setText(_translate("MainWindow", "Maximo de Consecuentes:", None))
         self.groupBox.setTitle(_translate("MainWindow", "Parametros", None))
         self.l_archivo.setText(_translate("MainWindow", "Archivo:", None))
         self.label_2.setText(_translate("MainWindow", "Confianza (%):", None))
         self.l_soporte.setText(_translate("MainWindow", "Soporte (%):", None))
-        self.btn_procesar.setText(_translate("MainWindow", "Procesar", None))
         self.btn_examinar.setText(_translate("MainWindow", "Examinar", None))
+        self.btn_procesar.setText(_translate("MainWindow", "Procesar", None))
         self.btn_detener.setText(_translate("MainWindow", "Detener", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Parametros Generales", None))
         self.groupBox_2.setTitle(_translate("MainWindow", "Resultados Parciales", None))
@@ -439,6 +477,7 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "Interpretacion", None))
         self.label_4.setText(_translate("MainWindow", "OBSERVACIONES:", None))
         self.cb_aplicar_restricc.setText(_translate("MainWindow", "Aplicar Restricciones", None))
+        self.l_titulo.setText(_translate("MainWindow", "REGLAS SIN RESTRICCIONES", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Resultados", None))
         self.menuInicio.setTitle(_translate("MainWindow", "Inicio", None))
         self.menuAyuda.setTitle(_translate("MainWindow", "Ayuda", None))
@@ -448,7 +487,6 @@ class Ui_MainWindow(object):
         self.actionDesde_Archivo.setText(_translate("MainWindow", "Desde Archivo", None))
         self.actionIngreso_Manual.setText(_translate("MainWindow", "Ingreso Manual", None))
         self.actionReset.setText(_translate("MainWindow", "Reset", None))
-
 
     #-----------------------------------------------
     #-------------AGREGADO #6 FUNCIONES-------------
