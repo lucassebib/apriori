@@ -66,7 +66,7 @@
      </font>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -258,7 +258,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Minimo de Antecedentes:</string>
+       <string>Maximo de Antecedentes:</string>
       </property>
      </widget>
      <widget class="QCheckBox" name="cb_max_consecuentes">
@@ -271,7 +271,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Minimo de Consecuentes:</string>
+       <string>Maximo de Consecuentes:</string>
       </property>
      </widget>
      <widget class="QSpinBox" name="sb_max_antecedentes">
@@ -344,19 +344,6 @@
         <string>Soporte (%):</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="btn_procesar">
-       <property name="geometry">
-        <rect>
-         <x>950</x>
-         <y>130</y>
-         <width>81</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Procesar</string>
-       </property>
-      </widget>
       <widget class="QDoubleSpinBox" name="dsb_soporte">
        <property name="geometry">
         <rect>
@@ -394,8 +381,8 @@
         <rect>
          <x>720</x>
          <y>30</y>
-         <width>93</width>
-         <height>28</height>
+         <width>101</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="text">
@@ -423,7 +410,7 @@
         <rect>
          <x>20</x>
          <y>110</y>
-         <width>991</width>
+         <width>1001</width>
          <height>20</height>
         </rect>
        </property>
@@ -453,19 +440,32 @@
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QPushButton" name="btn_detener">
-       <property name="geometry">
-        <rect>
-         <x>850</x>
-         <y>130</y>
-         <width>81</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Detener</string>
-       </property>
-      </widget>
+     </widget>
+     <widget class="QPushButton" name="btn_procesar">
+      <property name="geometry">
+       <rect>
+        <x>940</x>
+        <y>520</y>
+        <width>101</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Procesar</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_detener">
+      <property name="geometry">
+       <rect>
+        <x>810</x>
+        <y>520</y>
+        <width>101</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Detener</string>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_3">
@@ -478,7 +478,7 @@
         <x>20</x>
         <y>10</y>
         <width>1041</width>
-        <height>101</height>
+        <height>91</height>
        </rect>
       </property>
       <property name="font">
@@ -592,7 +592,7 @@
        <property name="geometry">
         <rect>
          <x>850</x>
-         <y>50</y>
+         <y>30</y>
          <width>111</width>
          <height>41</height>
         </rect>
@@ -677,7 +677,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>120</y>
+        <y>140</y>
         <width>1061</width>
         <height>291</height>
        </rect>
@@ -750,9 +750,9 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>450</y>
+        <y>470</y>
         <width>1061</width>
-        <height>121</height>
+        <height>101</height>
        </rect>
       </property>
      </widget>
@@ -760,7 +760,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>420</y>
+        <y>450</y>
         <width>201</width>
         <height>16</height>
        </rect>
@@ -780,13 +780,36 @@
       <property name="geometry">
        <rect>
         <x>890</x>
-        <y>420</y>
+        <y>440</y>
         <width>181</width>
         <height>20</height>
        </rect>
       </property>
       <property name="text">
        <string>Aplicar Restricciones</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="l_titulo">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>110</y>
+        <width>1041</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>REGLAS SIN RESTRICCIONES</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </widget>
@@ -871,6 +894,35 @@
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>le_examinar</tabstop>
+  <tabstop>btn_examinar</tabstop>
+  <tabstop>dsb_soporte</tabstop>
+  <tabstop>dsb_confianza</tabstop>
+  <tabstop>cb_min_antecedentes</tabstop>
+  <tabstop>sb_min_antecedentes</tabstop>
+  <tabstop>cb_max_antecedentes</tabstop>
+  <tabstop>sb_max_antecedentes</tabstop>
+  <tabstop>cb_min_consecuentes</tabstop>
+  <tabstop>sb_min_consecuentes</tabstop>
+  <tabstop>cb_max_consecuentes</tabstop>
+  <tabstop>sb_max_consecuentes</tabstop>
+  <tabstop>cb_soporte</tabstop>
+  <tabstop>cb_confianza</tabstop>
+  <tabstop>cb_sustentacion</tabstop>
+  <tabstop>cb_lift</tabstop>
+  <tabstop>btn_procesar</tabstop>
+  <tabstop>btn_ver_reglas</tabstop>
+  <tabstop>le_cant_transacciones</tabstop>
+  <tabstop>le_cant_reglas</tabstop>
+  <tabstop>le_cant_productos</tabstop>
+  <tabstop>tw_rules</tabstop>
+  <tabstop>cb_aplicar_restricc</tabstop>
+  <tabstop>te_observaciones</tabstop>
+  <tabstop>btn_salir</tabstop>
+  <tabstop>btn_detener</tabstop>
+ </tabstops>
  <resources>
   <include location="recursos/imagenes.qrc"/>
  </resources>

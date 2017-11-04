@@ -27,6 +27,7 @@ RUTA_BASE = os.path.dirname(os.path.dirname(__file__))
 RUTA_REGLAS = os.path.join(RUTA_BASE, 'reglas')
 RUTA_AYUDA = os.path.join(RUTA_BASE, 'help')
 archivo_ayuda = RUTA_AYUDA + '/index.html'
+NOMBRE_ARCHIVO_REGLAS_RESTRICCIONES = 'reglas_con_restricciones'
 
 global cant_transacc, cant_reglas
 cant_transacc = 0
@@ -382,6 +383,10 @@ class Ui_MainWindow(object):
         QtCore.QObject.connect(self.btn_procesar, QtCore.SIGNAL(_fromUtf8("clicked()")), self.procesar)
         QtCore.QObject.connect(self.cb_min_consecuentes, QtCore.SIGNAL(_fromUtf8("clicked()")), self.ckeckStatus)
         QtCore.QObject.connect(self.cb_min_antecedentes, QtCore.SIGNAL(_fromUtf8("clicked()")), self.ckeckStatus)
+        QtCore.QObject.connect(self.cb_max_antecedentes, QtCore.SIGNAL(_fromUtf8("clicked()")), self.ckeckStatus)
+        QtCore.QObject.connect(self.cb_max_consecuentes, QtCore.SIGNAL(_fromUtf8("clicked()")), self.ckeckStatus)
+
+        QtCore.QObject.connect(self.cb_aplicar_restricc, QtCore.SIGNAL(_fromUtf8("clicked()")), self.mostrar_restricciones)
 
         QtCore.QObject.connect(self.btn_ver_reglas, QtCore.SIGNAL(_fromUtf8("clicked()")), self.obtenerReglas)
 
@@ -549,6 +554,16 @@ class Ui_MainWindow(object):
         else:
             self.sb_min_antecedentes.setEnabled(False)
 
+        if self.cb_max_consecuentes.isChecked():
+            self.sb_max_consecuentes.setEnabled(True)
+        else:
+            self.sb_max_consecuentes.setEnabled(False)
+
+        if self.cb_max_antecedentes.isChecked():
+            self.sb_max_antecedentes.setEnabled(True)
+        else:
+            self.sb_max_antecedentes.setEnabled(False)
+
     def obtenerReglas(self):
         global cant_transacc
         self.limpiarTabla()
@@ -560,12 +575,11 @@ class Ui_MainWindow(object):
             self.tw_rules.insertRow(i)
         
             self.tw_rules.setItem(i, 1, QtGui.QTableWidgetItem(str(format(100*float(l[len(l) - 2])/float(cant_transacc),'.2f'))+"%"))
-            self.tw_rules.setItem(i, 2, QtGui.QTableWidgetItem(str(l[len(l) - 1])+"%"))
+            self.tw_rules.setItem(i, 2, QtGui.QTableWidgetItem(str(format(float(l[len(l) - 1]), '.2f'))+"%"))
             self.tw_rules.setItem(i, 3, QtGui.QTableWidgetItem("asdadasdasdasdasdssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"))
 
             item = str()
             for k, j in enumerate(l):
-                print(j)
                 if k < len(l) - 2:
                     item = item + " " + j
                 else: 
@@ -584,5 +598,42 @@ class Ui_MainWindow(object):
     def limpiarTabla(self):
         for i in reversed(range(self.tw_rules.rowCount())):
             self.tw_rules.removeRow(i)
+
+    def cargar_con_restricciones(self):
+        global cant_transacc
+        self.limpiarTabla()
+
+        archivo_con_restricciones= open(RUTA_REGLAS + '/' + NOMBRE_ARCHIVO_REGLAS_RESTRICCIONES + '.dat', 'r')
+
+        for i, linea in enumerate(archivo_con_restricciones):
+            l = linea.split()
+            self.tw_rules.insertRow(i)
+        
+            self.tw_rules.setItem(i, 1, QtGui.QTableWidgetItem(str(format(100*float(l[len(l) - 2])/float(cant_transacc),'.2f'))+"%"))
+            self.tw_rules.setItem(i, 2, QtGui.QTableWidgetItem(str(format(float(l[len(l) - 1]), '.2f'))+"%"))
+            self.tw_rules.setItem(i, 3, QtGui.QTableWidgetItem("asdadasdasdasdasdssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"))
+
+            item = str()
+            for k, j in enumerate(l):
+                if k < len(l) - 2:
+                    item = item + " " + j
+                else: 
+                    break;
+            self.tw_rules.setItem(i, 0, QtGui.QTableWidgetItem(str(item)))
+
+        archivo_con_restricciones.close()
+
+    def mostrar_restricciones(self):
+        self.limpiarTabla()
+
+        if self.cb_aplicar_restricc.isChecked():
+            self.cargar_con_restricciones()
+            self.l_titulo.setText(_translate("MainWindow", "REGLAS CON RESTRICCIONES", None))
+    
+        else:
+            self.obtenerReglas()
+            self.l_titulo.setText(_translate("MainWindow", "REGLAS SIN RESTRICCIONES", None))
+
+        
 
     #--------------------FIN #6---------------------

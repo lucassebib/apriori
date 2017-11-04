@@ -7,7 +7,6 @@ import time
 
 from subfunciones import obtener_primeros_elementos, obtener_ultimo_elemento, comparar_listas
 
-
 RUTA_BASE = os.path.dirname(os.path.dirname(__file__))
 RUTA_REGLAS = os.path.join(RUTA_BASE, 'reglas')
 
@@ -209,7 +208,7 @@ def apGenRules(fk, Hm, F, minConfianza): #fk tiene la forma ['cerveza jamon pan'
 					soporteConsecuente=item[1]
 			conf= float(fk[1])/float(soporteConsecuente)
 			if conf> minConfianza:
-				archivo_salida.write(str(antecedente).replace('[','').replace(']','').replace('\'','') +"-->"+ str(consecuente) + " " + str(fk[1]) + " " + str(conf*100)  + '\n')# os.linesep)
+				archivo_salida.write(str(antecedente).replace('[','').replace(']','').replace('\'','') +" ---> "+ str(consecuente) + " " + str(fk[1]) + " " + str(conf*100)  + '\n')# os.linesep)
 				cant_reglas = cant_reglas + 1
 				#print(str(antecedente).replace('[','').replace(']','').replace('\'','') +"-->"+ str(consecuente))
 
@@ -219,6 +218,61 @@ def apGenRules(fk, Hm, F, minConfianza): #fk tiene la forma ['cerveza jamon pan'
 
 def generar_restricciones(conviccion, lift ,min_anteced, min_conse, max_anteced, max_conse, valor_min_ant, valor_max_ant, valor_min_cons, valor_max_cons):
 	archivo_con_restricciones = open(RUTA_REGLAS + '/' + NOMBRE_ARCHIVO_REGLAS_RESTRICCIONES + '.dat', 'w')
+	archivo_salida = open(RUTA_REGLAS + '/' + NOMBRE_ARCHIVO_SALIDA + '.dat', 'r')
+	escribir = True
+
+	for li in archivo_salida:
+		escribir = True
+		is_antecedente = True 
+		is_consecuente = False
+		antecedente = ''
+		consecuente = ''
+		linea = li.split()
+		index = len(linea)
+		del linea[index - 2:]
+
+		for l in linea:
+			if l == '--->':
+				is_antecedente = False
+				is_consecuente = True
+				continue
+			
+			if is_antecedente:
+				antecedente = antecedente + ' ' + l 
+			else:
+				consecuente = consecuente + ' ' + l
+
+		antecedente.strip()
+		consecuente.strip()
+		cant_ant = len(antecedente.split())
+		cant_con = len(consecuente.split())
+
+		#CONTROL MIN Y MAX DE ANTECEDENTES
+		if min_anteced:
+			if cant_ant < valor_min_ant:
+				escribir = False
+		
+		if max_anteced:
+			if cant_ant > valor_max_ant:
+				escribir = False
+
+		#CONTROL MIN Y MAX DE CONSECUENTES
+		if min_conse:
+			if cant_con < valor_min_cons:
+				escribir = False
+		
+		if max_conse:
+			if cant_con > valor_max_cons:
+				escribir = False
+
+		if escribir:
+			archivo_con_restricciones.write(li)
+
+	archivo_con_restricciones.close()
+	archivo_salida.close()
+
+
+
 
 def obtener_cantReglas(): 
 	global cant_reglas
