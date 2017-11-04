@@ -14,6 +14,7 @@ import os
 import webbrowser
 import time
 import images_rc
+import threading
 
 from PyQt4.QtCore import QFileInfo
 from PyQt4.QtGui import *
@@ -510,6 +511,7 @@ class Ui_MainWindow(object):
         except Exception as e:
             pass
         
+        QtGui.QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
         self.barra_progreso.show()
         self.barra_progreso.setValue(20)
         time.sleep(0.3)
@@ -569,7 +571,6 @@ class Ui_MainWindow(object):
         
         self.statusbar.showMessage("Genreando Restricciones...")
         generar_restricciones(conviccion, lift ,min_anteced, min_conse, max_anteced, max_conse, valor_min_ant, valor_max_ant, valor_min_cons, valor_max_cons)
-        
         self.barra_progreso.setValue(82)
         time.sleep(0.1)
         #self.tw_rules.horizontalHeader().setResizeMode(QtGui.QHeaderView.ResizeToContents)
@@ -578,6 +579,8 @@ class Ui_MainWindow(object):
         self.barra_progreso.setValue(100)
         time.sleep(0.4)
         self.statusbar.showMessage("Gerenacion Exitosa (100%)")
+
+        QtGui.QApplication.restoreOverrideCursor()
 
         self.tabWidget.setCurrentIndex(1)
 
