@@ -17,6 +17,8 @@ if os.path.exists(RUTA_REGLAS):
 global archivo_salida, archivo_con_restricciones
 global cant_reglas 
 global cant_transacciones
+global cant_restricciones
+cant_restricciones = 0
 cant_reglas = 0
 cant_transacciones=0
 
@@ -307,6 +309,7 @@ def generar_restricciones(conviccion, lift ,min_anteced, min_conse, max_anteced,
 
 		if escribir:
 			archivo_con_restricciones.write(li)
+			cant_restricciones = cant_restricciones + 1
 
 	archivo_con_restricciones.close()
 	archivo_salida.close()
@@ -317,5 +320,9 @@ def generar_restricciones(conviccion, lift ,min_anteced, min_conse, max_anteced,
 def obtener_cantReglas(): 
 	global cant_reglas
 	return cant_reglas
+
+def obtener_cantidad_restricciones():
+	global cant_restricciones 
+	return cant_restricciones
 
 	
