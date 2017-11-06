@@ -1,20 +1,2 @@
-jamon ---> cerveza 4 80.0 1.2 10
-cerveza ---> jamon 4 100.0 1.2 9999
-queso ---> pan 3 75.0 1.5 12
-pan ---> queso 3 100.0 1.5 9999
-jamon pan ---> cerveza 2 100.0 1.5 9999
-cerveza pan ---> jamon 2 100.0 1.2 9999
-cerveza queso ---> jamon 2 100.0 1.2 9999
-cerveza queso ---> pan 2 100.0 2.0 9999
-cerveza pan ---> queso 2 100.0 1.5 9999
-pan ---> cerveza queso 2 66.6666666667 2.0 12
-jamon pan ---> queso 2 100.0 1.5 9999
-jamon pan queso ---> cerveza 2 100.0 1.5 9999
-cerveza pan queso ---> jamon 2 100.0 1.2 9999
-cerveza jamon queso ---> pan 2 100.0 2.0 9999
-cerveza jamon pan ---> queso 2 100.0 1.5 9999
-jamon, queso ---> cerveza pan 2 66.6666666667 2.0 12
-jamon, pan ---> cerveza queso 2 100.0 3.0 9999
-cerveza, queso ---> jamon pan 2 100.0 3.0 9999
-cerveza, pan ---> jamon queso 2 100.0 2.0 9999
-pan ---> cerveza jamon queso 2 66.6666666667 2.0 12
+clothes milk ---> chicken 3 100.0 1.4 9999
+chicken clothes ---> milk 3 100.0 1.75 9999
