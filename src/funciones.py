@@ -263,6 +263,9 @@ def generar_restricciones(conviccion, lift ,min_anteced, min_conse, max_anteced,
 	archivo_salida = open(RUTA_REGLAS + '/' + NOMBRE_ARCHIVO_SALIDA + '.dat', 'r')
 	escribir = True
 
+	print("Esta activado la conviccion?" + str(conviccion))
+	print("Esta activado la lift?" + str(lift))
+
 	for li in archivo_salida:
 		escribir = True
 		is_antecedente = True 
@@ -271,6 +274,8 @@ def generar_restricciones(conviccion, lift ,min_anteced, min_conse, max_anteced,
 		consecuente = ''
 		linea = li.split()
 		index = len(linea)
+		valor_lift= linea[index - 2]
+		valor_conviction= linea[index - 1]
 		del linea[index - 4:]
 
 		for l in linea:
@@ -306,6 +311,20 @@ def generar_restricciones(conviccion, lift ,min_anteced, min_conse, max_anteced,
 		if max_conse:
 			if cant_con > valor_max_cons:
 				escribir = False
+
+		#CONTROL DE LIFT
+		if lift:
+			print("el valor del lift es:"+ str(valor_lift)+"fin")
+			if float(valor_lift) < 1.00:
+				print("entro en la restriccion del lift")
+				escribir= False
+
+		#CONTROL DE CONVICCION
+		if conviccion:
+			print("el valor del conviccion es:"+ str(valor_conviction)+"fin")
+			if float(valor_conviction) < 10.00:
+				print("entro en la restriccion de la conviccion")
+				escribir= False
 
 		if escribir:
 			archivo_con_restricciones.write(li)

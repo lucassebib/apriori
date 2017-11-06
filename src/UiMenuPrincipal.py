@@ -627,10 +627,6 @@ class Ui_MainWindow(object):
         for i, linea in enumerate(archivo_reglas):
             l = linea.split()
             self.tw_rules.insertRow(i)
-            print("el valor de L es: "+ str(l))
-            self.tw_rules.setItem(i, 1, QtGui.QTableWidgetItem(str(format(100*(float(l[len(l)-4])/float(cant_transacc)),'.2f'))+"%"))
-            self.tw_rules.setItem(i, 2, QtGui.QTableWidgetItem(str(format(float(l[len(l)-3]), '.2f'))+"%"))
-            self.tw_rules.setItem(i, 3, QtGui.QTableWidgetItem("asdadasdasdasdasdssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"))
 
             item = str()
             for k, j in enumerate(l):
@@ -638,7 +634,15 @@ class Ui_MainWindow(object):
                     item = item + " " + j
                 else: 
                     break;
+            regla = item.split("--->")
             self.tw_rules.setItem(i, 0, QtGui.QTableWidgetItem(str(item)))
+
+            print("el valor de L es: "+ str(l))
+            self.tw_rules.setItem(i, 1, QtGui.QTableWidgetItem(str(format(100*(float(l[len(l)-4])/float(cant_transacc)),'.2f'))+"%"))
+            self.tw_rules.setItem(i, 2, QtGui.QTableWidgetItem(str(format(float(l[len(l)-3]), '.2f'))+"%"))
+            self.tw_rules.setItem(i, 3, QtGui.QTableWidgetItem("Los items "+regla[0]+regla[1]+" aparecen el "+str(format(100*(float(l[len(l)-4])/float(cant_transacc)),'.2f'))+"% de las veces en la base de datos. Cada vez que ocurrio "+regla[0]+",existe una probabilidad del "+ str(format(float(l[len(l)-3]), '.2f'))+"% de que ocurra "+regla[1]))
+
+            
 
         archivo_reglas.close()
 
@@ -662,10 +666,6 @@ class Ui_MainWindow(object):
         for i, linea in enumerate(archivo_con_restricciones):
             l = linea.split()
             self.tw_rules.insertRow(i)
-        
-            self.tw_rules.setItem(i, 1, QtGui.QTableWidgetItem(str(format(100*float(l[len(l) - 4])/float(cant_transacc),'.2f'))+"%"))
-            self.tw_rules.setItem(i, 2, QtGui.QTableWidgetItem(str(format(float(l[len(l) - 3]), '.2f'))+"%"))
-            self.tw_rules.setItem(i, 3, QtGui.QTableWidgetItem("asdadasdasdasdasdssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"))
 
             item = str()
             for k, j in enumerate(l):
@@ -674,6 +674,13 @@ class Ui_MainWindow(object):
                 else: 
                     break;
             self.tw_rules.setItem(i, 0, QtGui.QTableWidgetItem(str(item)))
+            regla = item.split("--->")
+        
+            self.tw_rules.setItem(i, 1, QtGui.QTableWidgetItem(str(format(100*float(l[len(l) - 4])/float(cant_transacc),'.2f'))+"%"))
+            self.tw_rules.setItem(i, 2, QtGui.QTableWidgetItem(str(format(float(l[len(l) - 3]), '.2f'))+"%"))
+            self.tw_rules.setItem(i, 3, QtGui.QTableWidgetItem("Los items "+regla[0]+regla[1]+" aparecen el "+str(format(100*(float(l[len(l)-4])/float(cant_transacc)),'.2f'))+"% de las veces en la base de datos. Cada vez que ocurrio "+regla[0]+",existe una probabilidad del "+ str(format(float(l[len(l)-3]), '.2f'))+"% de que ocurra "+regla[1]))
+
+            
 
         archivo_con_restricciones.close()
 
