@@ -2,11 +2,10 @@
 
 # Form implementation generated from reading ui file 'menuPrincipal.ui'
 #
-# Created: Sat Nov 04 16:48:08 2017
+# Created: Tue Nov 07 13:52:44 2017
 #      by: PyQt4 UI code generator 4.10
 #
 # WARNING! All changes made in this file will be lost!
-
 #---------------------------------------------------
 #-------------AGREGADO #1 IMPORTACIONES-------------
 #---------------------------------------------------
@@ -20,8 +19,9 @@ from PyQt4.QtCore import QFileInfo
 from PyQt4.QtGui import *
 
 from apriori import EjecutarCorrida, obtenerDatos
-from funciones import generar_restricciones
+from funciones import generar_restricciones, obtener_cantidad_restricciones
 from clasesUI import WAcercaDe
+from pdfgenerator import generarPDF, generaratePDF
 
 
 RUTA_BASE = os.path.dirname(os.path.dirname(__file__))
@@ -30,11 +30,12 @@ RUTA_AYUDA = os.path.join(RUTA_BASE, 'help')
 archivo_ayuda = RUTA_AYUDA + '/index.html'
 NOMBRE_ARCHIVO_REGLAS_RESTRICCIONES = 'reglas_con_restricciones'
 
+NOMBRE_ARCHIVO_DIFERENCIAS = "diferencias"
+
 global cant_transacc, cant_reglas
 cant_transacc = 0
 cant_reglas = 0
 #----------------------FIN #1-----------------------
-
 from PyQt4 import QtCore, QtGui
 
 try:
@@ -264,13 +265,19 @@ class Ui_MainWindow(object):
         self.le_cant_reglas.setReadOnly(True)
         self.le_cant_reglas.setObjectName(_fromUtf8("le_cant_reglas"))
         self.btn_pdf = QtGui.QPushButton(self.groupBox_2)
-        self.btn_pdf.setGeometry(QtCore.QRect(970, 40, 31, 31))
+        self.btn_pdf.setGeometry(QtCore.QRect(970, 20, 31, 41))
         self.btn_pdf.setText(_fromUtf8(""))
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/pdf.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_pdf.setIcon(icon1)
         self.btn_pdf.setIconSize(QtCore.QSize(40, 40))
         self.btn_pdf.setObjectName(_fromUtf8("btn_pdf"))
+        self.label_6 = QtGui.QLabel(self.groupBox_2)
+        self.label_6.setGeometry(QtCore.QRect(940, 60, 101, 20))
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        self.label_6.setFont(font)
+        self.label_6.setObjectName(_fromUtf8("label_6"))
         self.tw_rules = QtGui.QTableWidget(self.tab_3)
         self.tw_rules.setGeometry(QtCore.QRect(10, 140, 1061, 291))
         self.tw_rules.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
@@ -378,7 +385,6 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuInicio.menuAction())
         self.menubar.addAction(self.menuAyuda.menuAction())
 
-
         #---------------------------------------------
         #--------AGREGADO #4 INICIALIZACIONES#--------
         #---------------------------------------------
@@ -387,9 +393,16 @@ class Ui_MainWindow(object):
 
         #self.tw_rules.horizontalHeader().setResizeMode(QtGui.QHeaderView.ResizeToContents)
         #self.tw_rules.resizeColumnsToContents()
-        self.tw_rules.horizontalHeader().setResizeMode(QtGui.QHeaderView.Stretch)
+        
+
+        self.tw_rules.horizontalHeader().setResizeMode(0, QtGui.QHeaderView.ResizeToContents)
+        self.tw_rules.horizontalHeader().setResizeMode(1, QtGui.QHeaderView.ResizeToContents)
+        #self.tw_rules.horizontalHeader().setResizeMode(1, QtGui.QHeaderView.Stretch)
+        self.tw_rules.horizontalHeader().setResizeMode(2, QtGui.QHeaderView.ResizeToContents)
+        self.tw_rules.horizontalHeader().setResizeMode(3, QtGui.QHeaderView.ResizeToContents)
         #header = self.table.horizontalHeader()
-        #header.setResizeMode(1, QtGui.QHeaderView.ResizeToContents)
+        
+        #self.tw_rules.resizeColumnsToContents()
 
 
         self.barra_progreso.hide()
@@ -409,7 +422,7 @@ class Ui_MainWindow(object):
         QtCore.QObject.connect(self.cb_max_antecedentes, QtCore.SIGNAL(_fromUtf8("clicked()")), self.ckeckStatus)
         QtCore.QObject.connect(self.cb_max_consecuentes, QtCore.SIGNAL(_fromUtf8("clicked()")), self.ckeckStatus)
 
-        QtCore.QObject.connect(self.btn_procesar, QtCore.SIGNAL(_fromUtf8("clicked()")), self.btn_pdf)
+        QtCore.QObject.connect(self.btn_pdf, QtCore.SIGNAL(_fromUtf8("clicked()")), generaratePDF)
 
         QtCore.QObject.connect(self.cb_aplicar_restricc, QtCore.SIGNAL(_fromUtf8("clicked()")), self.mostrar_restricciones)
 
@@ -480,6 +493,7 @@ class Ui_MainWindow(object):
         self.btn_ver_reglas.setText(_translate("MainWindow", "Ver Reglas", None))
         self.label_5.setText(_translate("MainWindow", "Cantidad de Reglas Generadas:", None))
         self.le_cant_reglas.setText(_translate("MainWindow", "0", None))
+        self.label_6.setText(_translate("MainWindow", "Exportar Reglas", None))
         item = self.tw_rules.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "Regla", None))
         item = self.tw_rules.horizontalHeaderItem(1)
@@ -501,7 +515,7 @@ class Ui_MainWindow(object):
         self.actionIngreso_Manual.setText(_translate("MainWindow", "Ingreso Manual", None))
         self.actionReset.setText(_translate("MainWindow", "Reset", None))
 
-    #-----------------------------------------------
+#-----------------------------------------------
     #-------------AGREGADO #6 FUNCIONES-------------
     #-----------------------------------------------
     def abrir(self):
@@ -626,10 +640,6 @@ class Ui_MainWindow(object):
         for i, linea in enumerate(archivo_reglas):
             l = linea.split()
             self.tw_rules.insertRow(i)
-            print("el valor de L es: "+ str(l))
-            self.tw_rules.setItem(i, 1, QtGui.QTableWidgetItem(str(format(100*(float(l[len(l)-4])/float(cant_transacc)),'.2f'))+"%"))
-            self.tw_rules.setItem(i, 2, QtGui.QTableWidgetItem(str(format(float(l[len(l)-3]), '.2f'))+"%"))
-            self.tw_rules.setItem(i, 3, QtGui.QTableWidgetItem("asdadasdasdasdasdssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"))
 
             item = str()
             for k, j in enumerate(l):
@@ -637,7 +647,14 @@ class Ui_MainWindow(object):
                     item = item + " " + j
                 else: 
                     break;
+            regla = item.split("--->")
             self.tw_rules.setItem(i, 0, QtGui.QTableWidgetItem(str(item)))
+
+            self.tw_rules.setItem(i, 1, QtGui.QTableWidgetItem(str(format(100*(float(l[len(l)-4])/float(cant_transacc)),'.2f'))+"%"))
+            self.tw_rules.setItem(i, 2, QtGui.QTableWidgetItem(str(format(float(l[len(l)-3]), '.2f'))+"%"))
+            self.tw_rules.setItem(i, 3, QtGui.QTableWidgetItem("Los items "+regla[0]+regla[1]+" aparecen el "+str(format(100*(float(l[len(l)-4])/float(cant_transacc)),'.2f'))+"% de las veces en la base de datos. Cada vez que ocurrio "+regla[0]+",existe una probabilidad del "+ str(format(float(l[len(l)-3]), '.2f'))+"% de que ocurra "+regla[1]))
+
+            
 
         archivo_reglas.close()
 
@@ -661,10 +678,6 @@ class Ui_MainWindow(object):
         for i, linea in enumerate(archivo_con_restricciones):
             l = linea.split()
             self.tw_rules.insertRow(i)
-        
-            self.tw_rules.setItem(i, 1, QtGui.QTableWidgetItem(str(format(100*float(l[len(l) - 4])/float(cant_transacc),'.2f'))+"%"))
-            self.tw_rules.setItem(i, 2, QtGui.QTableWidgetItem(str(format(float(l[len(l) - 3]), '.2f'))+"%"))
-            self.tw_rules.setItem(i, 3, QtGui.QTableWidgetItem("asdadasdasdasdasdssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"))
 
             item = str()
             for k, j in enumerate(l):
@@ -673,21 +686,50 @@ class Ui_MainWindow(object):
                 else: 
                     break;
             self.tw_rules.setItem(i, 0, QtGui.QTableWidgetItem(str(item)))
+            regla = item.split("--->")
+        
+            self.tw_rules.setItem(i, 1, QtGui.QTableWidgetItem(str(format(100*float(l[len(l) - 4])/float(cant_transacc),'.2f'))+"%"))
+            self.tw_rules.setItem(i, 2, QtGui.QTableWidgetItem(str(format(float(l[len(l) - 3]), '.2f'))+"%"))
+            self.tw_rules.setItem(i, 3, QtGui.QTableWidgetItem("Los items "+regla[0]+regla[1]+" aparecen el "+str(format(100*(float(l[len(l)-4])/float(cant_transacc)),'.2f'))+"% de las veces en la base de datos. Cada vez que ocurrio "+regla[0]+",existe una probabilidad del "+ str(format(float(l[len(l)-3]), '.2f'))+"% de que ocurra "+regla[1]))
+
+            
 
         archivo_con_restricciones.close()
 
     def mostrar_restricciones(self):
         self.limpiarTabla()
+        global cant_reglas
 
         if self.cb_aplicar_restricc.isChecked():
             self.cargar_con_restricciones()
             self.l_titulo.setText(_translate("MainWindow", "REGLAS CON RESTRICCIONES", None))
+            self.le_cant_reglas.setText(_translate("MainWindow", str(obtener_cantidad_restricciones()), None))
+
+            texto = self.generar_observacion()
+            self.te_observaciones.setPlainText(texto)
+            
     
         else:
             self.obtenerReglas()
             self.l_titulo.setText(_translate("MainWindow", "REGLAS SIN RESTRICCIONES", None))
+            self.le_cant_reglas.setText(_translate("MainWindow", str(cant_reglas), None))
+
+            texto = ''
+            self.te_observaciones.setPlainText(texto)
+
+    def generar_observacion(self):
+        archivo_diferencias = open(RUTA_REGLAS + '/' + NOMBRE_ARCHIVO_DIFERENCIAS + '.dat', 'r')
+        texto = "Se han descartado las siguientes reglas: \n"
+        for i, linea in enumerate(archivo_diferencias):
+            li = linea.split()
+            del li[len(li) - 4:]
+
+            salida = str(i + 1) + ". " + str(li).replace('[','').replace(']','') + '\n'
+            texto = texto + salida
+
+        archivo_diferencias.close()
+        return texto
 
         
 
     #--------------------FIN #6---------------------
-

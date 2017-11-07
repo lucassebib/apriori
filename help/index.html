@@ -32,7 +32,7 @@
       <li><a href="#bienvenido" class="cc-active">Bienvenido</a></li>
       <li><a href="#benefits" class="cc-active">Dependencias</a></li>
       <li><a href="#features" class="cc-active">Minimos Requisitos</a></li>
-      <li><a href="#license" class="cc-active">License</a></li>
+      <li><a href="#license" class="cc-active">Caracteristicas Principales</a></li>
       <li class="separator"></li>
       <li><strong>Como Usar:</strong></li>
       <li><a href="#view_type" class="cc-active">Paso 1: Configuracion de Parametros</a></li>
@@ -45,24 +45,24 @@
     </ul>
     <div class="docs-content">
       <h2> Inicio Rapido</h2>
-      <h3 id="bienvenido"> Welcome</h3>
+      <h3 id="bienvenido"> Bienvenido</h3>
       <p> Acerca de AppRules</p>
       
-      <p> AppRules es una aplicacion para la obtencion de Reglas de Asociacion que corre sobre plataformas Linux y Windows 
-        cannot measure everything – happiness, hatred, anger… but you can measure customer
-        satisfaction. Yes, you can measure customer satisfaction by analyzing likes and
-        dislikes of your customers. You can gauge popularity of your website or products.
-        You can also:</p>
+      <p> AppRules es una aplicacion para la obtencion de Reglas de Asociacion que corre sobre plataformas Linux y Windows.
+        Fue desarrollado por Alumnos del 5to Nivel de Ingenieria en Sistemas de Informacion de la Universidad Tecnologica Nacional, para la materia de
+        Inteligencia Artificial. </p>
+      <p>AppRules permite obtener las reglas de asociacion de un dataset de transacciones, para esto se implemento el Algoritmo Apriori de mineria de Datos.</p>
+      <p>Autores:</p>
       <ul>
-        <li>See how many visitors like the new design of your website or logo</li>
-        <li>Analyze what your readers want to see on your blog</li>
-        <li>Understand how helpful the content on your support forum or website is</li>
-        <li>Know the latest trends and user’s opinion before launching a new product or service</li>
+        <li>FERNANDEZ Juan Martin (juanmartin_796@hotmail.com)</li>
+        <li>IBAÑEZ Lucas Sebastian (lucas.sebib@gmail.com)</li>
+        <li>UJFALUSI Maximiliano (maxiujfa@gmail.com)</li>
       </ul>
-      <p> Opineo allows you to do all of this and much more without signing up for an account
-        or hire an expert. This DIY tool enables you to listen to your customers’ voice
-        easily and instantly. All you have to do is go online, design your widget and place
-        it on your website. </p>
+      <p>Docentes a cargo:</p>
+      <ul>
+        <li>Dr. Marcelo Karanik</li>
+        <li>Ing. Jorge Roa</li>
+      </ul>
       <h3 id="benefits"> Benefits</h3>
       <ul>
         <li>Use Opineo to conduct pre-release surveys before launching new products or services</li>
@@ -75,18 +75,21 @@
       <h3 id="features"> Minimos Requisitos </h3>
       <p> AppRules esta diseñado para trabajar en en diferentes plataformas. Lo requisitos minimos para uso de la aplicacion son los siguientes:</p>
       <ul>
-        <li>Sistemas Operativo Windows XP en adelante</li>
-        <li>Sistemas Operativos Linux</li>
-        <li>Minimo 1GB de RAM</li>
-        <li>300 Mb de Espacio Libre en Disco</li>
-
+        <li>Sistemas Operativo Windows 7 en adelante.</li>
+        <li>Sistemas Operativos Linux.</li>
+        <li>Ambas solo soportadas en Arquitecturas x64.</li>
       </ul>
-      <h3 id="license"> License</h3>
-      <p> This Feedback Collection and Polling widget is free for personal and commercial
-        projects as long as you are providing a link back to this page. If you don’t want
-        to provide a link back, simply contribute to the development and improvement of
-        this tool. To contribute to this and many other interesting projects, go to Support
-        Efforts and become a patron.</p>
+      
+      <h3 id="license"> Caracteristicas Principales</h3>
+      <p> A traves de AppRules se podra:</p>
+      <ul>
+        <li>Generar Reglas de Asociacion utilizando el soporte y confianza como parametros.</li>
+        <li>Adicionar Restricciones de minimo de soporte y confianza.</li>
+        <li>Incluir parametros de calidad para la generacion de reglas.</li>
+        <li>Visualizar las reglas generadas por el Algoritmo Apirori tradicional y compararlas con las restricciones ingresadas</li>
+        <li>Exportar a PDF las reglas generadas.</li>
+        <li>Obtener una interpretacion de las reglas obtenidas.</li>
+      </ul>
       <hr>
       <h2> Customizing Opineo</h2>
       <p> Before you make any cusomization or even start using Opineo create a 'div' element
@@ -96,38 +99,28 @@
         <li>A reference to Opineo script file sudo nano opineo.js</li>
       </ul>
       <p> The following customization options are available in Opineo:</p>
-      <h3 id="view_type"> View Type</h3>
+      <h3 id="view_type"> Paso 1: Configuracion de Parametros</h3>
       <ul>
-        <li>Detailed View</li>
+        <li>Pantalla Inicial</li>
       </ul>
+      <img src="img/appRules1.png" />
      
-      <pre class="prettyprint">&lt;script&gt;
-      	$(document).ready(function (){
-        $('#DefaultOptions').opineo('results.php', {curvalue:3,
-            view: 'detailed',
-            animation_speed: 'super',
-            show_total_votes_counter: false,
-            show_overall_rating: true});
-         })
-&lt;/script&gt;</pre>
+      <p>En la figura se muestra la pantalla de inicio de appRules.</p>
+      <p>Para empezar a utilizar la aplicacion debera cargar un dataset, haciendo click en el boton Examinar</p>
+      <blockquote>Nota: El dataset debera ser un archivo de texto plano donde cada transaccion se representara en una linea, y cada item debera ser separado por un espacio en blanco.
+      <u>Aclaracion:</u> Esta nota es importante ya que de lo contrario no se consideran excepciones.
+      </blockquote>
+
+      <p>Adicionalmente se podran ingresar parametros de Restriciones:</p>
       <ul>
-        <li>Compact View</li>
-      </ul>
-      <pre class="prettyprint">&lt;script&gt;
-	$(document).ready(function (){
-	$('#CompactView').opineo('results.php',
-    	    {curvalue:3, view: 'compact',
-    	    animation_speed: 'super'});
-	})
-&lt;/script&gt;</pre>
-      <ul>
-        <li>Mini View</li>
-      </ul>
-      <pre class="prettyprint">&lt;script&gt;
-    $(document).ready(function (){
-    $('#MiniView').opineo('results.php', {curvalue:0, view: 'mini', callback: myCallback});
-    })	
-&lt;/script&gt;</pre>
+        <li>Minimo y Maximo de Antecedentes</li>
+        <li>Minimo y Maximo de Consecuentes</li>
+        <li>Restriccion de Conviccion</li>
+        <li>Restriccion de Sustentacion</li>
+      </ul> 
+
+
+
       <h3 id="animation_style"> Animation Style</h3>
       <ul>
         <li>Slow</li>

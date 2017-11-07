@@ -1,0 +1,4 @@
+####################
+AppRules 2017
+####################
+Para usar la Aplicacion situarse en main/AppRules.exe
