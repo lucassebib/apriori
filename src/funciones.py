@@ -171,7 +171,10 @@ def genRules(frecuentes, minConfianza):
 					if item[0] == consecuente:
 						soporteConsecuente= item[1]
 
-				conf= float(soporteRegla)/float(soporteAntecedente)
+				if (soporteAntecedente!=0):
+					conf= float(soporteRegla)/float(soporteAntecedente)
+				else: conf=0
+
 
 				lift= conf/(float(soporteConsecuente)/cant_transacciones)
 				print("El lift es: "+ str(lift))
@@ -226,7 +229,10 @@ def apGenRules(fk, Hm, F, minConfianza): #fk tiene la forma ['cerveza jamon pan'
 				el2= antecedente
 				if el1==el2:
 					soporteAntecedente=item[1]
-			conf= float(fk[1])/float(soporteAntecedente)
+			if (soporteAntecedente!=0):
+				conf= float(fk[1])/float(soporteAntecedente)
+			else:
+				conf=0;
 
 			if conf> minConfianza:
 				for f in F: #Recorremos el F anterior para buscar el soporte del antecedente

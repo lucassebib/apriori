@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['main.py'],
-             pathex=['C:\\Datos de Usuarios\\proyectos\\apriori\\src'],
+             pathex=['/home/juanmartin/apriori/src'],
              binaries=[],
              datas=[],
              hiddenimports=[],

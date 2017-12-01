@@ -35,8 +35,8 @@
       <li><a href="#license" class="cc-active">Caracteristicas Principales</a></li>
       <li class="separator"></li>
       <li><strong>Como Usar:</strong></li>
-      <li><a href="#view_type" class="cc-active">Paso 1: Configuracion de Parametros</a></li>
-      <li><a href="#animation_style" class="cc-active">Paso 2: Generacion de Reglas sin Restricciones</a></li>
+      <li><a href="#view_type" class="cc-active">Paso 1</a></li>
+      <li><a href="#animation_style" class="cc-active">Paso 2</a></li>
       <li><a href="#bars_text" class="cc-active">Paso 3: Generacion de Reglas con Restricciones</a></li>
       <li><a href="#vote_counter" class="cc-active">Paso 4: Interpretacion de Resultados</a></li>
       <li><a href="#rating_icons" class="cc-active">Paso 4: Exportacion a PDF</a></li>
@@ -51,6 +51,10 @@
       <p> AppRules es una aplicacion para la obtencion de Reglas de Asociacion que corre sobre plataformas Linux y Windows.
         Fue desarrollado por Alumnos del 5to Nivel de Ingenieria en Sistemas de Informacion de la Universidad Tecnologica Nacional, para la materia de
         Inteligencia Artificial. </p>
+      <p>Las reglas de asociación relacionan una determinada conclusión (por ejemplo, la compra de un producto dado) con un conjunto de condiciones (por ejemplo, la compra de otros productos).</p>
+      <p>Por ejemplo la Regla:</p>
+      <pre class="prettyprint"> carne leche ---> jamon | Soporte = 30 | confianza = 84%</pre>
+      <p>indica que, a menudo, se da el caso de jamon cuando carne y leche ocurren al mismo tiempo. La regla es fiable en un 84 % y se aplica al 25 % de los datos (o 30 registros, suponiendo que en total existen 120 transacciones).</p>
       <p>AppRules permite obtener las reglas de asociacion de un dataset de transacciones, para esto se implemento el Algoritmo Apriori de mineria de Datos.</p>
       <p>Autores:</p>
       <ul>
@@ -63,14 +67,12 @@
         <li>Dr. Marcelo Karanik</li>
         <li>Ing. Jorge Roa</li>
       </ul>
-      <h3 id="benefits"> Benefits</h3>
+      <h3 id="benefits"> Dependencias</h3>
+      <p>AppsRules esta desarrollado con Tecnologias OpenSource. Se utilizo Python en su version 2.7.13. Ademas se utilizaron:</p>
       <ul>
-        <li>Use Opineo to conduct pre-release surveys before launching new products or services</li>
-        <li>Analyze new trends in the industry</li>
-        <li>Run crowd-sourced campaigns with Opineo to mature new ideas, website designs or
-          logos</li>
-        <li>Conduct popularity surveys with free Opineo widget</li>
-        <li>Create and host polling surveys with Opineo</li>
+        <li>PyQT4. Para la generacion de la interfaz grafica de Usuario</li>
+        <li>Pyinstaller. Para la generacion de ejecutables y gestion de dependencias</li>
+        <li>Reportlab. Para la generacion de los archivos PDF.</li>
       </ul>
       <h3 id="features"> Minimos Requisitos </h3>
       <p> AppRules esta diseñado para trabajar en en diferentes plataformas. Lo requisitos minimos para uso de la aplicacion son los siguientes:</p>
@@ -91,14 +93,9 @@
         <li>Obtener una interpretacion de las reglas obtenidas.</li>
       </ul>
       <hr>
-      <h2> Customizing Opineo</h2>
-      <p> Before you make any cusomization or even start using Opineo create a 'div' element
-        and assign it some id. Now add references to necessary Javascrip files e.g.</p>
-      <ul>
-        <li>A reference to latest jQuery library </li>
-        <li>A reference to Opineo script file sudo nano opineo.js</li>
-      </ul>
-      <p> The following customization options are available in Opineo:</p>
+      <h2> Instrucciones de Uso</h2>
+      <p> A continuacion se describiran las Instrucciones basicas de uso.</p>
+
       <h3 id="view_type"> Paso 1: Configuracion de Parametros</h3>
       <ul>
         <li>Pantalla Inicial</li>
@@ -106,7 +103,8 @@
       <img src="img/appRules1.png" />
      
       <p>En la figura se muestra la pantalla de inicio de appRules.</p>
-      <p>Para empezar a utilizar la aplicacion debera cargar un dataset, haciendo click en el boton Examinar</p>
+      <p>Para empezar a utilizar la aplicacion debera cargar un dataset con transacciones, haciendo click en el boton Examinar</p>
+
       <blockquote>Nota: El dataset debera ser un archivo de texto plano donde cada transaccion se representara en una linea, y cada item debera ser separado por un espacio en blanco.
       <u>Aclaracion:</u> Esta nota es importante ya que de lo contrario no se consideran excepciones.
       </blockquote>
@@ -119,49 +117,13 @@
         <li>Restriccion de Sustentacion</li>
       </ul> 
 
+      <p>Para correr el algoritmo solo basta que se ingrese el archivo con las transacciones y que se establezcan un valor de soporte y confianza Inicial.</p>
+      <p>El Soporte de una regla X--> Y es el porcentaje de ransacciones que contienen a X e Y. La regla de soporte determina cuan frecuentemente la regla es aplicable en un set de transacciones. El soporte es una medida util porque si es muy bajo, la regla podria ocurrir debido a la casualidad. Ademas, en un ambiente empresarial, una regla que cubre muy pocos casos (pocas transacciones) puede no sert util porque no crea sentido de negocio para actuar en tales reglas.</p>
 
+      <p>La confianza de una regla X --> Y es el porcentaje de transaciones que contienen X y ademas contienen Y. La confianza determina la previsibilidad de la regla. Si la confianza es muy baja, uno no puede inferir o predecir con fiabilidad Y desde X. Una regla con baja previsibilidad es de uso limitado.</p>
 
-      <h3 id="animation_style"> Animation Style</h3>
-      <ul>
-        <li>Slow</li>
-      </ul>
-      <pre class="prettyprint">&lt;script&gt;
-    $(document).ready(function (){
-    $('#opineo').opineo('results.php', {curvalue:0, view: 'mini', animation_speed:'slow'});
-    })	
-&lt;/script&gt; </pre>
-      <ul>
-        <li>Medium</li>
-      </ul>
-      <pre class="prettyprint">&lt;script&gt;
-    $(document).ready(function (){
-    $('#opineo').opineo('results.php', {curvalue:0, view: 'mini', animation_speed:'mild'});
-    })	
-&lt;/script&gt; </pre>
-      <ul>
-        <li>Fast</li>
-      </ul>
-      <pre class="prettyprint">&lt;script&gt;
-    $(document).ready(function (){
-    $('#opineo').opineo('results.php', {curvalue:0, view: 'mini', animation_speed:'fast'});
-    })	
- &lt;/script&gt;</pre>
-      <ul>
-        <li>Super Fast</li>
-      </ul>
-      <pre class="prettyprint">&lt;script&gt;
-    $(document).ready(function (){
-    $('#opineo').opineo('results.php', {curvalue:0, view: 'mini', animation_speed:'super'});
-    })	
-&lt;/script&gt;</pre>
-      <ul>
-        <li>Ultra Fast</li>
-      </ul>
-      <pre class="prettyprint"> &lt;script&gt;
-    $(document).ready(function (){
-    $('#opineo').opineo('results.php', {curvalue:0, view: 'mini', animation_speed:'ultra fast'});
-    })	
-&lt;/script&gt; </pre>
+      <h3 id="animation_style"> Paso 2: Generacion de Reglas sin Restricciones.</h3>
+      
       <h3 id="bars_text"> Bars Text</h3>
       <ul>
         <li>Show</li>
