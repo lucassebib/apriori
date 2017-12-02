@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'menuPrincipal.ui'
 #
-# Created: Sat Dec 02 18:12:57 2017
+# Created: Sat Dec 02 19:03:37 2017
 #      by: PyQt4 UI code generator 4.10
 #
 # WARNING! All changes made in this file will be lost!
@@ -215,6 +215,7 @@ class Ui_MainWindow(object):
         self.le_cant_reglas.setObjectName(_fromUtf8("le_cant_reglas"))
         self.btn_pdf = QtGui.QPushButton(self.groupBox_2)
         self.btn_pdf.setGeometry(QtCore.QRect(750, 20, 31, 41))
+        self.btn_pdf.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.btn_pdf.setText(_fromUtf8(""))
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/pdf.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -335,7 +336,7 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuAyuda.menuAction())
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QObject.connect(self.btn_salir, QtCore.SIGNAL(_fromUtf8("clicked()")), MainWindow.close)
         QtCore.QObject.connect(self.actionSalir, QtCore.SIGNAL(_fromUtf8("triggered()")), MainWindow.close)
         QtCore.QObject.connect(self.dsb_confianza, QtCore.SIGNAL(_fromUtf8("editingFinished()")), self.dsb_confianza.clear)

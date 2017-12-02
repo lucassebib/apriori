@@ -250,10 +250,11 @@ class Ui_MainWindow(object):
         self.le_cant_reglas.setReadOnly(True)
         self.le_cant_reglas.setObjectName(_fromUtf8("le_cant_reglas"))
         self.btn_pdf = QtGui.QPushButton(self.groupBox_2)
+        self.btn_pdf.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.btn_pdf.setGeometry(QtCore.QRect(750, 20, 31, 41))
         self.btn_pdf.setText(_fromUtf8(""))
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/pdf.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(_fromUtf8("icon/pdf.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_pdf.setIcon(icon1)
         self.btn_pdf.setIconSize(QtCore.QSize(40, 40))
         self.btn_pdf.setObjectName(_fromUtf8("btn_pdf"))
@@ -512,7 +513,7 @@ class Ui_MainWindow(object):
 
         if confianza == float(0) and soporte == float(0):
             choice = QtGui.QMessageBox.question(None, 'Atencion!',
-                                                "A continuacion se generaran las combinaciones de todas las Reglas. Desea continuar?",
+                                                "Al ingresar soporte y confianza igual a 0 se generaran todas las Reglas. Desea continuar?",
                                                 QtGui.QMessageBox.Yes | QtGui.QMessageBox.No)
             if choice == QtGui.QMessageBox.No:
                 return 
