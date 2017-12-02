@@ -42,8 +42,9 @@ def EjecutarCorrida (archivo, suport, conf):
 	print(str(cant_transacciones))
 
 	F1 = generarF1(soporte, cant_transacciones, C1)
-
+	print(F1)
 	items_frecuentes.append(F1) #Cargo en items_frecuentes a F1
+
 
 	file = open(archivo, 'r')					
 
@@ -75,6 +76,7 @@ def EjecutarCorrida (archivo, suport, conf):
 				
 		#items_frecuentes.append(f_i)
 		items_frecuentes.append(f_aux)
+		print(f_aux)
 		print('--------------------------')
 		print('GENERANDO F' + str(indice) )
 		indice = indice + 1

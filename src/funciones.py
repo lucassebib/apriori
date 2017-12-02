@@ -18,15 +18,15 @@ global archivo_salida, archivo_con_restricciones
 global cant_reglas 
 global cant_transacciones
 global cant_restricciones
-cant_restricciones = 0
 cant_reglas = 0
 cant_transacciones=0
 
 NOMBRE_ARCHIVO_SALIDA = 'reglas'
 NOMBRE_ARCHIVO_REGLAS_RESTRICCIONES = 'reglas_con_restricciones'
-
+NOMBRE_ARCHIVO_DIFERENCIAS = "diferencias"
 archivo_salida= open(RUTA_REGLAS + '/' + NOMBRE_ARCHIVO_SALIDA + '.dat', 'w')
 archivo_con_restricciones= open(RUTA_REGLAS + '/' + NOMBRE_ARCHIVO_REGLAS_RESTRICCIONES + '.dat', 'w')
+
 
 def initPass(archivo_transacciones):
 
@@ -170,10 +170,11 @@ def genRules(frecuentes, minConfianza):
 				for item in frecuentes[0]:
 					if item[0] == consecuente:
 						soporteConsecuente= item[1]
-						print("el consecuente es"+ str(item[0]))
-						print("el soporte del consecuente es"+ str(item[1]))
 
-				conf= float(soporteRegla)/float(soporteAntecedente)
+				if (soporteAntecedente!=0):
+					conf= float(soporteRegla)/float(soporteAntecedente)
+				else: conf=0
+
 
 				lift= conf/(float(soporteConsecuente)/cant_transacciones)
 				print("El lift es: "+ str(lift))
@@ -183,8 +184,6 @@ def genRules(frecuentes, minConfianza):
 					conviction= 9999 #la conviccion es infinita
 				else:
 					conviction= (soporteAntecedente*(cant_transacciones-soporteConsecuente))/denominador
-				print("La conviccion es: "+ str(conviction))
-
 				
 				if conf >= minConfianza:
 					archivo_salida.write(antecedente + ' ---> ' + consecuente + " "  + str(soporteRegla) + " " + str(conf*100) +" "+str(lift) + " "+ str(conviction) +'\n') #os.linesep)
@@ -230,7 +229,10 @@ def apGenRules(fk, Hm, F, minConfianza): #fk tiene la forma ['cerveza jamon pan'
 				el2= antecedente
 				if el1==el2:
 					soporteAntecedente=item[1]
-			conf= float(fk[1])/float(soporteAntecedente)
+			if (soporteAntecedente!=0):
+				conf= float(fk[1])/float(soporteAntecedente)
+			else:
+				conf=0;
 
 			if conf> minConfianza:
 				for f in F: #Recorremos el F anterior para buscar el soporte del antecedente
@@ -240,7 +242,6 @@ def apGenRules(fk, Hm, F, minConfianza): #fk tiene la forma ['cerveza jamon pan'
 						if el1==el2:
 							soporteConsecuente=item[1]
 							lift= conf/(float(soporteConsecuente)/cant_transacciones)
-							print("el lift con mas de un cosecuente de "+ str(consecuente) + "es " + str(lift))
 							break;
 
 				denominador= soporteAntecedente-fk[1]
@@ -248,7 +249,6 @@ def apGenRules(fk, Hm, F, minConfianza): #fk tiene la forma ['cerveza jamon pan'
 					conviction= 9999 #la conviccion es infinita
 				else:
 					conviction= (soporteAntecedente*(cant_transacciones-soporteConsecuente))/denominador
-				print("La conviccion es: "+ str(conviction))
 
 				archivo_salida.write(str(antecedente).replace('[','').replace(']','').replace('\'','') +" ---> "+ str(consecuente) + " " + str(fk[1]) + " " + str(conf*100)+" "+ str(lift) + " "+ str(conviction)+ '\n')# os.linesep)
 				cant_reglas = cant_reglas + 1
@@ -261,11 +261,11 @@ def apGenRules(fk, Hm, F, minConfianza): #fk tiene la forma ['cerveza jamon pan'
 def generar_restricciones(conviccion, lift ,min_anteced, min_conse, max_anteced, max_conse, valor_min_ant, valor_max_ant, valor_min_cons, valor_max_cons):
 	archivo_con_restricciones = open(RUTA_REGLAS + '/' + NOMBRE_ARCHIVO_REGLAS_RESTRICCIONES + '.dat', 'w')
 	archivo_salida = open(RUTA_REGLAS + '/' + NOMBRE_ARCHIVO_SALIDA + '.dat', 'r')
+	archivo_diferencias = open(RUTA_REGLAS + '/' + NOMBRE_ARCHIVO_DIFERENCIAS + '.dat', 'w')
 	escribir = True
 
-	print("Esta activado la conviccion?" + str(conviccion))
-	print("Esta activado la lift?" + str(lift))
-
+	global cant_restricciones
+	cant_restricciones = 0
 	for li in archivo_salida:
 		escribir = True
 		is_antecedente = True 
@@ -314,24 +314,23 @@ def generar_restricciones(conviccion, lift ,min_anteced, min_conse, max_anteced,
 
 		#CONTROL DE LIFT
 		if lift:
-			print("el valor del lift es:"+ str(valor_lift)+"fin")
-			if float(valor_lift) < 1.00:
-				print("entro en la restriccion del lift")
+			if float(valor_lift) <= 1.00:
 				escribir= False
 
 		#CONTROL DE CONVICCION
 		if conviccion:
-			print("el valor del conviccion es:"+ str(valor_conviction)+"fin")
-			if float(valor_conviction) < 10.00:
-				print("entro en la restriccion de la conviccion")
+			if float(valor_conviction) <= 1.00:
 				escribir= False
 
 		if escribir:
 			archivo_con_restricciones.write(li)
 			cant_restricciones = cant_restricciones + 1
+		else:
+			archivo_diferencias.write(li)
 
 	archivo_con_restricciones.close()
 	archivo_salida.close()
+	archivo_diferencias.close()
 
 
 
