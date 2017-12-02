@@ -30,11 +30,17 @@ Para ejecutar el programa:
 	1- Situarse en la carpeta "main" del proyecto
 	2- Ejecutar haciendo doble click sobre "AppRules.exe"
 
-Para mayor informacion acerca del uso de AppRules, utilizar el manual de instrucciones:
+Para mayor informacion acerca del uso de AppRules, ver "Instrucciones de uso", con alguna de las siguientes alternativas:
+Alternativa 1:
 	1- Ejecutar el programa
 	2- Dirigirse al menu "Ayuda"
 	3- Clickear en "Instrucciones de Uso"
+	4- Se abrira el navegador web predeterminado con las instrucciones de uso
+
+Alternativa 2:
+	1- Situarse en la carpeta "help"
+	2- Abrir en un navegador web el archivo "index.html"
 
 MINIMOS REQUISITOS:
-	- Sistemas Operativo Windows 7 en adelante
+	- Sistemas Operativo Windows 7 o posterior
 	- Procesador con arquitectura de 64 bits 
