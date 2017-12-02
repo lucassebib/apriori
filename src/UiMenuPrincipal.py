@@ -374,11 +374,7 @@ class Ui_MainWindow(object):
         #--------AGREGADO #4 INICIALIZACIONES#--------
         #---------------------------------------------
         MainWindow.setWindowFlags(MainWindow.windowFlags() | QtCore.Qt.CustomizeWindowHint)
-        MainWindow.setWindowFlags(MainWindow.windowFlags() & ~QtCore.Qt.WindowMaximizeButtonHint)
-
-        #self.tw_rules.horizontalHeader().setResizeMode(QtGui.QHeaderView.ResizeToContents)
-        #self.tw_rules.resizeColumnsToContents()
-        
+        MainWindow.setWindowFlags(MainWindow.windowFlags() & ~QtCore.Qt.WindowMaximizeButtonHint)      
 
         self.tw_rules.horizontalHeader().setResizeMode(0, QtGui.QHeaderView.ResizeToContents)
         self.tw_rules.horizontalHeader().setResizeMode(1, QtGui.QHeaderView.ResizeToContents)
@@ -510,7 +506,17 @@ class Ui_MainWindow(object):
 
     def procesar(self):
         global cant_transacc, cant_reglas
+     
+        confianza = float(self.dsb_confianza.value())
+        soporte = float(self.dsb_soporte.value())
 
+        if confianza == float(0) and soporte == float(0):
+            choice = QtGui.QMessageBox.question(None, 'Atencion!',
+                                                "A continuacion se generaran las combinaciones de todas las Reglas. Desea continuar?",
+                                                QtGui.QMessageBox.Yes | QtGui.QMessageBox.No)
+            if choice == QtGui.QMessageBox.No:
+                return 
+ 
         try:
             self.fichero_actual.close()
         except Exception as e:
@@ -520,9 +526,8 @@ class Ui_MainWindow(object):
         self.barra_progreso.show()
         self.barra_progreso.setValue(20)
         time.sleep(0.3)
-     
-        confianza = float(self.dsb_confianza.value())
-        soporte = float(self.dsb_soporte.value())
+
+
         self.statusbar.showMessage("Leyendo archivo...")
         self.barra_progreso.setValue(35)
         time.sleep(0.2)

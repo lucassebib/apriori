@@ -19,6 +19,7 @@ class WMenuPrincipal(QtGui.QMainWindow):
 		self.ventana = MenuPrincipal()
 		self.ventana.setupUi(self)
 
+
 def main():
 	app =QtGui.QApplication(sys.argv)
 	ventana = WMenuPrincipal()
