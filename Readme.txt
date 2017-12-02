@@ -37,4 +37,4 @@ Para mayor informacion acerca del uso de AppRules, utilizar el manual de instruc
 
 MINIMOS REQUISITOS:
 	- Sistemas Operativo Windows 7 en adelante
-	- Procesador con arquitectura de 64 bits
+	- Procesador con arquitectura de 64 bits 
