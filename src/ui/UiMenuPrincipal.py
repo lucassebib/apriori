@@ -397,8 +397,6 @@ class Ui_MainWindow(object):
         #-------------AGREGADO #5 EVENTOS-------------
         #---------------------------------------------
         self.retranslateUi(MainWindow)
-        QtCore.QObject.connect(self.dsb_confianza, QtCore.SIGNAL(_fromUtf8("editingFinished()")), self.verificarConfianzaSoporte)
-        QtCore.QObject.connect(self.dsb_soporte, QtCore.SIGNAL(_fromUtf8("editingFinished()")), self.verificarConfianzaSoporte)
         QtCore.QObject.connect(self.btn_salir, QtCore.SIGNAL(_fromUtf8("clicked()")), MainWindow.close)
         QtCore.QObject.connect(self.actionSalir, QtCore.SIGNAL(_fromUtf8("triggered()")), MainWindow.close)
         QtCore.QObject.connect(self.btn_examinar, QtCore.SIGNAL(_fromUtf8("clicked()")), self.abrir)
@@ -494,7 +492,7 @@ class Ui_MainWindow(object):
         self.actionIngreso_Manual.setText(_translate("MainWindow", "Ingreso Manual", None))
         self.actionReset.setText(_translate("MainWindow", "Reset", None))
 
-    #-----------------------------------------------
+#-----------------------------------------------
     #-------------AGREGADO #6 FUNCIONES-------------
     #-----------------------------------------------
     def abrir(self):
@@ -704,13 +702,6 @@ class Ui_MainWindow(object):
 
         archivo_diferencias.close()
         return texto
-
-    def verificarConfianzaSoporte(self):
-        confianza = float(self.dsb_confianza.value())
-        soporte = float(self.dsb_soporte.value())
-
-        if confianza < soporte:
-            self.dsb_confianza.setProperty("value", soporte)
 
         
 
