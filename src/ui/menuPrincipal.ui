@@ -928,8 +928,8 @@
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>980</x>
-     <y>669</y>
+     <x>780</x>
+     <y>668</y>
     </hint>
     <hint type="destinationlabel">
      <x>355</x>
@@ -950,6 +950,22 @@
     <hint type="destinationlabel">
      <x>355</x>
      <y>317</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dsb_confianza</sender>
+   <signal>editingFinished()</signal>
+   <receiver>dsb_confianza</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>482</x>
+     <y>152</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>451</x>
+     <y>150</y>
     </hint>
    </hints>
   </connection>

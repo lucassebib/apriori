@@ -2,40 +2,11 @@
 
 # Form implementation generated from reading ui file 'menuPrincipal.ui'
 #
-# Created: Sat Dec 02 18:07:35 2017
+# Created: Sat Dec 02 18:12:57 2017
 #      by: PyQt4 UI code generator 4.10
 #
 # WARNING! All changes made in this file will be lost!
-#---------------------------------------------------
-#-------------AGREGADO #1 IMPORTACIONES-------------
-#---------------------------------------------------
-import os
-import webbrowser
-import time
-import images_rc
-import threading
 
-from PyQt4.QtCore import QFileInfo
-from PyQt4.QtGui import *
-
-from apriori import EjecutarCorrida, obtenerDatos
-from funciones import generar_restricciones, obtener_cantidad_restricciones
-from clasesUI import WAcercaDe
-from pdfgenerator import generarPDF, generaratePDF
-
-
-RUTA_BASE = os.path.dirname(os.path.dirname(__file__))
-RUTA_REGLAS = os.path.join(RUTA_BASE, 'reglas')
-RUTA_AYUDA = os.path.join(RUTA_BASE, 'help')
-archivo_ayuda = RUTA_AYUDA + '/index.html'
-NOMBRE_ARCHIVO_REGLAS_RESTRICCIONES = 'reglas_con_restricciones'
-
-NOMBRE_ARCHIVO_DIFERENCIAS = "diferencias"
-
-global cant_transacc, cant_reglas
-cant_transacc = 0
-cant_reglas = 0
-#----------------------FIN #1-----------------------
 from PyQt4 import QtCore, QtGui
 
 try:
@@ -53,13 +24,6 @@ except AttributeError:
         return QtGui.QApplication.translate(context, text, disambig)
 
 class Ui_MainWindow(object):
-    #-----------------------------------------------
-    #-------------AGREGADO #2 VARIABLES-------------
-    #-----------------------------------------------
-    fichero_actual = ''
-    ruta = ''
-    nombre_archivo = ''
-    #-------------FIN #2-------------
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
         MainWindow.resize(884, 694)
@@ -370,51 +334,12 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuInicio.menuAction())
         self.menubar.addAction(self.menuAyuda.menuAction())
 
-        #---------------------------------------------
-        #--------AGREGADO #4 INICIALIZACIONES#--------
-        #---------------------------------------------
-        MainWindow.setWindowFlags(MainWindow.windowFlags() | QtCore.Qt.CustomizeWindowHint)
-        MainWindow.setWindowFlags(MainWindow.windowFlags() & ~QtCore.Qt.WindowMaximizeButtonHint)      
-
-        self.tw_rules.horizontalHeader().setResizeMode(0, QtGui.QHeaderView.ResizeToContents)
-        self.tw_rules.horizontalHeader().setResizeMode(1, QtGui.QHeaderView.ResizeToContents)
-        #self.tw_rules.horizontalHeader().setResizeMode(1, QtGui.QHeaderView.Stretch)
-        self.tw_rules.horizontalHeader().setResizeMode(2, QtGui.QHeaderView.ResizeToContents)
-        self.tw_rules.horizontalHeader().setResizeMode(3, QtGui.QHeaderView.ResizeToContents)
-        #header = self.table.horizontalHeader()
-        
-        #self.tw_rules.resizeColumnsToContents()
-
-
-        self.barra_progreso.hide()
-        #--------------------FIN #4-------------------
-
-        #---------------------------------------------
-        #-------------AGREGADO #5 EVENTOS-------------
-        #---------------------------------------------
         self.retranslateUi(MainWindow)
-        QtCore.QObject.connect(self.dsb_confianza, QtCore.SIGNAL(_fromUtf8("editingFinished()")), self.verificarConfianzaSoporte)
-        QtCore.QObject.connect(self.dsb_soporte, QtCore.SIGNAL(_fromUtf8("editingFinished()")), self.verificarConfianzaSoporte)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QObject.connect(self.btn_salir, QtCore.SIGNAL(_fromUtf8("clicked()")), MainWindow.close)
         QtCore.QObject.connect(self.actionSalir, QtCore.SIGNAL(_fromUtf8("triggered()")), MainWindow.close)
-        QtCore.QObject.connect(self.btn_examinar, QtCore.SIGNAL(_fromUtf8("clicked()")), self.abrir)
-        QtCore.QObject.connect(self.btn_procesar, QtCore.SIGNAL(_fromUtf8("clicked()")), self.procesar)
-        QtCore.QObject.connect(self.cb_min_consecuentes, QtCore.SIGNAL(_fromUtf8("clicked()")), self.ckeckStatus)
-        QtCore.QObject.connect(self.cb_min_antecedentes, QtCore.SIGNAL(_fromUtf8("clicked()")), self.ckeckStatus)
-        QtCore.QObject.connect(self.cb_max_antecedentes, QtCore.SIGNAL(_fromUtf8("clicked()")), self.ckeckStatus)
-        QtCore.QObject.connect(self.cb_max_consecuentes, QtCore.SIGNAL(_fromUtf8("clicked()")), self.ckeckStatus)
-
-        QtCore.QObject.connect(self.btn_pdf, QtCore.SIGNAL(_fromUtf8("clicked()")), generaratePDF)
-
-        QtCore.QObject.connect(self.cb_aplicar_restricc, QtCore.SIGNAL(_fromUtf8("clicked()")), self.mostrar_restricciones)
-
-        QtCore.QObject.connect(self.actionAcerca_de, QtCore.SIGNAL(_fromUtf8("triggered()")), self.showAcercaDe)
-        QtCore.QObject.connect(self.actionInstrucciones_de_Uso, QtCore.SIGNAL(_fromUtf8("triggered()")), self.abrirAyuda)
-
-
+        QtCore.QObject.connect(self.dsb_confianza, QtCore.SIGNAL(_fromUtf8("editingFinished()")), self.dsb_confianza.clear)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
-        #-------------FIN #5-------------
         MainWindow.setTabOrder(self.tabWidget, self.le_examinar)
         MainWindow.setTabOrder(self.le_examinar, self.btn_examinar)
         MainWindow.setTabOrder(self.btn_examinar, self.dsb_soporte)
@@ -490,233 +415,4 @@ class Ui_MainWindow(object):
         self.actionIngreso_Manual.setText(_translate("MainWindow", "Ingreso Manual", None))
         self.actionReset.setText(_translate("MainWindow", "Reset", None))
 
-    #-----------------------------------------------
-    #-------------AGREGADO #6 FUNCIONES-------------
-    #-----------------------------------------------
-    def abrir(self):
-        nombre_fichero = QFileDialog.getOpenFileName(None, "Abrir fichero", self.ruta)
-        if nombre_fichero:
-            self.fichero_actual = nombre_fichero
-            self.ruta = QFileInfo(nombre_fichero).path()
-            self.le_examinar.setText(_translate("MainWindow", nombre_fichero, None))
-            
-            self.nombre_archivo = str(nombre_fichero)
-            self.nombre_archivo = self.nombre_archivo.split('/')
-            self.nombre_archivo = self.nombre_archivo[len(self.nombre_archivo) - 1]
-
-    def procesar(self):
-        global cant_transacc, cant_reglas
-     
-        confianza = float(self.dsb_confianza.value())
-        soporte = float(self.dsb_soporte.value())
-
-        if confianza == float(0) and soporte == float(0):
-            choice = QtGui.QMessageBox.question(None, 'Atencion!',
-                                                "A continuacion se generaran las combinaciones de todas las Reglas. Desea continuar?",
-                                                QtGui.QMessageBox.Yes | QtGui.QMessageBox.No)
-            if choice == QtGui.QMessageBox.No:
-                return 
- 
-        try:
-            self.fichero_actual.close()
-        except Exception as e:
-            pass
-        
-        QtGui.QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
-        self.barra_progreso.show()
-        self.barra_progreso.setValue(20)
-        time.sleep(0.3)
-
-
-        self.statusbar.showMessage("Leyendo archivo...")
-        self.barra_progreso.setValue(35)
-        time.sleep(0.2)
-        self.barra_progreso.setValue(48)
-        EjecutarCorrida(self.fichero_actual, soporte, confianza) 
-        
-        cant_transacc, cant_prod, cant_reglas = obtenerDatos()
-        self.le_cant_productos.setText(_translate("MainWindow", str(cant_prod), None))
-        self.le_cant_transacciones.setText(_translate("MainWindow", str(cant_transacc), None))
-        self.le_cant_reglas.setText(_translate("MainWindow", str(cant_reglas), None))
-        self.barra_progreso.hide()
-
-        self.statusbar.showMessage("Gerando Reglas...")
-        self.barra_progreso.setValue(62)
-        time.sleep(0.1)
-        self.obtenerReglas()
-
-        self.statusbar.showMessage("Leyendo Restricciones...")
-        self.barra_progreso.setValue(75)
-        time.sleep(0.1)
-        
-        #Obtengo Parametros de Restricciones
-        conviccion = False
-        lift = False
-        min_anteced = False
-        min_conse = False
-        max_anteced = False
-        max_conse = False
-        valor_min_ant = long(self.sb_min_antecedentes.value())
-        valor_max_ant = long(self.sb_max_antecedentes.value())
-        valor_min_cons = long(self.sb_min_consecuentes.value())
-        valor_max_cons = long(self.sb_max_consecuentes.value())
-
-        if self.cb_sustentacion.isChecked():
-            conviccion = True
-        
-        if self.cb_lift.isChecked():
-            lift = True
-        
-        if self.cb_min_antecedentes.isChecked():
-            min_anteced = True
-        
-        if self.cb_min_consecuentes.isChecked():
-            min_conse = True
-        
-        if self.cb_max_antecedentes.isChecked():
-            max_anteced = True
-        
-        if self.cb_max_consecuentes.isChecked():
-            max_conse = True
-        
-        self.statusbar.showMessage("Genreando Restricciones...")
-        generar_restricciones(conviccion, lift ,min_anteced, min_conse, max_anteced, max_conse, valor_min_ant, valor_max_ant, valor_min_cons, valor_max_cons)
-        self.barra_progreso.setValue(82)
-        time.sleep(0.1)
-
-        self.barra_progreso.setValue(100)
-        time.sleep(0.4)
-        self.statusbar.showMessage("Gerenacion Exitosa (100%)")
-
-        QtGui.QApplication.restoreOverrideCursor()
-
-        self.tabWidget.setCurrentIndex(1)
-
-    def ckeckStatus(self):
-        if self.cb_min_consecuentes.isChecked():
-            self.sb_min_consecuentes.setEnabled(True)
-        else:
-            self.sb_min_consecuentes.setEnabled(False)
-
-        if self.cb_min_antecedentes.isChecked():
-            self.sb_min_antecedentes.setEnabled(True)
-        else:
-            self.sb_min_antecedentes.setEnabled(False)
-
-        if self.cb_max_consecuentes.isChecked():
-            self.sb_max_consecuentes.setEnabled(True)
-        else:
-            self.sb_max_consecuentes.setEnabled(False)
-
-        if self.cb_max_antecedentes.isChecked():
-            self.sb_max_antecedentes.setEnabled(True)
-        else:
-            self.sb_max_antecedentes.setEnabled(False)
-
-    def obtenerReglas(self):
-        global cant_transacc
-        self.limpiarTabla()
-        
-        archivo_reglas = open(RUTA_REGLAS + '/reglas' + '.dat', 'r')
-
-        for i, linea in enumerate(archivo_reglas):
-            l = linea.split()
-            self.tw_rules.insertRow(i)
-
-            item = str()
-            for k, j in enumerate(l):
-                if k < len(l) - 4:
-                    item = item + " " + j
-                else: 
-                    break;
-            regla = item.split("--->")
-            self.tw_rules.setItem(i, 0, QtGui.QTableWidgetItem(str(item)))
-
-            self.tw_rules.setItem(i, 1, QtGui.QTableWidgetItem(str(format(100*(float(l[len(l)-4])/float(cant_transacc)),'.2f'))+"%"))
-            self.tw_rules.setItem(i, 2, QtGui.QTableWidgetItem(str(format(float(l[len(l)-3]), '.2f'))+"%"))
-            self.tw_rules.setItem(i, 3, QtGui.QTableWidgetItem("Los items "+regla[0]+regla[1]+" aparecen el "+str(format(100*(float(l[len(l)-4])/float(cant_transacc)),'.2f'))+"% de las veces en la base de datos. Cada vez que ocurrio "+regla[0]+",existe una probabilidad del "+ str(format(float(l[len(l)-3]), '.2f'))+"% de que ocurra "+regla[1]))
-
-        archivo_reglas.close()
-
-    def showAcercaDe(self):
-        modal = WAcercaDe()
-        modal.exec_()
-
-    def abrirAyuda(self):
-        webbrowser.open_new_tab(archivo_ayuda)
-
-    def limpiarTabla(self):
-        for i in reversed(range(self.tw_rules.rowCount())):
-            self.tw_rules.removeRow(i)
-
-    def cargar_con_restricciones(self):
-        global cant_transacc
-        self.limpiarTabla()
-
-        archivo_con_restricciones= open(RUTA_REGLAS + '/' + NOMBRE_ARCHIVO_REGLAS_RESTRICCIONES + '.dat', 'r')
-
-        for i, linea in enumerate(archivo_con_restricciones):
-            l = linea.split()
-            self.tw_rules.insertRow(i)
-
-            item = str()
-            for k, j in enumerate(l):
-                if k < len(l) - 4:
-                    item = item + " " + j
-                else: 
-                    break;
-            self.tw_rules.setItem(i, 0, QtGui.QTableWidgetItem(str(item)))
-            regla = item.split("--->")
-        
-            self.tw_rules.setItem(i, 1, QtGui.QTableWidgetItem(str(format(100*float(l[len(l) - 4])/float(cant_transacc),'.2f'))+"%"))
-            self.tw_rules.setItem(i, 2, QtGui.QTableWidgetItem(str(format(float(l[len(l) - 3]), '.2f'))+"%"))
-            self.tw_rules.setItem(i, 3, QtGui.QTableWidgetItem("Los items "+regla[0]+regla[1]+" aparecen el "+str(format(100*(float(l[len(l)-4])/float(cant_transacc)),'.2f'))+"% de las veces en la base de datos. Cada vez que ocurrio "+regla[0]+",existe una probabilidad del "+ str(format(float(l[len(l)-3]), '.2f'))+"% de que ocurra "+regla[1]))
-
-            
-
-        archivo_con_restricciones.close()
-
-    def mostrar_restricciones(self):
-        self.limpiarTabla()
-        global cant_reglas
-
-        if self.cb_aplicar_restricc.isChecked():
-            self.cargar_con_restricciones()
-            self.l_titulo.setText(_translate("MainWindow", "REGLAS CON RESTRICCIONES", None))
-            self.le_cant_reglas.setText(_translate("MainWindow", str(obtener_cantidad_restricciones()), None))
-
-            texto = self.generar_observacion()
-            self.te_observaciones.setPlainText(texto)
-            
-    
-        else:
-            self.obtenerReglas()
-            self.l_titulo.setText(_translate("MainWindow", "REGLAS SIN RESTRICCIONES", None))
-            self.le_cant_reglas.setText(_translate("MainWindow", str(cant_reglas), None))
-
-            texto = ''
-            self.te_observaciones.setPlainText(texto)
-
-    def generar_observacion(self):
-        archivo_diferencias = open(RUTA_REGLAS + '/' + NOMBRE_ARCHIVO_DIFERENCIAS + '.dat', 'r')
-        texto = "Se han descartado las siguientes reglas: \n"
-        for i, linea in enumerate(archivo_diferencias):
-            li = linea.split()
-            del li[len(li) - 4:]
-
-            salida = str(i + 1) + ". " + str(li).replace('[','').replace(']','') + '\n'
-            texto = texto + salida
-
-        archivo_diferencias.close()
-        return texto
-
-    def verificarConfianzaSoporte(self):
-        confianza = float(self.dsb_confianza.value())
-        soporte = float(self.dsb_soporte.value())
-
-        if confianza < soporte:
-            self.dsb_confianza.setProperty("value", soporte)
-
-        
-
-    #--------------------FIN #6---------------------
+import imagenes_rc
