@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1117</width>
-    <height>736</height>
+    <width>884</width>
+    <height>694</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -16,32 +16,38 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>884</width>
+    <height>694</height>
+   </size>
+  </property>
   <property name="maximumSize">
    <size>
-    <width>1117</width>
-    <height>736</height>
+    <width>884</width>
+    <height>694</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>AppRules</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="recursos/imagenes.qrc">
+   <iconset resource="../recursos/imagenes.qrc">
     <normaloff>:/images/regla.png</normaloff>:/images/regla.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="btn_salir">
     <property name="geometry">
      <rect>
-      <x>980</x>
-      <y>640</y>
-      <width>101</width>
-      <height>41</height>
+      <x>780</x>
+      <y>610</y>
+      <width>91</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>10</pointsize>
+      <pointsize>9</pointsize>
      </font>
     </property>
     <property name="toolTip">
@@ -54,19 +60,19 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>20</y>
-      <width>1081</width>
-      <height>611</height>
+      <x>0</x>
+      <y>10</y>
+      <width>861</width>
+      <height>591</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>10</pointsize>
+      <pointsize>9</pointsize>
      </font>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -76,8 +82,8 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>380</y>
-        <width>1031</width>
+        <y>310</y>
+        <width>831</width>
         <height>91</height>
        </rect>
       </property>
@@ -156,8 +162,8 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>230</y>
-        <width>1041</width>
+        <y>170</y>
+        <width>831</width>
         <height>121</height>
        </rect>
       </property>
@@ -236,7 +242,7 @@
       <property name="geometry">
        <rect>
         <x>700</x>
-        <y>300</y>
+        <y>240</y>
         <width>61</width>
         <height>22</height>
        </rect>
@@ -252,7 +258,7 @@
       <property name="geometry">
        <rect>
         <x>480</x>
-        <y>260</y>
+        <y>200</y>
         <width>231</width>
         <height>20</height>
        </rect>
@@ -265,7 +271,7 @@
       <property name="geometry">
        <rect>
         <x>480</x>
-        <y>300</y>
+        <y>240</y>
         <width>221</width>
         <height>20</height>
        </rect>
@@ -281,7 +287,7 @@
       <property name="geometry">
        <rect>
         <x>700</x>
-        <y>260</y>
+        <y>200</y>
         <width>61</width>
         <height>22</height>
        </rect>
@@ -297,9 +303,9 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>20</y>
-        <width>1041</width>
-        <height>191</height>
+        <y>10</y>
+        <width>831</width>
+        <height>151</height>
        </rect>
       </property>
       <property name="title">
@@ -309,7 +315,7 @@
        <property name="geometry">
         <rect>
          <x>70</x>
-         <y>40</y>
+         <y>30</y>
          <width>71</width>
          <height>16</height>
         </rect>
@@ -322,7 +328,7 @@
        <property name="geometry">
         <rect>
          <x>280</x>
-         <y>80</y>
+         <y>70</y>
          <width>121</width>
          <height>16</height>
         </rect>
@@ -335,7 +341,7 @@
        <property name="geometry">
         <rect>
          <x>70</x>
-         <y>80</y>
+         <y>70</y>
          <width>101</width>
          <height>20</height>
         </rect>
@@ -348,7 +354,7 @@
        <property name="geometry">
         <rect>
          <x>190</x>
-         <y>70</y>
+         <y>60</y>
          <width>81</width>
          <height>31</height>
         </rect>
@@ -364,7 +370,7 @@
        <property name="geometry">
         <rect>
          <x>410</x>
-         <y>70</y>
+         <y>60</y>
          <width>81</width>
          <height>31</height>
         </rect>
@@ -380,7 +386,7 @@
        <property name="geometry">
         <rect>
          <x>720</x>
-         <y>30</y>
+         <y>20</y>
          <width>101</width>
          <height>31</height>
         </rect>
@@ -393,7 +399,7 @@
        <property name="geometry">
         <rect>
          <x>150</x>
-         <y>31</y>
+         <y>21</y>
          <width>561</width>
          <height>31</height>
         </rect>
@@ -409,8 +415,8 @@
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>110</y>
-         <width>1001</width>
+         <y>90</y>
+         <width>801</width>
          <height>20</height>
         </rect>
        </property>
@@ -425,7 +431,7 @@
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>140</y>
+         <y>110</y>
          <width>801</width>
          <height>23</height>
         </rect>
@@ -444,27 +450,14 @@
      <widget class="QPushButton" name="btn_procesar">
       <property name="geometry">
        <rect>
-        <x>940</x>
-        <y>520</y>
-        <width>101</width>
-        <height>41</height>
+        <x>750</x>
+        <y>500</y>
+        <width>91</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
        <string>Procesar</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="btn_detener">
-      <property name="geometry">
-       <rect>
-        <x>810</x>
-        <y>520</y>
-        <width>101</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Detener</string>
       </property>
      </widget>
     </widget>
@@ -477,13 +470,13 @@
        <rect>
         <x>20</x>
         <y>10</y>
-        <width>1041</width>
+        <width>831</width>
         <height>91</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <pointsize>10</pointsize>
+        <pointsize>9</pointsize>
        </font>
       </property>
       <property name="title">
@@ -500,7 +493,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>10</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="text">
@@ -518,7 +511,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>10</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="text">
@@ -531,7 +524,7 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>270</x>
+         <x>240</x>
          <y>30</y>
          <width>81</width>
          <height>22</height>
@@ -539,7 +532,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>10</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="layoutDirection">
@@ -558,7 +551,7 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>270</x>
+         <x>240</x>
          <y>60</y>
          <width>81</width>
          <height>22</height>
@@ -566,7 +559,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>10</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="layoutDirection">
@@ -585,52 +578,10 @@
         <string/>
        </property>
       </widget>
-      <widget class="QPushButton" name="btn_ver_reglas">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>770</x>
-         <y>30</y>
-         <width>111</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="mouseTracking">
-        <bool>false</bool>
-       </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ver Reglas Generadas&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="styleSheet">
-        <string notr="true"/>
-       </property>
-       <property name="inputMethodHints">
-        <set>Qt::ImhNone</set>
-       </property>
-       <property name="text">
-        <string>Ver Reglas</string>
-       </property>
-       <property name="autoDefault">
-        <bool>false</bool>
-       </property>
-       <property name="default">
-        <bool>false</bool>
-       </property>
-       <property name="flat">
-        <bool>false</bool>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_5">
        <property name="geometry">
         <rect>
-         <x>390</x>
+         <x>360</x>
          <y>30</y>
          <width>241</width>
          <height>16</height>
@@ -638,7 +589,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>10</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="text">
@@ -651,7 +602,7 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>650</x>
+         <x>580</x>
          <y>30</y>
          <width>81</width>
          <height>22</height>
@@ -659,7 +610,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>10</pointsize>
+         <pointsize>9</pointsize>
         </font>
        </property>
        <property name="layoutDirection">
@@ -675,7 +626,7 @@
       <widget class="QPushButton" name="btn_pdf">
        <property name="geometry">
         <rect>
-         <x>970</x>
+         <x>750</x>
          <y>20</y>
          <width>31</width>
          <height>41</height>
@@ -685,7 +636,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="recursos/imagenes.qrc">
+        <iconset resource="../recursos/imagenes.qrc">
          <normaloff>:/images/pdf.png</normaloff>:/images/pdf.png</iconset>
        </property>
        <property name="iconSize">
@@ -698,7 +649,7 @@
       <widget class="QLabel" name="label_6">
        <property name="geometry">
         <rect>
-         <x>940</x>
+         <x>720</x>
          <y>60</y>
          <width>101</width>
          <height>20</height>
@@ -719,8 +670,8 @@
        <rect>
         <x>10</x>
         <y>140</y>
-        <width>1061</width>
-        <height>291</height>
+        <width>841</width>
+        <height>281</height>
        </rect>
       </property>
       <property name="horizontalScrollBarPolicy">
@@ -735,7 +686,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>10</pointsize>
+         <pointsize>9</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -756,7 +707,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>10</pointsize>
+         <pointsize>9</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -768,7 +719,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>10</pointsize>
+         <pointsize>9</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -780,7 +731,7 @@
        </property>
        <property name="font">
         <font>
-         <pointsize>10</pointsize>
+         <pointsize>9</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -791,8 +742,8 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>470</y>
-        <width>1061</width>
+        <y>450</y>
+        <width>841</width>
         <height>101</height>
        </rect>
       </property>
@@ -801,7 +752,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>450</y>
+        <y>430</y>
         <width>201</width>
         <height>16</height>
        </rect>
@@ -820,9 +771,9 @@
      <widget class="QCheckBox" name="cb_aplicar_restricc">
       <property name="geometry">
        <rect>
-        <x>890</x>
-        <y>440</y>
-        <width>181</width>
+        <x>690</x>
+        <y>420</y>
+        <width>161</width>
         <height>20</height>
        </rect>
       </property>
@@ -835,7 +786,7 @@
        <rect>
         <x>20</x>
         <y>110</y>
-        <width>1041</width>
+        <width>831</width>
         <height>20</height>
        </rect>
       </property>
@@ -865,7 +816,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1117</width>
+     <width>884</width>
      <height>29</height>
     </rect>
    </property>
@@ -908,7 +859,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>10</pointsize>
+     <pointsize>9</pointsize>
     </font>
    </property>
   </action>
@@ -958,7 +909,6 @@
   <tabstop>cb_sustentacion</tabstop>
   <tabstop>cb_lift</tabstop>
   <tabstop>btn_procesar</tabstop>
-  <tabstop>btn_ver_reglas</tabstop>
   <tabstop>le_cant_transacciones</tabstop>
   <tabstop>le_cant_reglas</tabstop>
   <tabstop>le_cant_productos</tabstop>
@@ -966,10 +916,9 @@
   <tabstop>cb_aplicar_restricc</tabstop>
   <tabstop>te_observaciones</tabstop>
   <tabstop>btn_salir</tabstop>
-  <tabstop>btn_detener</tabstop>
  </tabstops>
  <resources>
-  <include location="recursos/imagenes.qrc"/>
+  <include location="../recursos/imagenes.qrc"/>
  </resources>
  <connections>
   <connection>
