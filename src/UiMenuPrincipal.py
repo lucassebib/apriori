@@ -470,6 +470,7 @@ class Ui_MainWindow(object):
         self.label_5.setText(_translate("MainWindow", "Cantidad de Reglas Generadas:", None))
         self.le_cant_reglas.setText(_translate("MainWindow", "0", None))
         self.label_6.setText(_translate("MainWindow", "Exportar Reglas", None))
+        self.tw_rules.setSortingEnabled(True)
         item = self.tw_rules.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "Regla", None))
         item = self.tw_rules.horizontalHeaderItem(1)
