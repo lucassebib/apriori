@@ -72,7 +72,7 @@
      </font>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -396,6 +396,9 @@
        </property>
       </widget>
       <widget class="QLineEdit" name="le_examinar">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <property name="geometry">
         <rect>
          <x>150</x>
@@ -406,6 +409,9 @@
        </property>
        <property name="text">
         <string/>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
        </property>
        <property name="placeholderText">
         <string/>

@@ -1,14 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'menuPrincipal.ui'
-#
-# Created: Sat Dec 02 18:07:35 2017
-#      by: PyQt4 UI code generator 4.10
-#
-# WARNING! All changes made in this file will be lost!
-#---------------------------------------------------
-#-------------AGREGADO #1 IMPORTACIONES-------------
-#---------------------------------------------------
 import os
 import webbrowser
 import time
@@ -176,6 +167,7 @@ class Ui_MainWindow(object):
         self.le_examinar = QtGui.QLineEdit(self.groupBox)
         self.le_examinar.setGeometry(QtCore.QRect(150, 21, 561, 31))
         self.le_examinar.setText(_fromUtf8(""))
+        self.le_examinar.setReadOnly(True)
         self.le_examinar.setPlaceholderText(_fromUtf8(""))
         self.le_examinar.setObjectName(_fromUtf8("le_examinar"))
         self.line = QtGui.QFrame(self.groupBox)
@@ -509,6 +501,16 @@ class Ui_MainWindow(object):
     def procesar(self):
         global cant_transacc, cant_reglas
      
+        try:
+            self.fichero_actual.close()
+        except Exception as e:
+            pass
+
+        if not os.path.exists(self.fichero_actual):
+            QtGui.QMessageBox.critical(None, 'Atencion!',
+                                                "Ingrese un archivo valido!")
+            return
+        print(str(self.fichero_actual))   
         confianza = float(self.dsb_confianza.value())
         soporte = float(self.dsb_soporte.value())
 
@@ -519,10 +521,7 @@ class Ui_MainWindow(object):
             if choice == QtGui.QMessageBox.No:
                 return 
  
-        try:
-            self.fichero_actual.close()
-        except Exception as e:
-            pass
+        
         
         QtGui.QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
         self.barra_progreso.show()
