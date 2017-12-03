@@ -8,7 +8,11 @@ from reportlab.pdfgen import canvas
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4, inch, landscape
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph
-from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT
+
+#from UiMenuPrincipal import cant_reglas, cant_transacc
+from apriori import obtenerDatos
 
 RUTA_BASE = os.path.dirname(os.path.dirname(__file__))
 RUTA_REGLAS = os.path.join(RUTA_BASE, 'reglas')
@@ -48,6 +52,9 @@ def generarPDF():
 
 
 def generaratePDF():
+	fecha = time.strftime("%d/%m/%y")
+	hora = time.strftime("%H:%M:%S")
+
 	archivo_reglas = open(RUTA_REGLAS + '/reglas' + '.dat', 'r')
 	doc = SimpleDocTemplate(nombre_pdf, pagesize=A4, rightMargin=30,leftMargin=30, topMargin=30,bottomMargin=18)
 	doc.pagesize = landscape(A4)
@@ -102,6 +109,17 @@ def generaratePDF():
 	t.setStyle(style)
 	 
 	#Send the data and build the file
+	styleFechaHora = ParagraphStyle(name='Normal',fontSize=10,alignment=TA_RIGHT,spaceAfter=10)
+	styleTitulo = ParagraphStyle(name='Normal',fontSize=18,alignment=TA_CENTER,spaceAfter=10)
+	styleCantReglasItemTrans = ParagraphStyle(name='Underline',fontSize=14,alignment=TA_LEFT,spaceAfter=5)
+
+	cant_transacciones, cant_items, cant_reglas = obtenerDatos()
+	elements.append(Paragraph(fecha +" "+hora , style = styleFechaHora))
+	elements.append(Paragraph("<u>Informe de reglas de asociacion</u>", style = styleTitulo))
+	elements.append(Paragraph("Total de items: "+str(cant_items), style = styleCantReglasItemTrans))
+	elements.append(Paragraph("Total de transacciones: "+str(cant_transacciones), style = styleCantReglasItemTrans))
+	elements.append(Paragraph("Reglas generadas: "+str(cant_reglas), style = styleCantReglasItemTrans))
+	elements.append(Paragraph("", style = styleCantReglasItemTrans))
 	elements.append(t)
 	doc.build(elements)
 	
