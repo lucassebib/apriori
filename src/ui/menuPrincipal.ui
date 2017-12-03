@@ -35,6 +35,9 @@
    <iconset resource="../recursos/imagenes.qrc">
     <normaloff>:/images/regla.png</normaloff>:/images/regla.png</iconset>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="btn_salir">
     <property name="geometry">
@@ -60,7 +63,7 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>10</x>
       <y>10</y>
       <width>861</width>
       <height>591</height>
@@ -82,7 +85,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>310</y>
+        <y>340</y>
         <width>831</width>
         <height>91</height>
        </rect>
@@ -162,7 +165,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>170</y>
+        <y>190</y>
         <width>831</width>
         <height>121</height>
        </rect>
@@ -303,7 +306,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>10</y>
+        <y>20</y>
         <width>831</width>
         <height>151</height>
        </rect>
@@ -396,6 +399,9 @@
        </property>
       </widget>
       <widget class="QLineEdit" name="le_examinar">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <property name="geometry">
         <rect>
          <x>150</x>
@@ -406,6 +412,9 @@
        </property>
        <property name="text">
         <string/>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
        </property>
        <property name="placeholderText">
         <string/>
@@ -680,6 +689,9 @@
       <property name="horizontalScrollBarPolicy">
        <enum>Qt::ScrollBarAlwaysOn</enum>
       </property>
+      <property name="sortingEnabled">
+       <bool>true</bool>
+      </property>
       <property name="columnCount">
        <number>4</number>
       </property>
@@ -749,6 +761,9 @@
         <width>841</width>
         <height>101</height>
        </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QLabel" name="label_4">

@@ -6,22 +6,34 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>586</width>
-    <height>261</height>
+    <width>559</width>
+    <height>243</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>559</width>
+    <height>243</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>559</width>
+    <height>243</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Acerca De AppRules</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="recursos/imagenes.qrc">
+   <iconset resource="../recursos/imagenes.qrc">
     <normaloff>:/images/regla.png</normaloff>:/images/regla.png</iconset>
   </property>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>460</x>
-     <y>210</y>
+     <x>440</x>
+     <y>190</y>
      <width>111</width>
      <height>41</height>
     </rect>
@@ -33,10 +45,10 @@
   <widget class="QTextEdit" name="textEdit">
    <property name="geometry">
     <rect>
-     <x>260</x>
+     <x>230</x>
      <y>50</y>
      <width>321</width>
-     <height>151</height>
+     <height>141</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -87,7 +99,7 @@ p, li { white-space: pre-wrap; }
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>230</y>
+     <y>210</y>
      <width>421</width>
      <height>22</height>
     </rect>
@@ -105,7 +117,7 @@ p, li { white-space: pre-wrap; }
   <widget class="QLineEdit" name="lineEdit_2">
    <property name="geometry">
     <rect>
-     <x>340</x>
+     <x>320</x>
      <y>10</y>
      <width>231</width>
      <height>31</height>
@@ -121,7 +133,7 @@ p, li { white-space: pre-wrap; }
   <widget class="Line" name="line">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>0</x>
      <y>40</y>
      <width>561</width>
      <height>16</height>
@@ -135,7 +147,7 @@ p, li { white-space: pre-wrap; }
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>170</y>
+     <y>150</y>
      <width>151</width>
      <height>51</height>
     </rect>
@@ -160,7 +172,7 @@ p, li { white-space: pre-wrap; }
   <widget class="QTextEdit" name="textEdit_4">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>0</x>
      <y>60</y>
      <width>231</width>
      <height>91</height>
@@ -180,7 +192,7 @@ p, li { white-space: pre-wrap; }
   </widget>
  </widget>
  <resources>
-  <include location="recursos/imagenes.qrc"/>
+  <include location="../recursos/imagenes.qrc"/>
  </resources>
  <connections>
   <connection>

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'menuPrincipal.ui'
 #
-# Created: Sat Dec 02 19:03:37 2017
+# Created: Sat Dec 02 21:21:14 2017
 #      by: PyQt4 UI code generator 4.10
 #
 # WARNING! All changes made in this file will be lost!
@@ -37,6 +37,7 @@ class Ui_MainWindow(object):
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/regla.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
+        MainWindow.setAutoFillBackground(False)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.btn_salir = QtGui.QPushButton(self.centralwidget)
@@ -46,7 +47,7 @@ class Ui_MainWindow(object):
         self.btn_salir.setFont(font)
         self.btn_salir.setObjectName(_fromUtf8("btn_salir"))
         self.tabWidget = QtGui.QTabWidget(self.centralwidget)
-        self.tabWidget.setGeometry(QtCore.QRect(0, 10, 861, 591))
+        self.tabWidget.setGeometry(QtCore.QRect(10, 10, 861, 591))
         font = QtGui.QFont()
         font.setPointSize(9)
         self.tabWidget.setFont(font)
@@ -54,7 +55,7 @@ class Ui_MainWindow(object):
         self.tab = QtGui.QWidget()
         self.tab.setObjectName(_fromUtf8("tab"))
         self.groupBox_3 = QtGui.QGroupBox(self.tab)
-        self.groupBox_3.setGeometry(QtCore.QRect(10, 310, 831, 91))
+        self.groupBox_3.setGeometry(QtCore.QRect(10, 340, 831, 91))
         self.groupBox_3.setObjectName(_fromUtf8("groupBox_3"))
         self.cb_soporte = QtGui.QCheckBox(self.groupBox_3)
         self.cb_soporte.setEnabled(False)
@@ -74,7 +75,7 @@ class Ui_MainWindow(object):
         self.cb_lift.setGeometry(QtCore.QRect(560, 40, 191, 20))
         self.cb_lift.setObjectName(_fromUtf8("cb_lift"))
         self.groupBox_4 = QtGui.QGroupBox(self.tab)
-        self.groupBox_4.setGeometry(QtCore.QRect(10, 170, 831, 121))
+        self.groupBox_4.setGeometry(QtCore.QRect(10, 190, 831, 121))
         self.groupBox_4.setObjectName(_fromUtf8("groupBox_4"))
         self.cb_min_consecuentes = QtGui.QCheckBox(self.groupBox_4)
         self.cb_min_consecuentes.setGeometry(QtCore.QRect(80, 70, 221, 20))
@@ -113,7 +114,7 @@ class Ui_MainWindow(object):
         self.sb_max_antecedentes.setProperty("value", 5)
         self.sb_max_antecedentes.setObjectName(_fromUtf8("sb_max_antecedentes"))
         self.groupBox = QtGui.QGroupBox(self.tab)
-        self.groupBox.setGeometry(QtCore.QRect(10, 10, 831, 151))
+        self.groupBox.setGeometry(QtCore.QRect(10, 20, 831, 151))
         self.groupBox.setObjectName(_fromUtf8("groupBox"))
         self.l_archivo = QtGui.QLabel(self.groupBox)
         self.l_archivo.setGeometry(QtCore.QRect(70, 30, 71, 16))
@@ -138,8 +139,10 @@ class Ui_MainWindow(object):
         self.btn_examinar.setGeometry(QtCore.QRect(720, 20, 101, 31))
         self.btn_examinar.setObjectName(_fromUtf8("btn_examinar"))
         self.le_examinar = QtGui.QLineEdit(self.groupBox)
+        self.le_examinar.setEnabled(True)
         self.le_examinar.setGeometry(QtCore.QRect(150, 21, 561, 31))
         self.le_examinar.setText(_fromUtf8(""))
+        self.le_examinar.setReadOnly(True)
         self.le_examinar.setPlaceholderText(_fromUtf8(""))
         self.le_examinar.setObjectName(_fromUtf8("le_examinar"))
         self.line = QtGui.QFrame(self.groupBox)
@@ -267,6 +270,7 @@ class Ui_MainWindow(object):
         self.tw_rules.setHorizontalHeaderItem(3, item)
         self.te_observaciones = QtGui.QTextEdit(self.tab_3)
         self.te_observaciones.setGeometry(QtCore.QRect(10, 450, 841, 101))
+        self.te_observaciones.setReadOnly(True)
         self.te_observaciones.setObjectName(_fromUtf8("te_observaciones"))
         self.label_4 = QtGui.QLabel(self.tab_3)
         self.label_4.setGeometry(QtCore.QRect(10, 430, 201, 16))
@@ -395,6 +399,7 @@ class Ui_MainWindow(object):
         self.label_5.setText(_translate("MainWindow", "Cantidad de Reglas Generadas:", None))
         self.le_cant_reglas.setText(_translate("MainWindow", "0", None))
         self.label_6.setText(_translate("MainWindow", "Exportar Reglas", None))
+        self.tw_rules.setSortingEnabled(True)
         item = self.tw_rules.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "Regla", None))
         item = self.tw_rules.horizontalHeaderItem(1)

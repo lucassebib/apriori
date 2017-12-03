@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'acercaDe.ui'
 #
-# Created: Thu Nov 02 00:04:35 2017
+# Created: Sat Dec 02 21:00:20 2017
 #      by: PyQt4 UI code generator 4.10
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,15 +26,17 @@ except AttributeError:
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName(_fromUtf8("Dialog"))
-        Dialog.resize(586, 261)
+        Dialog.resize(559, 243)
+        Dialog.setMinimumSize(QtCore.QSize(559, 243))
+        Dialog.setMaximumSize(QtCore.QSize(559, 243))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/regla.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Dialog.setWindowIcon(icon)
         self.pushButton = QtGui.QPushButton(Dialog)
-        self.pushButton.setGeometry(QtCore.QRect(460, 210, 111, 41))
+        self.pushButton.setGeometry(QtCore.QRect(440, 190, 111, 41))
         self.pushButton.setObjectName(_fromUtf8("pushButton"))
         self.textEdit = QtGui.QTextEdit(Dialog)
-        self.textEdit.setGeometry(QtCore.QRect(260, 50, 321, 151))
+        self.textEdit.setGeometry(QtCore.QRect(230, 50, 321, 141))
         self.textEdit.setStyleSheet(_fromUtf8("background: transparent;\n"
 "border: none "))
         self.textEdit.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
@@ -47,27 +49,27 @@ class Ui_Dialog(object):
         self.textEdit_2.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.textEdit_2.setObjectName(_fromUtf8("textEdit_2"))
         self.lineEdit = QtGui.QLineEdit(Dialog)
-        self.lineEdit.setGeometry(QtCore.QRect(10, 230, 421, 22))
+        self.lineEdit.setGeometry(QtCore.QRect(10, 210, 421, 22))
         self.lineEdit.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
         self.lineEdit.setStyleSheet(_fromUtf8("background: transparent"))
         self.lineEdit.setObjectName(_fromUtf8("lineEdit"))
         self.lineEdit_2 = QtGui.QLineEdit(Dialog)
-        self.lineEdit_2.setGeometry(QtCore.QRect(340, 10, 231, 31))
+        self.lineEdit_2.setGeometry(QtCore.QRect(320, 10, 231, 31))
         self.lineEdit_2.setStyleSheet(_fromUtf8("background: transparent"))
         self.lineEdit_2.setObjectName(_fromUtf8("lineEdit_2"))
         self.line = QtGui.QFrame(Dialog)
-        self.line.setGeometry(QtCore.QRect(20, 40, 561, 16))
+        self.line.setGeometry(QtCore.QRect(0, 40, 561, 16))
         self.line.setFrameShape(QtGui.QFrame.HLine)
         self.line.setFrameShadow(QtGui.QFrame.Sunken)
         self.line.setObjectName(_fromUtf8("line"))
         self.textEdit_3 = QtGui.QTextEdit(Dialog)
-        self.textEdit_3.setGeometry(QtCore.QRect(10, 170, 151, 51))
+        self.textEdit_3.setGeometry(QtCore.QRect(10, 150, 151, 51))
         self.textEdit_3.setStyleSheet(_fromUtf8("border: none "))
         self.textEdit_3.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.textEdit_3.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.textEdit_3.setObjectName(_fromUtf8("textEdit_3"))
         self.textEdit_4 = QtGui.QTextEdit(Dialog)
-        self.textEdit_4.setGeometry(QtCore.QRect(20, 60, 231, 91))
+        self.textEdit_4.setGeometry(QtCore.QRect(0, 60, 231, 91))
         self.textEdit_4.setStyleSheet(_fromUtf8("background: transparent;\n"
 "border: none "))
         self.textEdit_4.setObjectName(_fromUtf8("textEdit_4"))
