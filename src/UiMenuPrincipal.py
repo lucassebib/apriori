@@ -294,6 +294,7 @@ class Ui_MainWindow(object):
         item.setFont(font)
         self.tw_rules.setHorizontalHeaderItem(3, item)
         self.te_observaciones = QtGui.QTextEdit(self.tab_3)
+        self.te_observaciones.setReadOnly(True)
         self.te_observaciones.setGeometry(QtCore.QRect(10, 450, 841, 101))
         self.te_observaciones.setObjectName(_fromUtf8("te_observaciones"))
         self.label_4 = QtGui.QLabel(self.tab_3)
