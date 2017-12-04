@@ -1,0 +1,167 @@
+beer ---> apple 3 50.0 1.0 8
+apple ---> beer 3 75.0 1.0 8
+chicken ---> apple 1 50.0 1.0 8
+apple ---> chicken 1 25.0 1.0 8
+mango ---> apple 1 50.0 1.0 8
+apple ---> mango 1 25.0 1.0 8
+milk ---> apple 0 0.0 0.0 4
+apple ---> milk 0 0.0 0.0 4
+rice ---> apple 2 50.0 1.0 8
+apple ---> rice 2 50.0 1.0 8
+mango ---> beer 0 0.0 0.0 2
+beer ---> mango 0 0.0 0.0 6
+milk ---> beer 3 75.0 1.0 8
+beer ---> milk 3 50.0 1.0 8
+mango ---> chicken 0 0.0 0.0 6
+chicken ---> mango 0 0.0 0.0 6
+milk ---> chicken 1 25.0 1.0 8
+chicken ---> milk 1 50.0 1.0 8
+milk ---> mango 1 25.0 1.0 8
+mango ---> milk 1 50.0 1.0 8
+rice ---> mango 0 0.0 0.0 6
+mango ---> rice 0 0.0 0.0 4
+rice ---> milk 2 50.0 1.0 8
+milk ---> rice 2 50.0 1.0 8
+beer chicken ---> apple 1 50.0 1.0 8
+apple ---> beer chicken 1 25.0 1.0 8
+beer mango ---> apple 0 0 0.0 9999
+apple mango ---> beer 0 0.0 0.0 2
+apple beer ---> mango 0 0.0 0.0 6
+beer milk ---> apple 0 0.0 0.0 4
+apple milk ---> beer 0 0 0.0 9999
+apple beer ---> milk 0 0.0 0.0 4
+beer rice ---> apple 2 50.0 1.0 8
+apple ---> beer rice 2 50.0 1.0 8
+chicken mango ---> apple 0 0 0.0 9999
+apple mango ---> chicken 0 0.0 0.0 6
+apple chicken ---> mango 0 0.0 0.0 6
+chicken milk ---> apple 0 0.0 0.0 4
+apple milk ---> chicken 0 0 0.0 9999
+apple chicken ---> milk 0 0.0 0.0 4
+chicken rice ---> apple 1 50.0 1.0 8
+apple ---> chicken rice 1 25.0 1.0 8
+mango milk ---> apple 0 0.0 0.0 4
+apple milk ---> mango 0 0 0.0 9999
+apple mango ---> milk 0 0.0 0.0 4
+mango rice ---> apple 0 0 0.0 9999
+apple rice ---> mango 0 0.0 0.0 6
+apple mango ---> rice 0 0.0 0.0 4
+milk rice ---> apple 0 0.0 0.0 4
+apple rice ---> milk 0 0.0 0.0 4
+apple milk ---> rice 0 0 0.0 9999
+chicken mango ---> beer 0 0 0.0 9999
+beer mango ---> chicken 0 0 0.0 9999
+beer chicken ---> mango 0 0.0 0.0 6
+beer chicken ---> milk 1 50.0 1.0 8
+milk ---> beer chicken 1 25.0 1.0 8
+mango milk ---> beer 0 0.0 0.0 2
+beer milk ---> mango 0 0.0 0.0 6
+beer mango ---> milk 0 0 0.0 9999
+mango rice ---> beer 0 0 0.0 9999
+beer rice ---> mango 0 0.0 0.0 6
+beer mango ---> rice 0 0 0.0 9999
+beer rice ---> milk 2 50.0 1.0 8
+milk ---> beer rice 2 50.0 1.0 8
+mango milk ---> chicken 0 0.0 0.0 6
+chicken milk ---> mango 0 0.0 0.0 6
+chicken mango ---> milk 0 0 0.0 9999
+mango rice ---> chicken 0 0 0.0 9999
+chicken rice ---> mango 0 0.0 0.0 6
+chicken mango ---> rice 0 0 0.0 9999
+chicken rice ---> milk 1 50.0 1.0 8
+milk ---> chicken rice 1 25.0 1.0 8
+milk rice ---> mango 0 0.0 0.0 6
+mango rice ---> milk 0 0 0.0 9999
+mango milk ---> rice 0 0.0 0.0 4
+beer chicken mango ---> apple 0 0 0.0 9999
+apple chicken mango ---> beer 0 0 0.0 9999
+apple beer mango ---> chicken 0 0 0.0 9999
+apple beer chicken ---> mango 0 0.0 0.0 6
+beer chicken milk ---> apple 0 0.0 0.0 4
+apple chicken milk ---> beer 0 0 0.0 9999
+apple beer milk ---> chicken 0 0 0.0 9999
+apple beer chicken ---> milk 0 0.0 0.0 4
+beer chicken rice ---> apple 1 50.0 1.0 8
+apple ---> beer chicken rice 1 25.0 1.0 8
+beer mango milk ---> apple 0 0 0.0 9999
+apple mango milk ---> beer 0 0 0.0 9999
+apple beer milk ---> mango 0 0 0.0 9999
+apple beer mango ---> milk 0 0 0.0 9999
+beer mango rice ---> apple 0 0 0.0 9999
+apple mango rice ---> beer 0 0 0.0 9999
+apple beer rice ---> mango 0 0.0 0.0 6
+apple beer mango ---> rice 0 0 0.0 9999
+beer milk rice ---> apple 0 0.0 0.0 4
+apple milk rice ---> beer 0 0 0.0 9999
+apple beer rice ---> milk 0 0.0 0.0 4
+apple beer milk ---> rice 0 0 0.0 9999
+chicken mango milk ---> apple 0 0 0.0 9999
+apple mango milk ---> chicken 0 0 0.0 9999
+apple chicken milk ---> mango 0 0 0.0 9999
+apple chicken mango ---> milk 0 0 0.0 9999
+chicken mango rice ---> apple 0 0 0.0 9999
+apple mango rice ---> chicken 0 0 0.0 9999
+apple chicken rice ---> mango 0 0.0 0.0 6
+apple chicken mango ---> rice 0 0 0.0 9999
+chicken milk rice ---> apple 0 0.0 0.0 4
+apple milk rice ---> chicken 0 0 0.0 9999
+apple chicken rice ---> milk 0 0.0 0.0 4
+apple chicken milk ---> rice 0 0 0.0 9999
+mango milk rice ---> apple 0 0 0.0 9999
+apple milk rice ---> mango 0 0 0.0 9999
+apple mango rice ---> milk 0 0 0.0 9999
+apple mango milk ---> rice 0 0 0.0 9999
+chicken mango milk ---> beer 0 0 0.0 9999
+beer mango milk ---> chicken 0 0 0.0 9999
+beer chicken milk ---> mango 0 0.0 0.0 6
+beer chicken mango ---> milk 0 0 0.0 9999
+chicken mango rice ---> beer 0 0 0.0 9999
+beer mango rice ---> chicken 0 0 0.0 9999
+beer chicken rice ---> mango 0 0.0 0.0 6
+beer chicken mango ---> rice 0 0 0.0 9999
+beer chicken rice ---> milk 1 50.0 1.0 8
+milk ---> beer chicken rice 1 25.0 1.0 8
+mango milk rice ---> beer 0 0 0.0 9999
+beer milk rice ---> mango 0 0.0 0.0 6
+beer mango rice ---> milk 0 0 0.0 9999
+beer mango milk ---> rice 0 0 0.0 9999
+mango milk rice ---> chicken 0 0 0.0 9999
+chicken milk rice ---> mango 0 0.0 0.0 6
+chicken mango rice ---> milk 0 0 0.0 9999
+chicken mango milk ---> rice 0 0 0.0 9999
+beer chicken mango milk ---> apple 0 0 0.0 9999
+apple chicken mango milk ---> beer 0 0 0.0 9999
+apple beer mango milk ---> chicken 0 0 0.0 9999
+apple beer chicken milk ---> mango 0 0 0.0 9999
+apple beer chicken mango ---> milk 0 0 0.0 9999
+beer chicken mango rice ---> apple 0 0 0.0 9999
+apple chicken mango rice ---> beer 0 0 0.0 9999
+apple beer mango rice ---> chicken 0 0 0.0 9999
+apple beer chicken rice ---> mango 0 0.0 0.0 6
+apple beer chicken mango ---> rice 0 0 0.0 9999
+beer chicken milk rice ---> apple 0 0.0 0.0 4
+apple chicken milk rice ---> beer 0 0 0.0 9999
+apple beer milk rice ---> chicken 0 0 0.0 9999
+apple beer chicken rice ---> milk 0 0.0 0.0 4
+apple beer chicken milk ---> rice 0 0 0.0 9999
+beer mango milk rice ---> apple 0 0 0.0 9999
+apple mango milk rice ---> beer 0 0 0.0 9999
+apple beer milk rice ---> mango 0 0 0.0 9999
+apple beer mango rice ---> milk 0 0 0.0 9999
+apple beer mango milk ---> rice 0 0 0.0 9999
+chicken mango milk rice ---> apple 0 0 0.0 9999
+apple mango milk rice ---> chicken 0 0 0.0 9999
+apple chicken milk rice ---> mango 0 0 0.0 9999
+apple chicken mango rice ---> milk 0 0 0.0 9999
+apple chicken mango milk ---> rice 0 0 0.0 9999
+chicken mango milk rice ---> beer 0 0 0.0 9999
+beer mango milk rice ---> chicken 0 0 0.0 9999
+beer chicken milk rice ---> mango 0 0.0 0.0 6
+beer chicken mango rice ---> milk 0 0 0.0 9999
+beer chicken mango milk ---> rice 0 0 0.0 9999
+beer chicken mango milk rice ---> apple 0 0 0.0 9999
+apple chicken mango milk rice ---> beer 0 0 0.0 9999
+apple beer mango milk rice ---> chicken 0 0 0.0 9999
+apple beer chicken milk rice ---> mango 0 0 0.0 9999
+apple beer chicken mango rice ---> milk 0 0 0.0 9999
+apple beer chicken mango milk ---> rice 0 0 0.0 9999
