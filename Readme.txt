@@ -19,8 +19,9 @@ Para descargar el proyecto, dirijirse a https://sourceforge.net/projects/apprule
 
 FUNCIONALIDADES:
 	- Generar reglas de asociacion utilizando el soporte y confianza como parametros.
- 	- Adicionar restricciones de minimo de soporte y confianza.
+ 	- Adicionar restricciones de cantidad minimo y maximo de antecedentes, y cantidad minimo y maximo de consecuentes, en las reglas.
  	- Incluir parametros de calidad para la generacion de reglas.
+ 	- Ordenar de menor a mayor, o viceversa, segun el soporte o confianza de las reglas.
  	- Visualizar las reglas generadas por el algoritmo apirori tradicional y compararlas con las restricciones ingresadas
  	- Exportar a PDF las reglas generadas.
  	- Obtener una interpretacion de las reglas obtenidas.

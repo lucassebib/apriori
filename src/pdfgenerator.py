@@ -54,6 +54,7 @@ def generarPDF():
 def generaratePDF():
 	fecha = time.strftime("%d/%m/%y")
 	hora = time.strftime("%H:%M:%S")
+	cant_transacciones, cant_items, cant_reglas = obtenerDatos()
 
 	archivo_reglas = open(RUTA_REGLAS + '/reglas' + '.dat', 'r')
 	doc = SimpleDocTemplate(nombre_pdf, pagesize=A4, rightMargin=30,leftMargin=30, topMargin=30,bottomMargin=18)
@@ -83,8 +84,8 @@ def generaratePDF():
 		print(l)
 		fila = list()
 		fila.append(str(l[0]) + " ---> " + str(l[1]))
-		fila.append(str(float(soporte)))
-		fila.append(str((float(confianza)))) 
+		fila.append(str(round(float(soporte)*100/cant_transacciones,2))+"%")
+		fila.append(str(round((float(confianza)),2))+"%")
 		data.append(fila)
 	
 	archivo_reglas.close()
@@ -113,9 +114,8 @@ def generaratePDF():
 	styleTitulo = ParagraphStyle(name='Normal',fontSize=18,alignment=TA_CENTER,spaceAfter=10)
 	styleCantReglasItemTrans = ParagraphStyle(name='Underline',fontSize=14,alignment=TA_LEFT,spaceAfter=5)
 
-	cant_transacciones, cant_items, cant_reglas = obtenerDatos()
 	elements.append(Paragraph(fecha +" "+hora , style = styleFechaHora))
-	elements.append(Paragraph("<u>Informe de reglas de asociacion</u>", style = styleTitulo))
+	elements.append(Paragraph("<u>Informe de reglas de asociación</u>", style = styleTitulo))
 	elements.append(Paragraph("Total de items: "+str(cant_items), style = styleCantReglasItemTrans))
 	elements.append(Paragraph("Total de transacciones: "+str(cant_transacciones), style = styleCantReglasItemTrans))
 	elements.append(Paragraph("Reglas generadas: "+str(cant_reglas), style = styleCantReglasItemTrans))

@@ -1,0 +1,294 @@
+<<<<<<< HEAD
+=======
+boots ---> beef 0 0.0 0.0 3
+beef ---> boots 0 0.0 0.0 6
+cheese ---> beef 3 75.0 1.3125 12
+beef ---> cheese 3 75.0 1.3125 12
+chicken ---> beef 3 60.0 1.05 7
+beef ---> chicken 3 75.0 1.05 8
+clothes ---> beef 1 33.3333333333 0.583333333333 4
+beef ---> clothes 1 25.0 0.583333333333 5
+milk ---> beef 2 50.0 0.875 6
+beef ---> milk 2 50.0 0.875 6
+cheese ---> boots 1 25.0 1.75 8
+boots ---> cheese 1 100.0 1.75 9999
+chicken ---> boots 0 0.0 0.0 6
+boots ---> chicken 0 0.0 0.0 2
+clothes ---> boots 0 0.0 0.0 6
+boots ---> clothes 0 0.0 0.0 4
+milk ---> boots 0 0.0 0.0 6
+boots ---> milk 0 0.0 0.0 3
+chicken ---> cheese 2 40.0 0.7 5
+cheese ---> chicken 2 50.0 0.7 4
+clothes ---> cheese 1 33.3333333333 0.583333333333 4
+cheese ---> clothes 1 25.0 0.583333333333 5
+milk ---> cheese 1 25.0 0.4375 4
+cheese ---> milk 1 25.0 0.4375 4
+clothes ---> chicken 3 100.0 1.4 9999
+chicken ---> clothes 3 60.0 1.4 10
+milk ---> chicken 4 100.0 1.4 9999
+chicken ---> milk 4 80.0 1.4 15
+milk ---> clothes 3 75.0 1.75 16
+clothes ---> milk 3 100.0 1.75 9999
+boots cheese ---> beef 0 0.0 0.0 3
+beef cheese ---> boots 0 0.0 0.0 6
+beef boots ---> cheese 0 0 0.0 9999
+boots chicken ---> beef 0 0 0.0 9999
+beef chicken ---> boots 0 0.0 0.0 6
+beef boots ---> chicken 0 0 0.0 9999
+boots clothes ---> beef 0 0 0.0 9999
+beef clothes ---> boots 0 0.0 0.0 6
+beef boots ---> clothes 0 0 0.0 9999
+boots milk ---> beef 0 0 0.0 9999
+beef milk ---> boots 0 0.0 0.0 6
+beef boots ---> milk 0 0 0.0 9999
+cheese chicken ---> beef 2 100.0 1.75 9999
+beef chicken ---> cheese 2 66.6666666667 1.16666666667 9
+beef cheese ---> chicken 2 66.6666666667 0.933333333333 6
+chicken ---> beef cheese 2 40.0 0.933333333333 6
+cheese ---> beef chicken 2 50.0 1.16666666667 8
+beef ---> cheese chicken 2 50.0 1.75 10
+cheese clothes ---> beef 1 100.0 1.75 9999
+beef clothes ---> cheese 1 100.0 1.75 9999
+beef cheese ---> clothes 1 33.3333333333 0.777777777778 6
+clothes ---> beef cheese 1 33.3333333333 0.777777777778 6
+cheese ---> beef clothes 1 25.0 1.75 8
+beef ---> cheese clothes 1 25.0 1.75 8
+cheese milk ---> beef 1 100.0 1.75 9999
+beef milk ---> cheese 1 50.0 0.875 6
+beef cheese ---> milk 1 33.3333333333 0.583333333333 4
+milk ---> beef cheese 1 25.0 0.583333333333 5
+cheese ---> beef milk 1 25.0 0.875 6
+beef ---> cheese milk 1 25.0 1.75 8
+chicken clothes ---> beef 1 33.3333333333 0.583333333333 4
+beef clothes ---> chicken 1 100.0 1.4 9999
+beef chicken ---> clothes 1 33.3333333333 0.777777777778 6
+clothes ---> beef chicken 1 33.3333333333 0.777777777778 6
+chicken ---> beef clothes 1 20.0 1.4 7
+beef ---> chicken clothes 1 25.0 0.583333333333 5
+chicken milk ---> beef 2 50.0 0.875 6
+beef milk ---> chicken 2 100.0 1.4 9999
+beef chicken ---> milk 2 66.6666666667 1.16666666667 9
+milk ---> beef chicken 2 50.0 1.16666666667 8
+chicken ---> beef milk 2 40.0 1.4 8
+beef ---> chicken milk 2 50.0 0.875 6
+clothes milk ---> beef 1 33.3333333333 0.583333333333 4
+beef milk ---> clothes 1 50.0 1.16666666667 8
+beef clothes ---> milk 1 100.0 1.75 9999
+milk ---> beef clothes 1 25.0 1.75 8
+clothes ---> beef milk 1 33.3333333333 1.16666666667 7
+beef ---> clothes milk 1 25.0 0.583333333333 5
+cheese chicken ---> boots 0 0.0 0.0 6
+boots chicken ---> cheese 0 0 0.0 9999
+boots cheese ---> chicken 0 0.0 0.0 2
+cheese clothes ---> boots 0 0.0 0.0 6
+boots clothes ---> cheese 0 0 0.0 9999
+boots cheese ---> clothes 0 0.0 0.0 4
+cheese milk ---> boots 0 0.0 0.0 6
+boots milk ---> cheese 0 0 0.0 9999
+boots cheese ---> milk 0 0.0 0.0 3
+chicken clothes ---> boots 0 0.0 0.0 6
+boots clothes ---> chicken 0 0 0.0 9999
+boots chicken ---> clothes 0 0 0.0 9999
+chicken milk ---> boots 0 0.0 0.0 6
+boots milk ---> chicken 0 0 0.0 9999
+boots chicken ---> milk 0 0 0.0 9999
+clothes milk ---> boots 0 0.0 0.0 6
+boots milk ---> clothes 0 0 0.0 9999
+boots clothes ---> milk 0 0 0.0 9999
+chicken clothes ---> cheese 1 33.3333333333 0.583333333333 4
+cheese clothes ---> chicken 1 100.0 1.4 9999
+cheese chicken ---> clothes 1 50.0 1.16666666667 8
+clothes ---> cheese chicken 1 33.3333333333 1.16666666667 7
+chicken ---> cheese clothes 1 20.0 1.4 7
+cheese ---> chicken clothes 1 25.0 0.583333333333 5
+chicken milk ---> cheese 1 25.0 0.4375 4
+cheese milk ---> chicken 1 100.0 1.4 9999
+cheese chicken ---> milk 1 50.0 0.875 6
+milk ---> cheese chicken 1 25.0 0.875 6
+chicken ---> cheese milk 1 20.0 1.4 7
+cheese ---> chicken milk 1 25.0 0.4375 4
+clothes milk ---> cheese 1 33.3333333333 0.583333333333 4
+cheese milk ---> clothes 1 100.0 2.33333333333 9999
+cheese clothes ---> milk 1 100.0 1.75 9999
+milk ---> cheese clothes 1 25.0 1.75 8
+clothes ---> cheese milk 1 33.3333333333 2.33333333333 9
+cheese ---> clothes milk 1 25.0 0.583333333333 5
+clothes milk ---> chicken 3 100.0 1.4 9999
+chicken milk ---> clothes 3 75.0 1.75 16
+chicken clothes ---> milk 3 100.0 1.75 9999
+milk ---> chicken clothes 3 75.0 1.75 16
+clothes ---> chicken milk 3 100.0 1.75 9999
+chicken ---> clothes milk 3 60.0 1.4 10
+boots cheese chicken ---> beef 0 0 0.0 9999
+beef cheese chicken ---> boots 0 0.0 0.0 6
+beef boots chicken ---> cheese 0 0 0.0 9999
+beef boots cheese ---> chicken 0 0 0.0 9999
+boots cheese clothes ---> beef 0 0 0.0 9999
+beef cheese clothes ---> boots 0 0.0 0.0 6
+beef boots clothes ---> cheese 0 0 0.0 9999
+beef boots cheese ---> clothes 0 0 0.0 9999
+boots cheese milk ---> beef 0 0 0.0 9999
+beef cheese milk ---> boots 0 0.0 0.0 6
+beef boots milk ---> cheese 0 0 0.0 9999
+beef boots cheese ---> milk 0 0 0.0 9999
+boots chicken clothes ---> beef 0 0 0.0 9999
+beef chicken clothes ---> boots 0 0.0 0.0 6
+beef boots clothes ---> chicken 0 0 0.0 9999
+beef boots chicken ---> clothes 0 0 0.0 9999
+boots chicken milk ---> beef 0 0 0.0 9999
+beef chicken milk ---> boots 0 0.0 0.0 6
+beef boots milk ---> chicken 0 0 0.0 9999
+beef boots chicken ---> milk 0 0 0.0 9999
+boots clothes milk ---> beef 0 0 0.0 9999
+beef clothes milk ---> boots 0 0.0 0.0 6
+beef boots milk ---> clothes 0 0 0.0 9999
+beef boots clothes ---> milk 0 0 0.0 9999
+cheese chicken clothes ---> beef 1 100.0 1.75 9999
+beef chicken clothes ---> cheese 1 100.0 1.75 9999
+beef cheese clothes ---> chicken 1 100.0 1.4 9999
+beef cheese chicken ---> clothes 1 50.0 1.16666666667 8
+chicken, clothes ---> beef cheese 1 33.3333333333 0.777777777778 6
+cheese, clothes ---> beef chicken 1 100.0 2.33333333333 9999
+cheese, chicken ---> beef clothes 1 50.0 3.5 12
+beef, clothes ---> cheese chicken 1 100.0 3.5 9999
+beef, chicken ---> cheese clothes 1 33.3333333333 2.33333333333 9
+beef, cheese ---> chicken clothes 1 33.3333333333 0.777777777778 6
+clothes ---> beef cheese chicken 1 33.3333333333 1.16666666667 7
+chicken ---> beef cheese clothes 1 20.0 1.4 7
+cheese ---> beef chicken clothes 1 25.0 1.75 8
+beef ---> cheese chicken clothes 1 25.0 1.75 8
+cheese chicken milk ---> beef 1 100.0 1.75 9999
+beef chicken milk ---> cheese 1 50.0 0.875 6
+beef cheese milk ---> chicken 1 100.0 1.4 9999
+beef cheese chicken ---> milk 1 50.0 0.875 6
+chicken, milk ---> beef cheese 1 25.0 0.583333333333 5
+cheese, milk ---> beef chicken 1 100.0 2.33333333333 9999
+cheese, chicken ---> beef milk 1 50.0 1.75 10
+beef, milk ---> cheese chicken 1 50.0 1.75 10
+beef, chicken ---> cheese milk 1 33.3333333333 2.33333333333 9
+beef, cheese ---> chicken milk 1 33.3333333333 0.583333333333 4
+milk ---> beef cheese chicken 1 25.0 0.875 6
+chicken ---> beef cheese milk 1 20.0 1.4 7
+cheese ---> beef chicken milk 1 25.0 0.875 6
+beef ---> cheese chicken milk 1 25.0 1.75 8
+cheese clothes milk ---> beef 1 100.0 1.75 9999
+beef clothes milk ---> cheese 1 100.0 1.75 9999
+beef cheese milk ---> clothes 1 100.0 2.33333333333 9999
+beef cheese clothes ---> milk 1 100.0 1.75 9999
+clothes, milk ---> beef cheese 1 33.3333333333 0.777777777778 6
+cheese, milk ---> beef clothes 1 100.0 7.0 9999
+cheese, clothes ---> beef milk 1 100.0 3.5 9999
+beef, milk ---> cheese clothes 1 50.0 3.5 12
+beef, clothes ---> cheese milk 1 100.0 7.0 9999
+beef, cheese ---> clothes milk 1 33.3333333333 0.777777777778 6
+milk ---> beef cheese clothes 1 25.0 1.75 8
+clothes ---> beef cheese milk 1 33.3333333333 2.33333333333 9
+cheese ---> beef clothes milk 1 25.0 1.75 8
+beef ---> cheese clothes milk 1 25.0 1.75 8
+chicken clothes milk ---> beef 1 33.3333333333 0.583333333333 4
+beef clothes milk ---> chicken 1 100.0 1.4 9999
+beef chicken milk ---> clothes 1 50.0 1.16666666667 8
+beef chicken clothes ---> milk 1 100.0 1.75 9999
+clothes, milk ---> beef chicken 1 33.3333333333 0.777777777778 6
+chicken, milk ---> beef clothes 1 25.0 1.75 8
+chicken, clothes ---> beef milk 1 33.3333333333 1.16666666667 7
+beef, milk ---> chicken clothes 1 50.0 1.16666666667 8
+beef, clothes ---> chicken milk 1 100.0 1.75 9999
+beef, chicken ---> clothes milk 1 33.3333333333 0.777777777778 6
+milk ---> beef chicken clothes 1 25.0 1.75 8
+clothes ---> beef chicken milk 1 33.3333333333 1.16666666667 7
+chicken ---> beef clothes milk 1 20.0 1.4 7
+beef ---> chicken clothes milk 1 25.0 0.583333333333 5
+cheese chicken clothes ---> boots 0 0.0 0.0 6
+boots chicken clothes ---> cheese 0 0 0.0 9999
+boots cheese clothes ---> chicken 0 0 0.0 9999
+boots cheese chicken ---> clothes 0 0 0.0 9999
+cheese chicken milk ---> boots 0 0.0 0.0 6
+boots chicken milk ---> cheese 0 0 0.0 9999
+boots cheese milk ---> chicken 0 0 0.0 9999
+boots cheese chicken ---> milk 0 0 0.0 9999
+cheese clothes milk ---> boots 0 0.0 0.0 6
+boots clothes milk ---> cheese 0 0 0.0 9999
+boots cheese milk ---> clothes 0 0 0.0 9999
+boots cheese clothes ---> milk 0 0 0.0 9999
+chicken clothes milk ---> boots 0 0.0 0.0 6
+boots clothes milk ---> chicken 0 0 0.0 9999
+boots chicken milk ---> clothes 0 0 0.0 9999
+boots chicken clothes ---> milk 0 0 0.0 9999
+chicken clothes milk ---> cheese 1 33.3333333333 0.583333333333 4
+cheese clothes milk ---> chicken 1 100.0 1.4 9999
+cheese chicken milk ---> clothes 1 100.0 2.33333333333 9999
+cheese chicken clothes ---> milk 1 100.0 1.75 9999
+clothes, milk ---> cheese chicken 1 33.3333333333 1.16666666667 7
+chicken, milk ---> cheese clothes 1 25.0 1.75 8
+chicken, clothes ---> cheese milk 1 33.3333333333 2.33333333333 9
+cheese, milk ---> chicken clothes 1 100.0 2.33333333333 9999
+cheese, clothes ---> chicken milk 1 100.0 1.75 9999
+cheese, chicken ---> clothes milk 1 50.0 1.16666666667 8
+milk ---> cheese chicken clothes 1 25.0 1.75 8
+clothes ---> cheese chicken milk 1 33.3333333333 2.33333333333 9
+chicken ---> cheese clothes milk 1 20.0 1.4 7
+cheese ---> chicken clothes milk 1 25.0 0.583333333333 5
+boots cheese chicken clothes ---> beef 0 0 0.0 9999
+beef cheese chicken clothes ---> boots 0 0.0 0.0 6
+beef boots chicken clothes ---> cheese 0 0 0.0 9999
+beef boots cheese clothes ---> chicken 0 0 0.0 9999
+beef boots cheese chicken ---> clothes 0 0 0.0 9999
+boots cheese chicken milk ---> beef 0 0 0.0 9999
+beef cheese chicken milk ---> boots 0 0.0 0.0 6
+beef boots chicken milk ---> cheese 0 0 0.0 9999
+beef boots cheese milk ---> chicken 0 0 0.0 9999
+beef boots cheese chicken ---> milk 0 0 0.0 9999
+boots cheese clothes milk ---> beef 0 0 0.0 9999
+beef cheese clothes milk ---> boots 0 0.0 0.0 6
+beef boots clothes milk ---> cheese 0 0 0.0 9999
+beef boots cheese milk ---> clothes 0 0 0.0 9999
+beef boots cheese clothes ---> milk 0 0 0.0 9999
+boots chicken clothes milk ---> beef 0 0 0.0 9999
+beef chicken clothes milk ---> boots 0 0.0 0.0 6
+beef boots clothes milk ---> chicken 0 0 0.0 9999
+beef boots chicken milk ---> clothes 0 0 0.0 9999
+beef boots chicken clothes ---> milk 0 0 0.0 9999
+cheese chicken clothes milk ---> beef 1 100.0 1.75 9999
+beef chicken clothes milk ---> cheese 1 100.0 1.75 9999
+beef cheese clothes milk ---> chicken 1 100.0 1.4 9999
+beef cheese chicken milk ---> clothes 1 100.0 2.33333333333 9999
+beef cheese chicken clothes ---> milk 1 100.0 1.75 9999
+chicken, clothes, milk ---> beef cheese 1 33.3333333333 0.777777777778 6
+cheese, clothes, milk ---> beef chicken 1 100.0 2.33333333333 9999
+cheese, chicken, milk ---> beef clothes 1 100.0 7.0 9999
+cheese, chicken, clothes ---> beef milk 1 100.0 3.5 9999
+beef, clothes, milk ---> cheese chicken 1 100.0 3.5 9999
+beef, chicken, milk ---> cheese clothes 1 50.0 3.5 12
+beef, chicken, clothes ---> cheese milk 1 100.0 7.0 9999
+beef, cheese, milk ---> chicken clothes 1 100.0 2.33333333333 9999
+beef, cheese, clothes ---> chicken milk 1 100.0 1.75 9999
+beef, cheese, chicken ---> clothes milk 1 50.0 1.16666666667 8
+clothes, milk ---> beef cheese chicken 1 33.3333333333 1.16666666667 7
+chicken, milk ---> beef cheese clothes 1 25.0 1.75 8
+chicken, clothes ---> beef cheese milk 1 33.3333333333 2.33333333333 9
+cheese, milk ---> beef chicken clothes 1 100.0 7.0 9999
+cheese, clothes ---> beef chicken milk 1 100.0 3.5 9999
+cheese, chicken ---> beef clothes milk 1 50.0 3.5 12
+beef, milk ---> cheese chicken clothes 1 50.0 3.5 12
+beef, clothes ---> cheese chicken milk 1 100.0 7.0 9999
+beef, chicken ---> cheese clothes milk 1 33.3333333333 2.33333333333 9
+beef, cheese ---> chicken clothes milk 1 33.3333333333 0.777777777778 6
+milk ---> beef cheese chicken clothes 1 25.0 1.75 8
+clothes ---> beef cheese chicken milk 1 33.3333333333 2.33333333333 9
+chicken ---> beef cheese clothes milk 1 20.0 1.4 7
+cheese ---> beef chicken clothes milk 1 25.0 1.75 8
+beef ---> cheese chicken clothes milk 1 25.0 1.75 8
+cheese chicken clothes milk ---> boots 0 0.0 0.0 6
+boots chicken clothes milk ---> cheese 0 0 0.0 9999
+boots cheese clothes milk ---> chicken 0 0 0.0 9999
+boots cheese chicken milk ---> clothes 0 0 0.0 9999
+boots cheese chicken clothes ---> milk 0 0 0.0 9999
+boots cheese chicken clothes milk ---> beef 0 0 0.0 9999
+beef cheese chicken clothes milk ---> boots 0 0.0 0.0 6
+beef boots chicken clothes milk ---> cheese 0 0 0.0 9999
+beef boots cheese clothes milk ---> chicken 0 0 0.0 9999
+beef boots cheese chicken milk ---> clothes 0 0 0.0 9999
+beef boots cheese chicken clothes ---> milk 0 0 0.0 9999
+>>>>>>> 4b667663039ae3e610c6768cff694c035a1c49ae
